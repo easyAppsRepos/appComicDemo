@@ -1,0 +1,141 @@
+<ion-view>
+  <ion-nav-title style='color:#444'>Detalles</ion-nav-title>
+
+  <ion-content padding="true" style='background-image: url(img/fondoc3.png);' >
+
+  <div style="       background: #929292;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+    z-index: 2;
+">
+  </div>
+    <ion-refresher class="spinner-balanced" on-refresh="reload()"></ion-refresher>
+    <div class="text-center">
+      <ion-spinner class="spinner-balanced" ng-show="loading"></ion-spinner>
+    </div>
+    <div ng-show="!loading">
+<div style="text-align: center;
+    margin-bottom: 25px;
+    z-index: 4;
+    color: white;
+    opacity: 1;
+    position: relative;">
+
+
+      <h3 style="     margin-bottom: 0px;    color: white;   display: inline-block;">Captain America (2002 4th Series)</h3>
+      <h4 style="       margin-top: 0px; color: white"> <small></small></h4>
+
+
+
+      <p style="    margin-bottom: 25px;color:white">Written by Robert Morales Penciled by EDDIE CAMPBELL Covers by Dave Johnson In this special two-part story, celebrated artist Eddie Campbell (From Hell) joins Robert Morales! Captain America finds himself at the crossroads where his past and a possible future meet when he's faced with a super-villain from his alternate future</p>
+
+    </div> 
+
+
+<!--     <div style="    min-height: 150px;
+    background: white;
+    position: relative;
+    width: calc(50% - 30px);" class="div1"></div>
+
+<div style="    min-height: 150px;
+    background: white;
+    position: relative;
+    width: calc(50% - 30px);" class="div2"></div> -->
+
+
+
+       <div class="text-center" style="    position: relative;
+    z-index: 4;">
+        <img style="    border-radius: 0;
+    height: 213px;
+    width: 190px;
+    border: solid 5px white;" ng-src="img/portada4.jpeg" class="image">
+      </div>
+
+
+      <br>
+      <ion-list>
+        <ion-item  style='    background-color: white;
+    color: #555;' class="item-divider item-icon-right"><b>Informacion adicional </b> <i class="icon ion-information-circled"></i></ion-item>
+        <ion-item style='background-size: contain;
+    text-align: center;
+    background-image: url(img/fondot2.png);'>
+
+       
+
+<ul style="text-align: left;
+    list-style-type: circle;
+    margin-left: 13px;
+    margin-top: 5px;
+    line-height: 3;">
+  <li>Precio: $11</li>
+  <li>Año: 2003</li>
+  <li>Estado: Bueno</li>
+
+</ul>
+
+
+
+
+      </ion-list>
+      <br>
+      <ion-list class='testClass'>
+<!--         <ion-item style='    background-color: white;
+    color: #555;' class="item-divider item-icon-right"><b>Contacto</b> <i class="icon ion-chatboxes"></i></ion-item> -->
+
+            <ion-item  style='      color: #555;
+    background: transparent;' class="item-divider item-icon-right"><b style="    margin-top: 12px;
+    display: inline-block;
+    margin-bottom: 11px;">Federico Zapata </b> <i class="icon ion-android-contact"></i></ion-item>
+
+    
+
+    <ion-item style='  margin-top: 10px;  border: none;
+    background-color: transparent;' class="item-icon-right">
+           A 5km de distancia aprox
+          <i class="icon ion-ios-location"></i>
+
+        
+
+
+        </ion-item>
+
+<div style="    text-align: center;">
+
+  <button style='    background-color: white;
+    color: #333;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 0px;' class="button " ui-sref='chat'>Chat</button>
+</div>
+
+
+
+     
+ 
+ 
+      </ion-list>
+    </div>
+
+
+
+  </ion-content>
+<!--   <ion-footer-bar class="bar-stable">
+    <div class="buttons">
+      <div class="button button-clear" ng-disabled="loading" ng-click="map()">
+        <i class="icon ion-map"></i> Maps
+      </div>
+    </div>
+    <h1 class="title"></h1>
+    <div class="buttons">
+      <div class="button button-clear" ng-disabled="loading" ng-click="report()">
+        Report
+        <i class="icon ion-android-alert"></i>
+      </div>
+    </div>
+  </ion-footer-bar> -->
+</ion-view>

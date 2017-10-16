@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+
+    <!-- compiled css output -->
+    <link href="css/ionic.app.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+    <!-- load requirejs config -->
+    <script src="main.js"></script>
+    <!-- load requirejs -->
+    <script src="lib/requirejs/require.min.js"></script>
+    <!-- load boot-script - it loads configs, routes, runs and bootstraps the app -->
+    <script src="app/boot.js"></script>
+  </head>
+  <body ng-controller="AppCtrl" ng-show="ready" class="ng-hide">
+    <ion-side-menus  >
+      <!-- Left menu -->
+      <ion-side-menu style='background-image: url(img/backmenu.png);    background-position-x: -600px;' side="left">
+        <ion-header-bar class="" style='   background-color: transparent; height: 73px;'>
+         
+        <!--  <img style='height: 100%;' src="img/logo3.png">  -->
+        </ion-header-bar>
+
+
+        <ion-content  >
+          <ion-list>
+<div style='    height: 30px !important  ;'></div>
+
+
+          <ion-item  menu-close class="item-tests item-icon-left  menuStyle" ui-sref="listaMascotas">
+          Inicio
+             
+            </ion-item>
+
+            <ion-item  menu-close class="item-tests item-icon-left menuStyle" ui-sref="listaMascotas">
+             Perfil
+              
+            </ion-item>
+
+
+             <ion-item  menu-close class="item-tests item-icon-left menuStyle" ui-sref="listaMascotas">
+             Mensajes
+              
+            </ion-item>
+
+             <ion-item  ng-controller='menuBCtrl' menu-close class="item-tests item-icon-left menuStyle"  ui-sref="listaMascotas">
+              Ayuda
+         
+            </ion-item>
+
+            <ion-item  ng-controller='menuBCtrl'  menu-close class="item-tests item-icon-left menuStyle" ng-click='cerrarSesion()'  >
+              Cerrar sesion
+             
+            </ion-item>
+
+
+
+
+
+            <!-- <ion-item class="item-royal item-icon-right" ng-click="openModal($index)" ng-repeat="page in pages">
+              {{page.title}}
+              <i class="icon" ng-class="page.icon"></i>
+            </ion-item> -->
+
+
+          </ion-list>
+
+   
+
+        </ion-content>
+<!-- 
+                 <div style="    color: #333;
+    font-family: badabb;
+    font-size: 34px;
+    position: absolute;
+    bottom: 0;">Ultra Doujinshi</div>
+ -->
+
+
+      </ion-side-menu>
+
+      <ion-side-menu-content>
+        <!-- The nav bar that will be updated as we navigate -->
+        <ion-nav-bar class="bar-energized">
+          <ion-nav-back-button></ion-nav-back-button>
+          <ion-nav-buttons side="left">
+           <!-- Toggle left side menu -->
+           <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+          </ion-nav-buttons>
+        </ion-nav-bar>
+        <!-- where the initial view template will be rendered -->
+        <ion-nav-view>
+        </ion-nav-view>
+      </ion-side-menu-content>
+
+    </ion-side-menus>
+  </body>
+</html>

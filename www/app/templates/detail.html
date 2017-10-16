@@ -1,0 +1,63 @@
+<ion-view>
+  <ion-nav-title>Detalles</ion-nav-title>
+  <ion-content padding="true">
+
+    <div class="text-center">
+      <ion-spinner class="spinner-balanced" ng-show="loading"></ion-spinner>
+    </div>
+    <div ng-show="!loading">
+<div style="text-align:center">
+       <img style='    height: 40px;
+    width: 40px;vertical-align: sub;' ng-src="img/campana{{event.tipoEvento}}.png"><h3 style="     margin-bottom: 0px;    color: #444;   display: inline-block;">{{event.nombre}}</h3>
+      <h4 style="       margin-top: 0px; color: #444"> <small>{{event.tipoEvento == 1 ? 'Esterilizacion' : event.tipoEvento == 2 ? 'Adopcion' : event.tipoEvento == 3 ? 'Reunir Fondos' : 'Otro'}}</small></h4>
+
+
+      <p style="    margin-bottom: 25px;color:#666">{{event.descripcion}}</p>
+    </div> 
+
+<!--       <div class="text-center">
+        <img ng-src="{{event.image}}" class="image">
+      </div>
+ -->
+      <ion-list>
+        <ion-item class="item-divider item-icon-right"><b>Direccion</b> <i class="icon ion-location"></i></ion-item>
+        <ion-item>
+          {{event.direccion == null ? 'No especifica' : event.direccion}}
+        </ion-item>
+      </ion-list>
+      <br>
+      <ion-list>
+        <ion-item class="item-divider item-icon-right"><b>Fecha de evento</b> <i class="icon ion-ios-calendar-outline"></i></ion-item>
+        <ion-item >
+          {{event.fecha == null ? 'No especifica' : event.fecha}}
+      </ion-list>
+      <br>
+      <ion-list>
+        <ion-item class="item-divider item-icon-right"><b>Contacto</b> <i class="icon ion-chatboxes"></i></ion-item>
+        <ion-item class="item-icon-right" >
+           {{event.contacto == null ? 'No especifica' : event.contacto}}
+          <i class="icon ion-android-call"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" >
+          {{event.email}}
+          <i class="icon ion-ios-email"></i>
+        </ion-item>
+ 
+      </ion-list>
+    </div>
+  </ion-content>
+<!--   <ion-footer-bar class="bar-stable">
+    <div class="buttons">
+      <div class="button button-clear" ng-disabled="loading" ng-click="map()">
+        <i class="icon ion-map"></i> Maps
+      </div>
+    </div>
+    <h1 class="title"></h1>
+    <div class="buttons">
+      <div class="button button-clear" ng-disabled="loading" ng-click="report()">
+        Report
+        <i class="icon ion-android-alert"></i>
+      </div>
+    </div>
+  </ion-footer-bar> -->
+</ion-view>

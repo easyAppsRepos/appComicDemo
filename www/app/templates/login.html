@@ -1,0 +1,155 @@
+<ion-view hide-nav-bar="true">
+      <script id="nuevoUsuario.html" type="text/ng-template">
+  <ion-modal-view class="ion-nifty-modal2">
+    <div  class="ion-modal-content-custom2">
+
+
+      <ion-content class="padding " style="background-color: #00AD9E; color:white;font-family:backIssuesItal !important" >
+  <i ng-click='closeModal()' style='    color: white;
+    font-size: 35px;' class=" ion-android-cancel"></i>
+      <div class='' style="    margin-left: 3%;margin-right: 3%;   margin-top: 3%;">
+
+       <form name="form.usuario" ng-submit="form.usuario.$valid && registrarUsuario(usuario)">
+
+                    <div  style='      color: white;
+   border-bottom: solid 1px #1cb382;    margin-top: 15px;font-size: 17px !important;    padding-bottom: 13px;' >Crear Usuario</div>
+                    <div  class="list " >
+
+                        <div  style="margin-top:13px"><label style="    color: white;
+    font-size: 17px !important;">Email *</label></div>
+                        <input   ng-model='usuario.email' style='    width: 100%;
+    background-color: transparent;
+    border-bottom: solid 2px white; color:white' placeholder='' type="email" class="inputRegistrar md-input" required="required">
+
+                      <div style="margin-top:13px"><label style="    color: white;
+    font-size: 17px !important;">Nombre *</label></div>
+                        <input ng-model='usuario.nombre' placeholder='' style="    width: 100%;
+    background-color: transparent;
+    border-bottom: solid 2px white; color:white" type="text" class="inputRegistrar md-input" required="required">
+
+                      <div style="margin-top:13px"><label style="    color: white;
+    font-size: 17px !important;">Telefono de contacto *</label></div>
+                        <input ng-model='usuario.contacto' placeholder='' style="    width: 100%;
+    background-color: transparent;
+    border-bottom: solid 2px white; color:white" type="text" class="inputRegistrar md-input" required="required">
+
+
+
+
+
+                      <div style="margin-top:13px"><label style="    color: white;
+    font-size: 17px !important;">Contraseña *</label></div>
+                        <input ng-model='usuario.contra' placeholder='' style="    width: 100%;
+    background-color: transparent;
+    border-bottom: solid 2px white; color:white" type="text" class="inputRegistrar md-input" autocapitalize="off" required="required">
+
+            
+            <div style="margin-top:13px"><label style="    color: white;
+    font-size: 17px !important;">Repetir contraseña *</label></div>
+                        <input  ng-model='usuario.contra2'  style='margin-top: 4px !important;    width: 100%;
+    background-color: transparent;
+    border-bottom: solid 2px white; color:white' placeholder='' type="text" class="inputRegistrar md-input" autocapitalize="off" required="required">
+
+
+
+
+                    </div>
+
+                         
+            <button ng-disabled="form.usuario.$invalid" style="margin-bottom: 55px; background-color: white!important;color: #00AD9E !important; "  class="button button-full " >Registrar</button>
+
+            </form>
+        
+      </div> 
+      <!--   <button class="button button-full button-positive" ng-click="closeModal()">Close Modal</button> -->
+      </ion-content>
+    </div>
+  </ion-modal-view>
+</script>
+
+<style type="text/css">
+  
+.ttss ::-webkit-input-placeholder { /* Chrome */
+  color: white !important;
+}
+.ttss :-ms-input-placeholder { /* IE 10+ */
+  color: white !important;
+}
+.ttss ::-moz-placeholder { /* Firefox 19+ */
+  color: white !important;
+  opacity: 1 !important;
+}
+.ttss :-moz-placeholder { /* Firefox 4 - 18 */
+  color: white !important;
+  opacity: 1 !important;
+}
+
+</style>
+
+<ion-content class='ttss' style="background-color: #00AD9E;font-family:backIssuesItal " >
+
+
+
+
+        <div class="" style="text-align:center; background-color: white;    height: 213px;">
+<img style="  height: 120px;
+    margin-top: 20px;
+    border-radius: 400px;" src="img/backmenu.png"> 
+              <!--   <img style="   height: 78px; margin-top: 45px;" src="img/logomascotas.png"> -->
+               
+            <div style='    color: #333;
+    font-family: badabb;
+    font-size: 34px;    padding-top: 15px;' >Ultra Doujinshi</div>
+
+        </div>
+
+
+<div style="margin-top:20px; font-family:backIssuesItal !important">
+  
+      <form name="form.search" ng-submit="form.search.$valid && doLogin(search)">
+      <label style=' color:white;   background-color: transparent;
+    border-bottom: 1px solid white;
+    margin-left: 15px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    margin-right: 15px;' class="item item-input">
+        <i style='padding-right: 15px;color:white' class="icon ion-email placeholder-icon"></i>
+        <input style='color:white !important;font-family:backIssuesItal !important'  type="email" ng-model="search.email" required="required" placeholder="Email"> 
+      </label>
+
+   <label style='  margin-top:10px;color:white;  background-color: transparent;
+    border-bottom: 1px solid white;
+    margin-left: 15px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    margin-right: 15px;' class="item item-input">
+        <i style='padding-right: 15px;color:white' class="icon ion-locked placeholder-icon"></i>
+           <input style='color:white !important;font-family:backIssuesItal !important' type="password" ng-model="search.pass" required="required" placeholder="Contraseña">
+      </label>
+
+
+   <br><br>
+   
+<div style=" text-align:center">
+    <!--  <button  style='margin-right: 10px;font-family:backIssuesItal !important'  class="button  " ng-disabled="form.search.$invalid" ><b>Entrar</b></button>  -->
+     <button  style='margin-right: 10px;font-family:backIssuesItal !important'  class="button  " ui-sref="listaMascotas" ><b>Entrar</b></button> 
+      <button class="button  "  style='font-family:backIssuesItal !important' ng-click='openModalRegistro()'><b>Registrarse</b></button> 
+
+<br><br>  
+      <a>He olvidado mi contraseña</a>
+</div>
+
+
+
+    </form>
+
+</div>
+
+ 
+
+
+    </ion-content>
+
+    </ion-view >
