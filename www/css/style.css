@@ -177,5 +177,23 @@ body{
     border-left: 50px solid transparent;
 }*/
 
+a .item .item-avatar{
+      background: transparent !important;
+}
+
+.detailProfile{
+
+    display: inline-block;
+    width: 32%;
+    text-align: center;
+    background-color: white;
+    color: #444;
+    height: 50px;
+    padding-top: 4px;
+}
 
 
+.fotoPerfil{       
+    border-radius: 100%;
+    width: 110px;
+    margin-top: 20px;}

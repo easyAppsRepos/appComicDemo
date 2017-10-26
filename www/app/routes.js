@@ -80,7 +80,24 @@ $ionicConfigProvider.backButton.previousTitleText(false).text('');
           controller: 'perfilCtrl'
         })
          
+.state('ayuda', {
+          url: '/ayuda',
+          templateUrl: 'app/templates/ayuda.html',
+          controller: 'ayudaCtrl'
+        })
 
+.state('agregar', {
+          url: '/agregar',
+          templateUrl: 'app/templates/agregar.html',
+          controller: 'agregarCtrl'
+        })
+
+
+.state('mensajes', {
+          url: '/mensajes',
+          templateUrl: 'app/templates/mensajes.html',
+          controller: 'mensajesCtrl'
+        })
 
          .state('contactanos', {
           url: '/contactanos',

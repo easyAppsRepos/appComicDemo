@@ -5,6 +5,39 @@ define([
 ], function (app) {
   'use strict';
 
+  app.controller('mensajesCtrl', [
+    '$scope',
+    '$stateParams',
+    '$window',
+    '$ionicPopup',
+    'eventService',
+    'api',
+    function ($scope, $stateParams, $window, $ionicPopup, eventService, api) {
+
+    }]);
+  app.controller('ayudaCtrl', [
+    '$scope',
+    '$stateParams',
+    '$window',
+    '$ionicPopup',
+    'eventService',
+    'api',
+    function ($scope, $stateParams, $window, $ionicPopup, eventService, api) {
+
+    }]);
+
+    app.controller('agregarCtrl', [
+    '$scope',
+    '$stateParams',
+    '$window',
+    '$ionicPopup',
+    'eventService',
+    'api',
+    function ($scope, $stateParams, $window, $ionicPopup, eventService, api) {
+
+    }]);
+
+
   app.controller('DetailCtrl', [
     '$scope',
     '$stateParams',
@@ -639,9 +672,9 @@ $scope.$on('$ionicView.enter', function(event, viewData) {
 
 
 $scope.usuarioInfo={};
-  var userData = JSON.parse(window.localStorage.getItem('userInfoSM'));
+  //ßåvar userData = JSON.parse(window.localStorage.getItem('userInfoSM'));
 
-  $scope.usuarioInfo.id =  userData.id;
+//  $scope.usuarioInfo.id =  userData.id;
 
 
 });
