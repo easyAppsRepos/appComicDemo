@@ -68,10 +68,12 @@ $state.go('chat', { id: ll });
     '$scope',
     '$stateParams',
     '$window',
+    '$ionicLoading',
+    '$state',
     '$ionicPopup',
     'eventService',
     'api',
-    function ($scope, $stateParams, $window, $ionicPopup, eventService, api) {
+    function ($scope, $stateParams, $window, $ionicLoading, $state, $ionicPopup, eventService, api) {
 $scope.publicacion = {};
  $scope.publicacion.imagen = 'img/ff.png';
         $scope.consecutivo = Math.floor(Math.random() * 16) + 1  ;
@@ -89,6 +91,42 @@ $scope.publicacion = {};
       });
       }
 
+
+
+function uploadPhoto(imageURI,publicacion) {
+  $ionicLoading.show();
+ var options = new FileUploadOptions();
+ options.fileKey = "file";
+ options.fileName = 'user'+$scope.usuarioInfo.idUsuario;
+ options.mimeType = "image/jpeg";
+ console.log(options.fileName);
+ var params = new Object();
+ params = publicacion;
+ options.params = params;
+ options.chunkedMode = false;
+
+var ft = new FileTransfer();
+ ft.upload(imageURI, $scope.url+"/publicarComic", function(result){
+ console.log(JSON.stringify(result));
+  $ionicLoading.hide();
+
+  console.log('Foto cambiada correctamente');
+  mensajeAlerta(2,'Publicacion agregada correctamente');
+  $state.go('listaMascotas');
+/*  $state.reload();
+  $scope.$apply(function () {
+     $scope.valorF =4;
+});*/
+
+
+ }, function(error){
+ console.log(JSON.stringify(error));
+ $ionicLoading.hide();
+ console.log('error al subir foto');
+ }, options);
+ }
+
+
       $scope.uploadPhotos = function(imageURI) {
         console.log(imageURI);
 
@@ -97,7 +135,7 @@ $scope.publicacion = {};
         $scope.consecutivo = Math.floor(Math.random() * 16) + 1  ;
 });
 
-        
+
 
       }
 
@@ -114,6 +152,14 @@ $scope.publicacion = {};
 
         else{
 
+          if($scope.publicacion.imagen=='img/ff.png'){
+            mensajeAlerta(1,'Debes seleccionar una imagen');
+            return false;
+          }
+            else{
+              console.log('dokok');
+              uploadPhoto($scope.publicacion.imagen,publi);
+            }
 
         }
 
@@ -544,7 +590,14 @@ var ft = new FileTransfer();
 
   console.log('Foto cambiada correctamente');
 
-  $scope.contador= Math.floor(Math.random() * 16) + 1  ;
+  
+
+
+        $scope.$apply(function () {
+        $scope.contador= Math.floor(Math.random() * 16) + 1  ;
+});
+
+
   mensajeAlerta(2,'Foto actualizada correctamente');
 /*  $state.reload();
   $scope.$apply(function () {
