@@ -97,13 +97,16 @@ $state.go('chat', { id: ll });
     '$state',
     '$ionicPopup',
     'eventService',
+    'serverConfig',
     'api',
-    function ($scope, $stateParams, $window, $ionicLoading, $state, $ionicPopup, eventService, api) {
+    function ($scope, $stateParams, $window, $ionicLoading, $state, $ionicPopup, eventService, serverConfig, api) {
 $scope.publicacion = {};
  $scope.publicacion.imagen = 'img/ff.png';
         $scope.consecutivo = Math.floor(Math.random() * 16) + 1  ;
 
       
+
+$scope.url = serverConfig.url;
 
 
       $scope.getImage = function() {
@@ -127,11 +130,11 @@ $scope.publicacion = {};
  console.log(options.fileName);
  var params = new Object();
  params.idPublicacion = idPub;
- options.params = params;
+ options.params = idPub;
  options.chunkedMode = false;
 
 var ft = new FileTransfer();
- ft.upload(imageURI, $scope.url+"/cambiarFotoPublicacion", function(result){
+ ft.upload(imageURI, $scope.url+"/publicarComicc", function(result){
  console.log(JSON.stringify(result));
   $ionicLoading.hide();
 
@@ -164,8 +167,38 @@ var ft = new FileTransfer();
 
       }
 
-
     $scope.subirComic = function (publi) {
+
+
+        
+        publi.idUsuario = window.localStorage.getItem('userInfoUD');
+        console.log(publi);
+        if(!publi || !publi.nombre || !publi.descripcion || !publi.estado || !publi.fechaPublicacion || !publi.precio){
+          mensajeAlerta(1,'Datos incompletos');
+          return false;
+        }
+
+        else{
+
+          if($scope.publicacion.imagen=='img/ff.png'){
+            mensajeAlerta(1,'Debes seleccionar una imagen');
+            return false;
+          }
+            else{
+                $ionicLoading.show();
+                $scope.uploadPhoto($scope.publicacion.imagen,publi);
+              //uploadPhoto($scope.publicacion.imagen,publi);
+            }
+
+        }
+
+
+
+      };
+
+
+
+    $scope.subirComiec = function (publi) {
 
 
         
