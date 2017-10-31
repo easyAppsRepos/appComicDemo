@@ -6,28 +6,28 @@
 
   <div  style="margin-top:13px"><label style="    color: #444;
     font-size: 17px !important;">Nombre *</label></div>
-                        <input    style='    width: 100%;
+                        <input    ng-model='publicacion.nombre' style='    width: 100%;
     background-color: transparent;
-    border-bottom: solid 2px #444; color:#444' placeholder='' type="email" class="inputRegistrar md-input" required="required">
+    border-bottom: solid 2px #444; color:#444' placeholder='' type="text" class="inputRegistrar md-input" required="required">
 
                       <div style="margin-top:13px"><label style="    color: #444;
     font-size: 17px !important;">Descripcion</label></div>
 
-    				<textarea style="    width: 100%;height: 100px;
+    				<textarea ng-model='publicacion.descripcion' style="    width: 100%;height: 100px;
     background-color: transparent;
     border: solid 2px #444;  resize: none;color:#444">
     					
     				</textarea>
                                     <div style="margin-top:13px"><label style="    color: #444;
     font-size: 17px !important;">Estado </label></div>
-                        <input  placeholder='' style="    width: 100%;
+                        <input  ng-model='publicacion.estado' placeholder='' style="    width: 100%;
     background-color: transparent;
     border-bottom: solid 2px #444; color:#444" type="text" class="inputRegistrar md-input" required="required">
          
 
                       <div style="margin-top:13px"><label style="    color: #444;
     font-size: 17px !important;">Fecha de publicacion </label></div>
-                        <input  placeholder='' style="    width: 100%;
+                        <input ng-model='publicacion.fechaPublicacion' placeholder='' style="    width: 100%;
     background-color: transparent;
     border-bottom: solid 2px #444; color:#444" type="text" class="inputRegistrar md-input" required="required">
 
@@ -36,18 +36,18 @@
     font-size: 17px !important;">Precio </label></div>
                         <input  placeholder='' style="    width: 100%;
     background-color: transparent;
-    border-bottom: solid 2px #444; color:#444" type="text" class="inputRegistrar md-input" required="required">
+    border-bottom: solid 2px #444; color:#444" type="text" class="inputRegistrar md-input" required="required" ng-model='publicacion.precio' >
 
     <button class="button" style="   font-family: backIssuesReg !important; margin-top: 35px;">
   <i class="icon ion-image"></i> Agregar imagen
 </button>
 
 
-<img style="width: 179px;" src="img/ff.png">
+<img style="width: 179px;" ng-src="publicacion.imagen">
 
 
 <div style="text-align:center; margin:30px">
-    <button class="button" style="   font-family: backIssuesReg !important;">
+    <button ng-click='subirComic(publicacion)' class="button" style="   font-family: backIssuesReg !important;">
   Publicar comic
 </button>
 </div>

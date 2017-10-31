@@ -73,6 +73,87 @@ $state.go('chat', { id: ll });
     'api',
     function ($scope, $stateParams, $window, $ionicPopup, eventService, api) {
 
+
+
+      $scope.publicacion = {};
+
+
+      $scope.getImage = function() {
+      navigator.camera.getPicture($scope.uploadPhotos, function(message) {
+      console.log('getPic cancelled');
+      }, {
+      quality: 100,
+      destinationType: navigator.camera.DestinationType.FILE_URI,
+      sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+      });
+      }
+
+      $scope.uploadPhotos = function(imageURI) {
+
+        $scope.publicacion.imagen = imageURI;
+      }
+
+
+    $scope.subirComic = function (publi) {
+
+
+        console.log(publi);
+
+        if(!publi || !publi.nombre || !publi.descripcion || !publi.estado || !publi.fechaPublicacion || !publi.precio){
+          mensajeAlerta(1,'Datos incompletos');
+          return false;
+        }
+
+        else{
+
+
+        }
+
+
+
+      };
+
+
+
+   function mensajeAlerta(tipo, mensaje){
+    console.log(tipo);
+    var ima ='exclam.png';
+if(tipo==1){
+
+     var customTemplate =
+        '<div style="text-align:center;"><img style="margin-top:10px" src="img/exclam.png"> <p style="    font-size: 18px;color:white; margin-top:25px">'+mensaje+'</p> </div>';
+
+
+}
+  if(tipo == 2){
+
+     var customTemplate =
+        '<div style="text-align:center;"><img style="margin-top:10px" src="img/confirma.png"> <p style="    font-size: 18px;color:white; margin-top:25px">'+mensaje+'</p> </div>';
+
+}
+
+      $ionicPopup.show({
+        template: customTemplate,
+        title: '',
+        subTitle: '',
+        buttons: [{
+          text: 'Cerrar',
+          type: 'button-blueCustom',
+          onTap: function(e) {
+
+    console.log('ok');
+          }
+           // if(borrar){ $scope.user.pin='';}
+           
+          
+        }]
+      });
+
+}
+
+
+
+
     }]);
 
 

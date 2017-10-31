@@ -10,15 +10,16 @@
     padding-bottom: 16px;background-size: cover;
     background-color:white;border-radius: 7px;">
 
-    <button ng-click='confirmarFoto()' style="    position: absolute;
+    <div ng-show='usuarioIDUD==perfilUsuario.idUsuario' ng-click='confirmarFoto()' style="    position: absolute;
     right: 5px;
     font-size: 29px;
+        padding-top: 12px;
     height: 58px;
     width: 64px;
-    color: lightgrey;"><i class="ion-image"> </i></button>
-	  	<img src="img/ben.png" class="fotoPerfil"><br>
+    color: lightgrey;"><i class="ion-image"> </i></div>
+	  	<img ng-src="https://s3.amazonaws.com/ultradoujinshi/user{{perfilUsuario.idUsuario}}" class="fotoPerfil"  onerror="this.src='img/userbak.png'" ><br>
 	  	<span>{{perfilUsuario.nombre}}</span><br>
-	  	<span style="    color: lightslategrey;">Usuario desde {{perfilUsuario.fechaCreacion}}</span>
+	  	<span style="    color: lightslategrey;">Usuario desde {{perfilUsuario.fechaCreacion.split(" ")[0]}}</span>
 	  </div>
 	  <div>	  	
 		<div class="detailProfile">
