@@ -1,5 +1,5 @@
 <?xml version="1.5" encoding="UTF-8" standalone="yes"?>
-<widget id          =     "com.ionicframework.solomascotas"
+<widget id          =     "com.ionicframework.ultradoujinshi"
         version     =    "1.0.0"
         xmlns       =    "http://www.w3.org/ns/widgets"
         xmlns:gap   =    "http://phonegap.com/ns/1.0"
@@ -81,6 +81,14 @@
   <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="App would like to access the library." />
 </plugin> 
  -->
+
+ <gap:plugin name="com.phonegap.plugins.facebookconnect" version="*">
+        <param name="APP_ID" value="557322497945858" />
+        <param name="APP_NAME" value="UltraDoujinshi" />
+    </gap:plugin>
+
+
+    
       <gap:plugin name="cordova-plugin-app-event" source="npm" version="1.2.0"/>
        <gap:plugin name="cordova-plugin-device" source="npm" version="1.1.4" />
    <gap:plugin name="cordova-plugin-geolocation"  source="npm" />
