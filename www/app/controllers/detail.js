@@ -91,8 +91,14 @@ $scope.publicacion = {};
 
       $scope.uploadPhotos = function(imageURI) {
         console.log(imageURI);
-        $scope.publicacion.imagen = imageURI;
+
+        $scope.$apply(function () {
+             $scope.publicacion.imagen = imageURI;
         $scope.consecutivo = Math.floor(Math.random() * 16) + 1  ;
+});
+
+        
+
       }
 
 
@@ -426,7 +432,7 @@ $scope.usuarioIDUD=window.localStorage.getItem('userInfoUD');
 
 
     });
-
+$scope.contador='2';
 
       $ionicLoading.show();
 
@@ -517,6 +523,8 @@ function getImage() {
  });
 }
 
+
+
 function uploadPhoto(imageURI) {
   $ionicLoading.show();
  var options = new FileUploadOptions();
@@ -535,6 +543,9 @@ var ft = new FileTransfer();
   $ionicLoading.hide();
 
   console.log('Foto cambiada correctamente');
+
+  $scope.contador= Math.floor(Math.random() * 16) + 1  ;
+  mensajeAlerta(2,'Foto actualizada correctamente');
 /*  $state.reload();
   $scope.$apply(function () {
      $scope.valorF =4;
