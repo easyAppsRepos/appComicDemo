@@ -9,21 +9,28 @@
     margin-top: 5px;
     padding-bottom: 16px;background-size: cover;
     background-color:white;border-radius: 7px;">
+
+    <button ng-click='confirmarFoto()' style="    position: absolute;
+    right: 5px;
+    font-size: 29px;
+    height: 58px;
+    width: 64px;
+    color: lightgrey;"><i class="ion-image"> </i></button>
 	  	<img src="img/ben.png" class="fotoPerfil"><br>
-	  	<span>Danny Riveras</span><br>
-	  	<span style="    color: lightslategrey;">Usuario desde enero del 2016</span>
+	  	<span>{{perfilUsuario.nombre}}</span><br>
+	  	<span style="    color: lightslategrey;">Usuario desde {{perfilUsuario.fechaCreacion}}</span>
 	  </div>
 	  <div>	  	
 		<div class="detailProfile">
-			<span>0</span><br>
+			<span>{{perfilUsuario.vendidos}}</span><br>
 			<span>Vendidos</span>
 		</div>
 		<div class="detailProfile">
-			<span>2 </span><br>
+			<span>{{perfilUsuario.publicados}}</span><br>
 			<span>Publicados</span>
 		</div>
 		<div class="detailProfile">
-			<span>4<i class="ion-star"></i></span><br>
+			<span>5<i class="ion-star"></i></span><br>
 			<span>valoracion</span>
 		</div>
 	  </div>
@@ -33,22 +40,12 @@
 
   		<div class="list">
 
-		<a class="item item-avatar" href="#" style="    background: transparent !important; margin-top: 20px;border: dashed 1px lemonchiffon;background: transparent !important;    margin-top: 20px;">
+		<a class="item item-avatar" ng-repeat='c in perfilUsuario.publicaciones' style="    background: transparent !important; margin-top: 20px;border: dashed 1px lemonchiffon;background: transparent !important;    margin-top: 20px;">
 		<img src="img/portada1.jpg">
-		<h2 style="  font-family: backIssuesReg !important;">Wolverine: Enemigo del Estado</h2>
-		<p>En venta | $15</p>
+		<h2 style="  font-family: backIssuesReg !important;">{{c.titulo}}</h2>
+		<p>{{getEstadoC(c.estadoPublicacion)}} | ${{c.precio}}</p>
 		</a>
-		<a class="item item-avatar" href="#" style="    background: transparent !important; margin-top: 20px;border: dashed 1px lemonchiffon;background: transparent !important;    margin-top: 20px;">
-		<img src="img/portada5.jpeg">
-		<h2 style="  font-family: backIssuesReg !important;">Star Wars (Comic) Oct. 1977 No. 4</h2>
-		<p>Vendido</p>
-		</a>
-   
-		<a class="item item-avatar" href="#" style="    background: transparent !important; margin-top: 20px;border: dashed 1px lemonchiffon;background: transparent !important;    margin-top: 20px;">
-		<img src="img/portada2.jpeg">
-		<h2 style="  font-family: backIssuesReg !important;">SUPERMAN * TEEN TITANS </h2>
-		<p>Vendido</p>
-		</a>
+	
 </div>
 
 
@@ -67,7 +64,16 @@
   <button style='    background-color: white;
     color: #333;
     width: 100%;
-    font-family: backIssuesReg !important;' class="button " ui-sref='chat'>Chat</button>
+    font-family: backIssuesReg !important;' class="button " ng-show='usuarioIDUD != perfilUsuario.idUsuario' ng-click='goChat(perfilUsuario.idUsuario)'>Chat</button>
+
+	<button style='    background-color: white;
+    color: #333;
+    width: 100%;
+    font-family: backIssuesReg !important;' class="button " ng-show='usuarioIDUD==perfilUsuario.idUsuario' ui-sref="agregar">Publicar COMIC</button>
+
+
+
+
 </div>
 
 

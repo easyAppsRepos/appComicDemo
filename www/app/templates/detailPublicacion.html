@@ -26,12 +26,12 @@
     position: relative;">
 
 
-      <h3 style="     margin-bottom: 0px;    color: white;   display: inline-block;">Captain America (2002 4th Series)</h3>
+      <h3 style="     margin-bottom: 0px;    color: white;   display: inline-block;">{{detail.titulo}}</h3>
       <h4 style="       margin-top: 0px; color: white"> <small></small></h4>
 
 
 
-      <p style="    margin-bottom: 25px;color:white">Written by Robert Morales Penciled by EDDIE CAMPBELL Covers by Dave Johnson In this special two-part story, celebrated artist Eddie Campbell (From Hell) joins Robert Morales! Captain America finds himself at the crossroads where his past and a possible future meet when he's faced with a super-villain from his alternate future</p>
+      <p style="    margin-bottom: 25px;color:white">{{event.descripcion}}</p>
 
     </div> 
 
@@ -72,9 +72,9 @@
     margin-left: 13px;
     margin-top: 5px;
     line-height: 3;">
-  <li>Precio: $11</li>
-  <li>Año: 2003</li>
-  <li>Estado: Bueno</li>
+  <li>Precio: ${{event.precio}}</li>
+  <li>Año: {{event.fechaEdicion}}</li>
+  <li>Estado: {{event.estado}}</li>
 
 </ul>
 
@@ -87,13 +87,13 @@
 <!--         <ion-item style='    background-color: white;
     color: #555;' class="item-divider item-icon-right"><b>Contacto</b> <i class="icon ion-chatboxes"></i></ion-item> -->
 
-            <ion-item  ui-sref='perfil'  style='      color: #555;
+            <ion-item  ng-click='goPerfil(event.idUsuario)'  style='      color: #555;
     background: transparent;' class="item-divider item-icon-right"><b style="    margin-top: 12px;
     display: inline-block;
-    margin-bottom: 11px;">Federico Zapata </b> <i class="icon ion-android-contact"></i></ion-item>
+    margin-bottom: 11px;">{{event.nombre}}</b> <i class="icon ion-android-contact"></i></ion-item>
 
     
-
+<!-- 
     <ion-item style='  margin-top: 10px;  border: none;
     background-color: transparent;' class="item-icon-right">
            A 5km de distancia aprox
@@ -103,14 +103,14 @@
 
 
         </ion-item>
-
+ -->
 <div style="    text-align: center;">
 
   <button style='    background-color: white;
     color: #333;
     width: 100%;
     margin-top: 20px;
-    margin-bottom: 0px;' class="button " ui-sref='chat'>Chat</button>
+    margin-bottom: 0px;' class="button " ng-click='goChat(event.idUsuario)' >Chat</button>
 </div>
 
 

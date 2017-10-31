@@ -1,5 +1,13 @@
 /* Empty. Add your own CSS if you like */
 
+
+.noleido{
+
+background-color:lightgray;
+
+}
+
+
 .grid {
   display: inline-block;
   width: 100%; }

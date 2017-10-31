@@ -1,16 +1,9 @@
-   
-
-   <ion-view>
-  <ion-nav-title style='color:#444'>chat</ion-nav-title>
-
-
-<style type="text/css">
+   <style type="text/css">
   
-  $stable:                          #f8f8f8 !default;
-
 .scroll {
   padding: 10px 0 50px !important;
 }
+
 .messages {
   display: -webkit-box !important;
   display: -moz-box !important;
@@ -26,24 +19,25 @@
   -ms-flex-align: center !important;
   align-items: center !important;
   margin-bottom: 20px !important;
-  .message {
-    -webkit-box-flex: 1 !important;
-    -moz-box-flex: 1 !important;
-    -webkit-flex: 1 1 auto !important;
-    -ms-flex: 1 1 auto !important;
-    flex: 1 1 auto !important;
-    padding: 10px !important;
-    -webkit-transition: all 250ms ease-in-out !important;
-    transition: all 250ms ease-in-out !important;
-    overflow: hidden !important;
-    text-align: left !important;
-    -webkit-transform: translate3d(0, 0, 0) !important;
-    -moz-transform: translate3d(0, 0, 0) !important;
-    transform: translate3d(0, 0, 0) !important;
-  }
 }
+.messages .message {
+  -webkit-box-flex: 1 !important;
+  -moz-box-flex: 1 !important;
+  -webkit-flex: 1 1 auto !important;
+  -ms-flex: 1 1 auto !important;
+  flex: 1 1 auto !important;
+  padding: 10px !important;
+  -webkit-transition: all 250ms ease-in-out !important;
+  transition: all 250ms ease-in-out !important;
+  overflow: hidden !important;
+  text-align: left !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  -moz-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+
 .time {
-      color: lightslategrey;
+      color: #444;
   -webkit-box-flex: 0 !important;
   -moz-box-flex: 0 !important;
   -webkit-flex: 0 1 auto !important;
@@ -60,32 +54,30 @@
   -webkit-transform: translate3d(10px, 0, 0) !important;
   -moz-transform: translate3d(10px, 0, 0) !important;
   transform: translate3d(10px, 0, 0) !important;
-  &.slide-right {
-    -webkit-transform: translate3d(130px, 0, 0) !important;
-    -moz-transform: translate3d(130px, 0, 0) !important;
-    transform: translate3d(130px, 0, 0) !important;
-  }
 }
-//This will change
-.messages.other {
-  .message {
-    -webkit-transform: translate3d(0, 0, 0) !important;
-    -moz-transform: translate3d(0, 0, 0) !important;
-    transform: translate3d(0, 0, 0) !important;
-    text-align: right !important;
-  }
-  .message.slide-right {
-    -webkit-transform: translate3d(120px, 0, 0) !important;
-    -moz-transform: translate3d(120px, 0, 0) !important;
-    transform: translate3d(120px, 0, 0) !important;
-  }
-  span {
-    color: black !important;
-    background-color: #C7C7CC !important;
-  }
+.time.slide-right {
+  -webkit-transform: translate3d(130px, 0, 0) !important;
+  -moz-transform: translate3d(130px, 0, 0) !important;
+  transform: translate3d(130px, 0, 0) !important;
 }
+
+.messages.other .message {
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  -moz-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+  text-align: right !important;
+}
+.messages.other .message.slide-right {
+  -webkit-transform: translate3d(120px, 0, 0) !important;
+  -moz-transform: translate3d(120px, 0, 0) !important;
+  transform: translate3d(120px, 0, 0) !important;
+}
+.messages.other span {
+  color: black !important;
+  background-color: #C7C7CC !important;
+}
+
 .messages span {
-  margin-left: 15px;
   background: #007AFF !important;
   display: inline-block !important;
   color: white !important;
@@ -96,20 +88,29 @@
 }
 
 
+
 </style>
+
+   <ion-view>
+  <ion-nav-title style='color:#444'>chat</ion-nav-title>
+
+
+
    <ion-content  style='top: 70px !important;' class="content-stable"
                  on-swipe-left="hideTime = false"
                  on-swipe-right="hideTime = true">
 
       <div ng-repeat="message in messages"
-           ng-class="{other: message.userId != myId}"
-           class="messages">
+           ng-class="{other: message.idEmisor == idUsuarioChat}"
+           class="messages ">
+
+        <!--  <div class="message" ng-class="{'slide-right': hideTime, '': !hideTime}"> -->
 
         <div class="message" ng-class="{'slide-right': hideTime, '': !hideTime}">
-          <span class="messages">{{ message.text }}</span>
+          <span class="messages">{{ message.contenido }}</span>
         </div>
 
-        <div class="time" ng-class="{'slide-right': hideTime, '': !hideTime}">{{message.time}}</div>
+        <div class="time" ng-class="{'slide-right': hideTime, '': !hideTime}">{{message.fechaCreacion}}</div>
 
 
       </div>
@@ -118,9 +119,9 @@
 
     <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
       <label class="item-input-wrapper">
-        <input type="text" placeholder="Escribe el mensaje" on-return="sendMessage(); closeKeyboard()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()" />
+        <input type="text" placeholder="Escribe el mensaje" on-return="sendMessage(data.message); closeKeyboard()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()" />
       </label>
-      <button class="button button-clear" ng-click="sendMessage()">
+      <button class="button button-clear" ng-click="sendMessage(data.message)">
         Enviar
       </button>
     </ion-footer-bar>

@@ -9,10 +9,48 @@ define([
     '$scope',
     '$stateParams',
     '$window',
+    '$state',
     '$ionicPopup',
     'eventService',
     'api',
-    function ($scope, $stateParams, $window, $ionicPopup, eventService, api) {
+    function ($scope, $stateParams, $window, $state, $ionicPopup, eventService, api) {
+
+
+
+            $scope.userID=window.localStorage.getItem('userInfoUD');
+
+            api.getChats($scope.userID).then(function (events) {
+
+          //$scope.events = events;
+          //$scope.events = events.data.evento;
+          console.log(events);
+          $scope.chats = events.data;
+         // $scope.$broadcast('scroll.infiniteScrollComplete');
+        }).finally(function () {
+
+          
+            $scope.loading = false;
+           
+          
+
+        });
+
+
+$scope.goChat = function(ll){
+
+if(window.localStorage.getItem('userInfoUD') == ll){
+  mensajeAlerta(1,'No puedes empezar un chat contigo');
+  return false;
+}
+
+$state.go('chat', { id: ll });
+
+
+}
+
+
+
+
 
     }]);
   app.controller('ayudaCtrl', [
@@ -160,15 +198,65 @@ app.directive('input', function($timeout) {
 });
 
 
-app.controller('Messages', function($scope, $timeout, $ionicScrollDelegate) {
+app.controller('Messages', function($scope, $timeout, $ionicSideMenuDelegate, $ionicLoading, api, $stateParams, $ionicScrollDelegate) {
+$ionicSideMenuDelegate.canDragContent(false)
+$scope.idUsuarioChat=window.localStorage.getItem('userInfoUD');
+
+      $ionicLoading.show();
+
+      api.getChat($stateParams.id, window.localStorage.getItem('userInfoUD')).then(function (events) {
+      $scope.perfilUsuario=events.data;
+          //$scope.events = events;
+          //$scope.events = events.data.evento;
+          console.log(events);
+          $scope.messages=events.data;
+         // $scope.event = events.data;
+         // $scope.$broadcast('scroll.infiniteScrollComplete');
+        }).finally(function () {
+
+          
+           // $scope.loading = false;
+           $ionicLoading.hide();
+          $ionicScrollDelegate.scrollBottom(true);
+
+        });
+
+$scope.getMensajess= function(){
+       
+
+        api.getChat($stateParams.id, window.localStorage.getItem('userInfoUD')).then(function (events) {
+      $scope.perfilUsuario=events.data;
+          //$scope.events = events;
+          //$scope.events = events.data.evento;
+          console.log(events);
+          $scope.messages=events.data;
+         // $scope.event = events.data;
+         // $scope.$broadcast('scroll.infiniteScrollComplete');
+        }).finally(function () {
+
+          
+           // $scope.loading = false;
+           $ionicLoading.hide();
+          $ionicScrollDelegate.scrollBottom(true);
+
+        });
+}
+
 
   $scope.hideTime = true;
 
   var alternate,
     isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
 
-  $scope.sendMessage = function() {
-    alternate = !alternate;
+  $scope.sendMessage = function(mesa) {
+
+if(mesa == "" || mesa ==" " || !mesa ){
+  return false;
+}
+
+console.log(mesa);
+
+/*    alternate = !alternate;
 
     var d = new Date();
   d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
@@ -180,7 +268,25 @@ app.controller('Messages', function($scope, $timeout, $ionicScrollDelegate) {
     });
 
     delete $scope.data.message;
-    $ionicScrollDelegate.scrollBottom(true);
+    $ionicScrollDelegate.scrollBottom(true);*/
+      $ionicLoading.show();
+
+      api.addMensaje($stateParams.id, window.localStorage.getItem('userInfoUD'), mesa).then(function (events) {
+
+          console.log(events);
+         // $scope.messages=events.data;
+
+         // $scope.$broadcast('scroll.infiniteScrollComplete');
+        }).finally(function () {
+
+          $scope.data.message = "";
+           // $scope.loading = false;
+           //$ionicLoading.hide();
+          
+           $scope.getMensajess();
+        });
+
+
 
   };
 
@@ -215,15 +321,197 @@ app.controller('Messages', function($scope, $timeout, $ionicScrollDelegate) {
     '$scope',
     '$stateParams',
     '$window',
+    '$ionicLoading',
+    '$state',
     '$ionicPopup',
     'eventService',
     'api',
     'serverConfig',
-    function ($scope, $stateParams, $window, $ionicPopup, eventService, api, serverConfig) {
+    function ($scope, $stateParams, $window, $ionicLoading, $state, $ionicPopup, eventService, api, serverConfig) {
 
       $scope.loading = true;
   $scope.urlImg = serverConfig.imageStorageURL;
-  
+$scope.url = serverConfig.url;
+$scope.usuarioIDUD=window.localStorage.getItem('userInfoUD');
+
+    $scope.$on('$ionicView.enter', function(event, viewData) {
+
+    $scope.usuarioInfo={};
+    //var userData = JSON.parse(window.localStorage.getItem('userInfoUD'));
+
+    $scope.usuarioInfo.idUsuario=  $stateParams.id;
+
+
+    });
+
+
+      $ionicLoading.show();
+
+      api.getPerfil($stateParams.id).then(function (events) {
+      $scope.perfilUsuario=events.data;
+          //$scope.events = events;
+          //$scope.events = events.data.evento;
+          console.log(events);
+
+         // $scope.event = events.data;
+         // $scope.$broadcast('scroll.infiniteScrollComplete');
+        }).finally(function () {
+
+          
+           // $scope.loading = false;
+           $ionicLoading.hide();
+          
+
+        });
+
+
+$scope.getEstadoC=function(da){
+  if (da == 1){ return 'En venta'}
+    else{return 'Vendido'}
+}
+
+   function mensajeAlerta(tipo, mensaje){
+    console.log(tipo);
+    var ima ='exclam.png';
+if(tipo==1){
+
+     var customTemplate =
+        '<div style="text-align:center;"><img style="margin-top:10px" src="img/exclam.png"> <p style="    font-size: 18px;color:white; margin-top:25px">'+mensaje+'</p> </div>';
+
+
+}
+  if(tipo == 2){
+
+     var customTemplate =
+        '<div style="text-align:center;"><img style="margin-top:10px" src="img/confirma.png"> <p style="    font-size: 18px;color:white; margin-top:25px">'+mensaje+'</p> </div>';
+
+}
+
+      $ionicPopup.show({
+        template: customTemplate,
+        title: '',
+        subTitle: '',
+        buttons: [{
+          text: 'Cerrar',
+          type: 'button-blueCustom',
+          onTap: function(e) {
+
+    console.log('ok');
+          }
+           // if(borrar){ $scope.user.pin='';}
+           
+          
+        }]
+      });
+
+}
+
+
+
+
+$scope.goChat = function(ll){
+
+if(window.localStorage.getItem('userInfoUD') == ll){
+  mensajeAlerta(1,'No puedes empezar un chat contigo');
+  return false;
+}
+
+$state.go('chat', { id: ll });
+
+
+}
+
+
+$scope.cambiarFoto = function(){
+getImage();
+function getImage() {
+ navigator.camera.getPicture(uploadPhoto, function(message) {
+ console.log('getPic cancelled');
+ }, {
+ quality: 100,
+ destinationType: navigator.camera.DestinationType.FILE_URI,
+ sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+ });
+}
+
+function uploadPhoto(imageURI) {
+  $ionicLoading.show();
+ var options = new FileUploadOptions();
+ options.fileKey = "file";
+ options.fileName = 'user'+$scope.usuarioInfo.idUsuario;
+ options.mimeType = "image/jpeg";
+ console.log(options.fileName);
+ var params = new Object();
+ params.idUsuario = $scope.usuarioInfo.idUsuario;
+ options.params = params;
+ options.chunkedMode = false;
+
+var ft = new FileTransfer();
+ ft.upload(imageURI, serverConfig.imageStorageURL+"/addPublicacion", function(result){
+ console.log(JSON.stringify(result));
+  $ionicLoading.hide();
+
+  console.log('Foto cambiada correctamente');
+/*  $state.reload();
+  $scope.$apply(function () {
+     $scope.valorF =4;
+});*/
+
+
+ }, function(error){
+ console.log(JSON.stringify(error));
+ $ionicLoading.hide();
+ console.log('error al subir foto');
+ }, options);
+ }
+ 
+
+ }
+
+
+    $scope.confirmarFoto = function(){
+
+
+       var customTemplate2 ='<div style="color:white !important" ><strong>Quieres cambiar tu foto de perfil? </strong></div> ';
+
+
+            $ionicPopup.show({
+              template: customTemplate2,
+              title: '',
+              subTitle: '',
+              scope: $scope,
+              buttons: [
+                { text: 'No', onTap: function(e) { return false; } },
+                {
+                  text: '<b>Si</b>',
+                  type: 'button-positive ',
+                  onTap: function(e) {
+                    return  true;
+                  }
+                },
+              ]
+              }).then(function(res) {
+
+              
+                console.log('Tapped!', res);
+
+                if(res){
+                  $scope.cambiarFoto();
+                }
+
+
+
+              }, function(err) {
+                console.log('Err:', err);
+              }, function(msg) {
+                console.log('message:', msg);
+              });
+
+    }
+    
+
+
+
     }
   ]);
 
@@ -232,10 +520,12 @@ app.controller('Messages', function($scope, $timeout, $ionicScrollDelegate) {
     '$stateParams',
     '$window',
     '$ionicPopup',
+    '$ionicLoading',
+    '$state',
     'eventService',
     'api',
     'serverConfig',
-    function ($scope, $stateParams, $window, $ionicPopup, eventService, api, serverConfig) {
+    function ($scope, $stateParams, $window, $ionicPopup, $ionicLoading, $state, eventService, api, serverConfig) {
 
       $scope.loading = true;
   $scope.urlImg = serverConfig.imageStorageURL;
@@ -246,24 +536,83 @@ app.controller('Messages', function($scope, $timeout, $ionicScrollDelegate) {
       });
 
 */
+
+$ionicLoading.show();
       api.getPublicacion($stateParams.id).then(function (events) {
 
           //$scope.events = events;
           //$scope.events = events.data.evento;
           console.log(events);
-          $scope.event = events.data.evento;
+          $scope.event = events.data;
          // $scope.$broadcast('scroll.infiniteScrollComplete');
         }).finally(function () {
 
           
             $scope.loading = false;
-           
+           $ionicLoading.hide();
           
 
         });
 
 
 
+
+   function mensajeAlerta(tipo, mensaje){
+    console.log(tipo);
+    var ima ='exclam.png';
+if(tipo==1){
+
+     var customTemplate =
+        '<div style="text-align:center;"><img style="margin-top:10px" src="img/exclam.png"> <p style="    font-size: 18px;color:white; margin-top:25px">'+mensaje+'</p> </div>';
+
+
+}
+  if(tipo == 2){
+
+     var customTemplate =
+        '<div style="text-align:center;"><img style="margin-top:10px" src="img/confirma.png"> <p style="    font-size: 18px;color:white; margin-top:25px">'+mensaje+'</p> </div>';
+
+}
+
+      $ionicPopup.show({
+        template: customTemplate,
+        title: '',
+        subTitle: '',
+        buttons: [{
+          text: 'Cerrar',
+          type: 'button-blueCustom',
+          onTap: function(e) {
+
+    console.log('ok');
+          }
+           // if(borrar){ $scope.user.pin='';}
+           
+          
+        }]
+      });
+
+}
+
+
+
+$scope.goPerfil = function(ll){
+
+
+$state.go('perfil', { id: ll });
+
+
+}
+$scope.goChat = function(ll){
+
+if(window.localStorage.getItem('userInfoUD') == ll){
+  mensajeAlerta(1,'No puedes empezar un chat contigo');
+  return false;
+}
+
+$state.go('chat', { id: ll });
+
+
+}
 
 
       $scope.reload = function () {
@@ -424,9 +773,14 @@ if(tipo==1){
             $ionicLoading.show();
 //usuario.email = usuario.email.toLowerCase();
           api.doLogin(user).then(function (events) {
-            if(events.data.error == false){
+            if(events.data.idUsuario > 0){
 
-              if(events.data.user.verificado == 1){
+              window.localStorage.setItem( 'userInfoUD', events.data.idUsuario);            
+                $state.go('listaMascotas');
+
+                console.log('logueado');
+
+            /*  if(events.data.user.verificado == 1){
 
                 window.localStorage.setItem( 'userInfoSM', JSON.stringify(events.data.user));            
                 $state.go('listaMascotas');
@@ -438,7 +792,7 @@ if(tipo==1){
                 mensajeAlerta(1, 'Debes verificar tu cuenta');
                 console.log('no verificado');
               }
-            
+            */
 
 
             }
@@ -466,18 +820,24 @@ if(tipo==1){
             $scope.openModal("nuevoUsuario.html", "slide-in-up");
     }
 $scope.registrarUsuario = function(usuario){
+  if(usuario.pass !== usuario.pass2){
+    mensajeAlerta(1, 'La contraseña no coincide');
+    return false;
+  }
 
   $ionicLoading.show();
 
 console.log(usuario);
 
 api.registrarUsuario(usuario).then(function (events) {
-
+console.log(events);
           //$scope.events = events;
           //$scope.events = events.data.evento;
-          if(events.data.error == false){
 
-            mensajeAlerta(2, 'Cuenta creada, te hemos enviado un correo para que verifiques tu cuenta.');
+
+          if(events.data.insertId>1){
+
+            mensajeAlerta(2, 'Cuenta creada, ya puedes hacer login!');
               $scope.closeModal();  
 
 
@@ -486,6 +846,9 @@ api.registrarUsuario(usuario).then(function (events) {
              mensajeAlerta(1, 'Ha ocurrido un error, la cuenta no ha podido ser creada');
 
           }
+
+
+
          // $scope.chats = events.data.publicaciones;
          // $scope.$broadcast('scroll.infiniteScrollComplete');
         }).finally(function () {
@@ -558,10 +921,20 @@ console.log('bac');
 
 
 }
+
+$scope.perf = function(){
+
+
+$state.go('perfil', { id: window.localStorage.getItem('userInfoUD') });
+
+
+}
+
+
 $scope.cerrarSesion = function(){
 $ionicLoading.show();
 
-  window.localStorage.setItem( 'userInfoSM', undefined);  
+  window.localStorage.setItem( 'userInfoUD', undefined);  
   $state.go('login');
   $timeout(function () {
           $ionicHistory.clearCache();
@@ -617,7 +990,20 @@ $scope.fotoNombre = 0;
 
 $scope.getPublis = function(){
 
-  $scope.chats=[
+
+              api.getPublicaciones().then(function (events) {
+
+              console.log(events);
+              $scope.chats=events.data;
+
+              }).finally(function () {
+
+              $ionicLoading.hide();
+               });
+
+
+/*
+  $scope.chatss=[
                 {
                   photo:'img/portada1.jpg',
                   nombre:'Wolverine: Enemigo del Estado',
@@ -644,7 +1030,7 @@ $scope.getPublis = function(){
                   photo:'img/portada4.jpeg',
                   nombre:'Captain America (2002 4th Series)',
                   descripcion:"Written by Robert Morales Penciled by EDDIE CAMPBELL Covers by Dave Johnson In this special two-part story, celebrated artist Eddie Campbell (From Hell) joins Robert Morales! Captain America finds himself at the crossroads where his past and a possible future meet when he's faced with a super-villain from his alternate future"
-                }];
+                }];*/
                        $scope.loading = false;
             $scope.$broadcast('scroll.refreshComplete');
 

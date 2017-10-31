@@ -188,8 +188,10 @@
 
 
     <div ng-show="!loading">
+
+      <div  style='color:red' ng-show='!chats || chats.length == 0' > no hay anuncios dispni</div>
     	    <div class="{{layout}} chat-list-wrap">
-      <a class="item item-thumbnail-left" ng-repeat="chat in chats" ui-sref="detailPublicacion({id: chat.id})" style="      min-height: 172px;
+      <a class="item item-thumbnail-left" ng-repeat="chat in chats" ui-sref="detailPublicacion({id: chat.idPublicacion})" style="      min-height: 172px;
     margin-top: 18px;
     background-image: url(img/fondot2.png);
     
@@ -200,7 +202,7 @@
         <img ng-src="{{chat.photo}}" style="border-radius: 0%;    border: none;">
 
 
-        <h2 style="color:black; white-space: pre-line !important; font-family:backIssuesItal">{{chat.nombre}}</h2>
+        <h2 style="color:black; white-space: pre-line !important; font-family:backIssuesItal">{{chat.titulo}}</h2>
 
 
 <div  style="height: 100px;">
@@ -214,7 +216,7 @@
     font-size: 23px;
     width: 100px;
     margin-left: 10px;
-    text-align: center;">$10</div>
+    text-align: center;">{{chat.precio}}</div>
 <!-- 
     <div style="    position: absolute;
     bottom: 0px;

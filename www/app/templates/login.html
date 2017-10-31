@@ -29,7 +29,7 @@
 
                       <div style="margin-top:13px"><label style="    color: white;
     font-size: 17px !important;">Telefono de contacto *</label></div>
-                        <input ng-model='usuario.contacto' placeholder='' style="    width: 100%;
+                        <input ng-model='usuario.telefono' placeholder='' style="    width: 100%;
     background-color: transparent;
     border-bottom: solid 2px white; color:white" type="text" class="inputRegistrar md-input" required="required">
 
@@ -39,16 +39,16 @@
 
                       <div style="margin-top:13px"><label style="    color: white;
     font-size: 17px !important;">Contraseña *</label></div>
-                        <input ng-model='usuario.contra' placeholder='' style="    width: 100%;
+                        <input ng-model='usuario.pass' placeholder='' style="    width: 100%;
     background-color: transparent;
     border-bottom: solid 2px white; color:white" type="text" class="inputRegistrar md-input" autocapitalize="off" required="required">
 
             
             <div style="margin-top:13px"><label style="    color: white;
     font-size: 17px !important;">Repetir contraseña *</label></div>
-                        <input  ng-model='usuario.contra2'  style='margin-top: 4px !important;    width: 100%;
+                        <input  ng-model='usuario.pass2'  style='margin-top: 4px !important;    width: 100%;
     background-color: transparent;
-    border-bottom: solid 2px white; color:white' placeholder='' type="text" class="inputRegistrar md-input" autocapitalize="off" required="required">
+    border-bottom: solid 2px white; color:white' placeholder='' type="password" class="inputRegistrar md-input" autocapitalize="off" required="required">
 
 
 
@@ -133,8 +133,8 @@
    <br><br>
    
 <div style=" text-align:center">
-    <!--  <button  style='margin-right: 10px;font-family:backIssuesItal !important'  class="button  " ng-disabled="form.search.$invalid" ><b>Entrar</b></button>  -->
-     <button  style='margin-right: 10px;font-family:backIssuesItal !important'  class="button  " ui-sref="listaMascotas" ><b>Entrar</b></button> 
+    <button  style='margin-right: 10px;font-family:backIssuesItal !important'  class="button  " ng-disabled="form.search.$invalid" ><b>Entrar</b></button>  
+      <!-- <button  style='margin-right: 10px;font-family:backIssuesItal !important'  class="button  " ui-sref="listaMascotas" ><b>Entrar</b></button> -->
       <button class="button  "  style='font-family:backIssuesItal !important' ng-click='openModalRegistro()'><b>Registrarse</b></button> 
 
 <br><br>  

@@ -11,25 +11,30 @@ define([
 
    app.constant("serverConfig", {
         //"url": "http://localhost:80",
-        "url": "",
+        "url": "http://34.229.153.91:3000",
        "imageStorageURL" : ''
         //"port": "80"
     });
 
 
    app.config(function ($httpProvider) {
-  $httpProvider.defaults.headers.common = {};
-  $httpProvider.defaults.headers.post = {};
-  $httpProvider.defaults.headers.put = {};
-  $httpProvider.defaults.headers.patch = {};
+
 });
 
 
   app.config([
     '$stateProvider',
     '$urlRouterProvider',
+    '$httpProvider',
     '$ionicConfigProvider',
-    function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+    function ($stateProvider, $urlRouterProvider, $httpProvider, $ionicConfigProvider) {
+
+
+  $httpProvider.defaults.headers.common = {};
+  $httpProvider.defaults.headers.post = {};
+  $httpProvider.defaults.headers.put = {};
+  $httpProvider.defaults.headers.patch = {};
+
 $ionicConfigProvider.backButton.previousTitleText(false).text('');
       //$ionicConfigProvider.backButton.previousTitleText(false);
       // url routes/states
@@ -40,10 +45,10 @@ $ionicConfigProvider.backButton.previousTitleText(false).text('');
 
 
 
-          if(localStorage.getItem('userInfoSM') == null || 
-            localStorage.getItem('userInfoSM') == 'null' || 
-            localStorage.getItem('userInfoSM') == 'undefined' || 
-            localStorage.getItem('userInfoSM') == undefined){
+          if(localStorage.getItem('userInfoUD') == null || 
+            localStorage.getItem('userInfoUD') == 'null' || 
+            localStorage.getItem('userInfoUD') == 'undefined' || 
+            localStorage.getItem('userInfoUD') == undefined){
 
         //console.log(localStorage.getItem('userInfoTS'));
       //$urlRouterProvider.otherwise('login');
@@ -51,9 +56,9 @@ $ionicConfigProvider.backButton.previousTitleText(false).text('');
       $urlRouterProvider.otherwise('login');
         }
         else{
-          $urlRouterProvider.otherwise('login');
+         // $urlRouterProvider.otherwise('login');
            // console.log(localStorage.getItem('userInfoTS'));
-      //$urlRouterProvider.otherwise('listaMascotas');
+      $urlRouterProvider.otherwise('listaMascotas');
         // $urlRouterProvider.otherwise("/login");
         }
 
@@ -75,7 +80,7 @@ $ionicConfigProvider.backButton.previousTitleText(false).text('');
         })
 
 .state('perfil', {
-          url: '/perfil',
+          url: '/perfil/:id',
           templateUrl: 'app/templates/perfil.html',
           controller: 'perfilCtrl'
         })
@@ -125,7 +130,7 @@ $ionicConfigProvider.backButton.previousTitleText(false).text('');
           templateUrl: 'app/templates/detail.html'
         })
         .state('chat', {
-          url: '/chat',
+          url: '/chat/:id',
           controller: 'Messages',
           templateUrl: 'app/templates/chat.html'
         })

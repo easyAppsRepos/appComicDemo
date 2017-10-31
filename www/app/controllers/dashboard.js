@@ -15,7 +15,7 @@ app.factory('api', function($http, $q, $window, serverConfig) {
 
 getPublicaciones:function(){  
 
-            return  $http.post(serverConfig.url+'/getPublicaciones')
+            return  $http.post(serverConfig.url+'/getPublicaciones',{"estadoPublicacion":1})
             .then(function(response) {
             console.log(response);
             return response;
@@ -28,9 +28,12 @@ getPublicaciones:function(){
             });
         },
 
-        getLugares:function(){  
+        getPublicacion:function(id){  
 
-            return  $http.post(serverConfig.url+'/getLugares')
+          console.log(id);
+          var url = serverConfig.url+'/getPublicacion/'+id;
+
+            return  $http.post(url)
             .then(function(response) {
             console.log(response);
             return response;
@@ -43,11 +46,67 @@ getPublicaciones:function(){
             });
         },
 
-        
+        getPerfil:function(id){  
+
+          console.log(id);
+          var url = serverConfig.url+'/getPerfil/'+id;
+
+            return  $http.post(url)
+            .then(function(response) {
+            console.log(response);
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+             console.log(response);
+
+            return response;
+            });
+        },
+
+
+  getChat:function(id, id2){  
+
+          console.log(id);
+          var url = serverConfig.url+'/getChat/'+id+'/'+id2;
+
+            return  $http.post(url)
+            .then(function(response) {
+            console.log(response);
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+             console.log(response);
+
+            return response;
+            });
+        },
+
+  getChats:function(id){  
+
+          console.log(id);
+          var url = serverConfig.url+'/getChats/'+id;
+
+            return  $http.post(url)
+            .then(function(response) {
+            console.log(response);
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+             console.log(response);
+
+            return response;
+            });
+        },
+
+
+
 
         registrarUsuario:function(usuario){  
-
-            return  $http.post(serverConfig.url+'/registrarUsuario', usuario)
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/addUsuario', usuario,{headers:{'Content-Type': 'application/json'}})
             .then(function(response) {
             console.log(response);
             return response;
@@ -59,10 +118,28 @@ getPublicaciones:function(){
             return response;
             });
         },
+
+
+        addMensaje:function(receptor, emisor, mensaje){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/addMensaje', {idEmisor:emisor, idReceptor:receptor, contenido:mensaje},{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            console.log(response);
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+             console.log(response);
+
+            return response;
+            });
+        },
+
+
 
         doLogin:function(usuario){  
 
-            return  $http.post(serverConfig.url+'/doLogin', usuario)
+            return  $http.post(serverConfig.url+'/doLogin', usuario,{headers:{'Content-Type': 'application/json'}})
             .then(function(response) {
             console.log(response);
             return response;
@@ -121,20 +198,6 @@ registrarAnuncio:function(usuario){
             });
         },
 
-             getPublicacion:function(idPublicacion){  
-          //  console.log(idEvento);
-            return  $http.post(serverConfig.url+'/getPublicacion', {id:idPublicacion})
-            .then(function(response) {
-            console.log(response);
-            return response;
-            }, function(response) {
-            // something went wrong
-            console.log('error');
-             console.log(response);
-
-            return response;
-            });
-        },
 
         getEvento:function(idEvento){  
           console.log(idEvento);
