@@ -89,7 +89,7 @@ $state.go('chat', { id: ll });
       }
 
       $scope.uploadPhotos = function(imageURI) {
-
+        console.log(imageURI);
         $scope.publicacion.imagen = imageURI;
       }
 
@@ -528,7 +528,7 @@ function uploadPhoto(imageURI) {
  options.chunkedMode = false;
 
 var ft = new FileTransfer();
- ft.upload(imageURI, $scope.url+"/addPublicacion", function(result){
+ ft.upload(imageURI, $scope.url+"/cambiarFotoPerfil", function(result){
  console.log(JSON.stringify(result));
   $ionicLoading.hide();
 
