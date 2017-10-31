@@ -168,8 +168,9 @@ var ft = new FileTransfer();
     $scope.subirComic = function (publi) {
 
 
+        
+        publi.idUsuario = window.localStorage.getItem('userInfoUD');
         console.log(publi);
-
         if(!publi || !publi.nombre || !publi.descripcion || !publi.estado || !publi.fechaPublicacion || !publi.precio){
           mensajeAlerta(1,'Datos incompletos');
           return false;
