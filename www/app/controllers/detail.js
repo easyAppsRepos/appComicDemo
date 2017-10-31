@@ -118,7 +118,7 @@ $scope.publicacion = {};
 
 
 
-function uploadPhoto(imageURI,idPub) {
+ $scope.uploadPhoto = function(imageURI,idPub) {
   $ionicLoading.show();
  var options = new FileUploadOptions();
  options.fileKey = "file";
@@ -126,8 +126,8 @@ function uploadPhoto(imageURI,idPub) {
  options.mimeType = "image/jpeg";
  console.log(options.fileName);
  var params = new Object();
- params = publicacion;
- options.params.idPublicacion = idPub;
+ params.idPublicacion = idPub;
+ options.params = params;
  options.chunkedMode = false;
 
 var ft = new FileTransfer();
@@ -192,7 +192,7 @@ var ft = new FileTransfer();
                 // $scope.$broadcast('scroll.infiniteScrollComplete');
                 }).finally(function () {
                    console.log('finally');
-                   uploadPhoto($scope.publicacion.imagen,$scope.insertIDP);
+                   $scope.uploadPhoto($scope.publicacion.imagen,$scope.insertIDP);
                    //$scope.insertIDP
                // $ionicLoading.hide();
                // $scope.loading = false;
