@@ -72,11 +72,11 @@ $state.go('chat', { id: ll });
     'eventService',
     'api',
     function ($scope, $stateParams, $window, $ionicPopup, eventService, api) {
-
+$scope.publicacion = {};
  $scope.publicacion.imagen = 'img/ff.png';
         $scope.consecutivo = Math.floor(Math.random() * 16) + 1  ;
 
-      $scope.publicacion = {};
+      
 
 
       $scope.getImage = function() {
