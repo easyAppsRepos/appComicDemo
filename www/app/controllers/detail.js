@@ -142,7 +142,7 @@ var ft = new FileTransfer();
   $scope.publicacion = {};
  $scope.publicacion.imagen = 'img/ff.png';
         $scope.consecutivo = Math.floor(Math.random() * 16) + 1  ;
-        
+
   mensajeAlerta(2,'Publicacion agregada correctamente');
   $state.go('listaMascotas');
 /*  $state.reload();
@@ -162,10 +162,7 @@ var ft = new FileTransfer();
       $scope.uploadPhotos = function(imageURI) {
         console.log(imageURI);
 
-      if (imageURI.substring(0,21)=="content://com.android") {
-      photo_split=imageURI.split("%3A");
-      imageURI="content://media/external/images/media/"+photo_split[1];
-      }
+    
 
         $scope.$apply(function () {
              $scope.publicacion.imagen = imageURI;
