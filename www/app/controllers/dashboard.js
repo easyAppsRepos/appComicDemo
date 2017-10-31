@@ -120,6 +120,23 @@ getPublicaciones:function(){
         },
 
 
+        publicarComic:function(usuario){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/publicarComic', usuario,{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            console.log(response);
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+             console.log(response);
+
+            return response;
+            });
+        },
+        
+
+
         addMensaje:function(receptor, emisor, mensaje){  
         //  var dusuario = {body:JSON.stringify({usuario})};
             return  $http.post(serverConfig.url+'/addMensaje', {idEmisor:emisor, idReceptor:receptor, contenido:mensaje},{headers:{'Content-Type': 'application/json'}})

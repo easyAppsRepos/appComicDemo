@@ -8,17 +8,19 @@ define([
   app.controller('mensajesCtrl', [
     '$scope',
     '$stateParams',
+    '$ionicLoading',
     '$window',
     '$state',
     '$ionicPopup',
     'eventService',
     'api',
-    function ($scope, $stateParams, $window, $state, $ionicPopup, eventService, api) {
+    function ($scope, $stateParams, $ionicLoading,$window, $state, $ionicPopup, eventService, api) {
 
 
 
             $scope.userID=window.localStorage.getItem('userInfoUD');
 
+             $ionicLoading.show();
             api.getChats($scope.userID).then(function (events) {
 
           //$scope.events = events;
@@ -28,12 +30,35 @@ define([
          // $scope.$broadcast('scroll.infiniteScrollComplete');
         }).finally(function () {
 
-          
+           $ionicLoading.hide();
             $scope.loading = false;
            
           
 
         });
+
+
+   $scope.reload = function () {
+
+                 $ionicLoading.show();
+            api.getChats($scope.userID).then(function (events) {
+
+          //$scope.events = events;
+          //$scope.events = events.data.evento;
+          console.log(events);
+          $scope.chats = events.data;
+         // $scope.$broadcast('scroll.infiniteScrollComplete');
+        }).finally(function () {
+
+           $ionicLoading.hide();
+            $scope.loading = false;
+           $scope.$broadcast('scroll.refreshComplete');
+          
+
+        });
+
+      };
+
 
 
 $scope.goChat = function(ll){
@@ -85,7 +110,7 @@ $scope.publicacion = {};
       navigator.camera.getPicture($scope.uploadPhotos, function(message) {
       console.log('getPic cancelled');
       }, {
-      quality: 100,
+      quality: 50,
       destinationType: navigator.camera.DestinationType.FILE_URI,
       sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
       });
@@ -93,24 +118,24 @@ $scope.publicacion = {};
 
 
 
-function uploadPhoto(imageURI,publicacion) {
+function uploadPhoto(imageURI,idPub) {
   $ionicLoading.show();
  var options = new FileUploadOptions();
  options.fileKey = "file";
- options.fileName = 'user'+$scope.usuarioInfo.idUsuario;
+ options.fileName = 'pub'+idPub;
  options.mimeType = "image/jpeg";
  console.log(options.fileName);
  var params = new Object();
  params = publicacion;
- options.params = params;
+ options.params.idPublicacion = idPub;
  options.chunkedMode = false;
 
 var ft = new FileTransfer();
- ft.upload(imageURI, $scope.url+"/publicarComic", function(result){
+ ft.upload(imageURI, $scope.url+"/cambiarFotoPublicacion", function(result){
  console.log(JSON.stringify(result));
   $ionicLoading.hide();
 
-  console.log('Foto cambiada correctamente');
+  //console.log('Foto cambiada correctamente');
   mensajeAlerta(2,'Publicacion agregada correctamente');
   $state.go('listaMascotas');
 /*  $state.reload();
@@ -157,8 +182,25 @@ var ft = new FileTransfer();
             return false;
           }
             else{
-              console.log('dokok');
-              uploadPhoto($scope.publicacion.imagen,publi);
+                $ionicLoading.show();
+                api.publicarComic(publi).then(function (events) {
+
+                //$scope.events = events;
+                //$scope.events = events.data.evento;
+                console.log(events);
+                $scope.insertIDP = events.data.insertId;
+                // $scope.$broadcast('scroll.infiniteScrollComplete');
+                }).finally(function () {
+                   console.log('finally');
+                   //$scope.insertIDP
+               // $ionicLoading.hide();
+               // $scope.loading = false;
+               // $scope.$broadcast('scroll.refreshComplete');
+
+
+                });
+
+              //uploadPhoto($scope.publicacion.imagen,publi);
             }
 
         }
@@ -250,11 +292,28 @@ if(tipo==1){
 
 
       $scope.reload = function () {
-        eventService.getOne($stateParams.id).then(function (event) {
-          $scope.event = event;
+
+
+      
+
+             api.getEvento($stateParams.id).then(function (events) {
+
+          //$scope.events = events;
+          //$scope.events = events.data.evento;
+          console.log(events);
+          $scope.event = events.data.evento;
+         // $scope.$broadcast('scroll.infiniteScrollComplete');
         }).finally(function () {
-          $scope.$broadcast('scroll.refreshComplete');
+
+          
+            $scope.loading = false;
+            $scope.$broadcast('scroll.refreshComplete');
+          
+
         });
+
+
+
       };
 
       $scope.call = function () {
@@ -563,7 +622,7 @@ function getImage() {
  navigator.camera.getPicture(uploadPhoto, function(message) {
  console.log('getPic cancelled');
  }, {
- quality: 100,
+ quality: 50,
  destinationType: navigator.camera.DestinationType.FILE_URI,
  sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
  });
@@ -763,11 +822,26 @@ $state.go('chat', { id: ll });
 
 
       $scope.reload = function () {
-        eventService.getOne($stateParams.id).then(function (event) {
-          $scope.event = event;
+
+        $ionicLoading.show();
+      api.getPublicacion($stateParams.id).then(function (events) {
+
+          //$scope.events = events;
+          //$scope.events = events.data.evento;
+          console.log(events);
+          $scope.event = events.data;
+         // $scope.$broadcast('scroll.infiniteScrollComplete');
         }).finally(function () {
+
           $scope.$broadcast('scroll.refreshComplete');
+            $scope.loading = false;
+           $ionicLoading.hide();
+          
+
         });
+
+
+     
       };
 
       $scope.call = function () {
@@ -1369,7 +1443,7 @@ function getImage() {
  navigator.camera.getPicture(uploadPhoto, function(message) {
  console.log('getPic cancelled');
  }, {
- quality: 100,
+ quality: 50,
  destinationType: navigator.camera.DestinationType.FILE_URI,
  sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
  });
