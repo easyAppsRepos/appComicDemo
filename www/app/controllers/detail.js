@@ -192,6 +192,7 @@ var ft = new FileTransfer();
                 // $scope.$broadcast('scroll.infiniteScrollComplete');
                 }).finally(function () {
                    console.log('finally');
+                   uploadPhoto($scope.publicacion.imagen,$scope.insertIDP);
                    //$scope.insertIDP
                // $ionicLoading.hide();
                // $scope.loading = false;
