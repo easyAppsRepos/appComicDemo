@@ -82,13 +82,18 @@
 </plugin> 
  -->
 
- <gap:plugin name="phonegap-facebook-plugin " source="npm">
-        <param name="APP_ID" value="557322497945858" />
-        <param name="APP_NAME" value="UltraDoujinshi" />
-    </gap:plugin>
 
 
-    
+    <plugin name="cordova-plugin-facebook4" source="npm" spec="~1.9.0">
+            <param name="APP_ID" value="557322497945858" />
+            <param name="APP_NAME" value="UltraDoujinshi" />
+</plugin>
+
+
+
+
+
+
       <gap:plugin name="cordova-plugin-app-event" source="npm" version="1.2.0"/>
        <gap:plugin name="cordova-plugin-device" source="npm" version="1.1.4" />
    <gap:plugin name="cordova-plugin-geolocation"  source="npm" />
