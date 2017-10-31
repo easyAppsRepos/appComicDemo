@@ -91,6 +91,7 @@ $state.go('chat', { id: ll });
       $scope.uploadPhotos = function(imageURI) {
         console.log(imageURI);
         $scope.publicacion.imagen = imageURI;
+        $scope.consecutivo = Math.floor(Math.random() * 16) + 1  ;
       }
 
 
