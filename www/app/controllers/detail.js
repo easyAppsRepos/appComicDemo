@@ -1030,7 +1030,7 @@ $state.go('chat', { id: ll });
                     window.localStorage.setItem( 'userInfoUD', events.data.insertId);            
                     //$state.go('listaMascotas'); 
                     $ionicLoading.hide();
-                   //  window.localStorage.setItem( 'userInfoUD', events.data.insertId);            
+                              
                 $state.go('listaMascotas');
                     }
 
@@ -1083,8 +1083,16 @@ $state.go('chat', { id: ll });
         console.log('getLoginStatus', success.status);
         console.log('getLoginStatus', success);
 
+        // Check if we have our user saved
 
-                  getFacebookProfileInfo(success.authResponse).then(function(profileInfo) {
+        api.verificarFBLog(success.authResponse.userID).then(function (events) { 
+        if(events.data.idUsuario > 0){
+            window.localStorage.setItem( 'userInfoUD', events.data.idUsuario);            
+            $state.go('listaMascotas');
+        }
+        else{
+
+          getFacebookProfileInfo(success.authResponse).then(function(profileInfo) {
             // For the purpose of this example I will store user data on local storage
             var usuario = {
               authResponse: success.authResponse,
@@ -1094,19 +1102,7 @@ $state.go('chat', { id: ll });
               picture : "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large"
             };
 
-        
-
-        // Check if we have our user saved
-
-        api.verificarFBLog(usuario.userID).then(function (events) { 
-
-        if(events.data.idUsuario > 0){
-            window.localStorage.setItem( 'userInfoUD', events.data.idUsuario);            
-            $state.go('listaMascotas');
-        }
-        else{
-
-             api.addUserFb(usuario).then(function (events) {
+               api.addUserFb(usuario).then(function (events) {
 
                     if(events.data.insertId > 0){
                     window.localStorage.setItem( 'userInfoUD', events.data.insertId);            
@@ -1124,7 +1120,6 @@ $state.go('chat', { id: ll });
               //$state.go('app.listaMascotas');
                });
 
-        }}).finally(function () {$ionicLoading.hide();});
 
 
 
@@ -1134,8 +1129,11 @@ $state.go('chat', { id: ll });
             console.log('profile info fail', fail);
             mensajeAlerta(1, 'Ha ocurrido un error');
           });
+         //   mensajeAlerta(1, 'Credenciales incorrectas');
 
 
+
+        }}).finally(function () {$ionicLoading.hide();});
 
 /*
 
