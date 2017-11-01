@@ -139,7 +139,7 @@ getPublicaciones:function(){
 
         addUserFb:function(idF){  
         //  var dusuario = {body:JSON.stringify({usuario})};
-            return  $http.post(serverConfig.url+'/addUserFb', idD,{headers:{'Content-Type': 'application/json'}})
+            return  $http.post(serverConfig.url+'/addUserFb', idF,{headers:{'Content-Type': 'application/json'}})
             .then(function(response) {
             console.log(response);
             return response;
