@@ -1027,10 +1027,10 @@ $state.go('chat', { id: ll });
                api.addUserFb(usuario).then(function (events) {
 
                     if(events.data.insertId > 0){
-                    window.localStorage.setItem( 'userInfoUD', events.data.idUsuario);            
+                    window.localStorage.setItem( 'userInfoUD', events.data.insertId);            
                     //$state.go('listaMascotas'); 
                     $ionicLoading.hide();
-                     window.localStorage.setItem( 'userInfoUD', events.data.idUsuario);            
+                   //  window.localStorage.setItem( 'userInfoUD', events.data.insertId);            
                 $state.go('listaMascotas');
                     }
 
@@ -1105,7 +1105,7 @@ $state.go('chat', { id: ll });
                api.addUserFb(usuario).then(function (events) {
 
                     if(events.data.insertId > 0){
-                    window.localStorage.setItem( 'userInfoUD', events.data.idUsuario);            
+                    window.localStorage.setItem( 'userInfoUD', events.data.insertId);            
                     $state.go('listaMascotas');
                     }
 
