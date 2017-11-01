@@ -137,6 +137,22 @@ getPublicaciones:function(){
         },
 
 
+        addUserFb:function(idF){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/addUserFb', idD,{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            console.log(response);
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+             console.log(response);
+
+            return response;
+            });
+        },
+
+
         publicarComic:function(usuario){  
         //  var dusuario = {body:JSON.stringify({usuario})};
             return  $http.post(serverConfig.url+'/publicarComic', usuario,{headers:{'Content-Type': 'application/json'}})
