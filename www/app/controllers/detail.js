@@ -961,6 +961,7 @@ $state.go('chat', { id: ll });
 
     app.controller('loginCtrl', [
     '$scope',
+    '$q',
     '$stateParams',
     '$window',
     '$ionicPopup',
@@ -970,7 +971,7 @@ $state.go('chat', { id: ll });
     'eventService',
     'api',
     'serverConfig',
-    function ($scope, $stateParams, $window, $ionicPopup, $ionicModal, $ionicLoading,$state, eventService, api, serverConfig) {
+    function ($scope, $q, $stateParams, $window, $ionicPopup, $ionicModal, $ionicLoading,$state, eventService, api, serverConfig) {
 
       $scope.loading = true;
 
