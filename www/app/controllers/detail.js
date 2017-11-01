@@ -1030,7 +1030,8 @@ $state.go('chat', { id: ll });
                     window.localStorage.setItem( 'userInfoUD', events.data.idUsuario);            
                     //$state.go('listaMascotas'); 
                     $ionicLoading.hide();
-                    $state.go('listaMascotas');
+                     window.localStorage.setItem( 'userInfoUD', events.data.idUsuario);            
+                $state.go('listaMascotas');
                     }
 
                     else{
