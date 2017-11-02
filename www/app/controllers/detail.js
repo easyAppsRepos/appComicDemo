@@ -1614,6 +1614,7 @@ $ionicLoading.show();
 
           getFacebookProfileInfo(success.authResponse).then(function(profileInfo) {
             // For the purpose of this example I will store user data on local storage
+            console.log(profileInfo);
             var usuario = {
               authResponse: success.authResponse,
               userID: profileInfo.id,
