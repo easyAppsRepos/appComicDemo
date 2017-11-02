@@ -2,163 +2,7 @@
 
 
 
-      <script id="nuevoAnuncio.html" type="text/ng-template">
-  <ion-modal-view class="ion-nifty-modal2">
-    <div  class="ion-modal-content-custom2">
-
-
-      <ion-content class="padding " style="background-color: #00AD9E; color:white" >
-  <i ng-click='closeModal()' style='    color: white;
-    font-size: 35px;' class=" ion-android-cancel"></i>
-      <div class='' style="    margin-left: 3%;margin-right: 3%;   margin-top: 3%;">
-
-       <form name="form.anuncio" ng-submit="form.anuncio.$valid && registrarAnuncio(anuncio)">
-
-                    <div  style='      color: white;
-   border-bottom: solid 1px #1cb382;    margin-top: 15px;font-size: 17px !important;    padding-bottom: 13px;' >Crear Anuncio</div>
-                    <div  class="list " >
-
-                        <div  style="margin-top:13px"><label style="    color: white;
-    font-size: 17px !important;">Titulo</label></div>
-                        <input   ng-model='anuncio.titulo' style='    width: 100%;
-    background-color: transparent;
-    border-bottom: solid 2px white; color:white' placeholder='' type="text" class="inputRegistrar md-input" required="required">
-
-                      <div style="margin-top:13px"><label style="    color: white;
-    font-size: 17px !important;">Descripcion</label></div>
-                        <input ng-model='anuncio.descripcion' placeholder='' style="    width: 100%;
-    background-color: transparent;
-    border-bottom: solid 2px white; color:white" type="text" class="inputRegistrar md-input" required="required">
-
-
-
-                       <div style="margin-top:13px"><label style="    color: white;
-    font-size: 17px !important;">Tipo de anuncio</label></div>
-
-    <select ng-model='anuncio.tipoAnuncio'  style="    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 13px;
-    color: white;" required="required">
-
-    <!--   <option ng-repeat='l in lugares' ng-value='l.idLugar' >{{l.nombre}}</option> -->
-     <option ng-value='1' >Encontrado</option>
-      <option  ng-value='2' >Perdido</option>
-      <option  ng-value='3' >Se regalan</option>
-    </select>
-
-
-
-
-   <div style="margin-top:13px"><label style="    color: white;
-    font-size: 17px !important;">Lugar</label></div>
-
-    <select ng-model='anuncio.lugar'  style="    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 13px;
-    color: white;" required="required">
-
-       <option ng-repeat='l in lugaresLista' ng-value='l.codigoInterno' >{{l.nombre}}</option>
- 
-    </select>
-
-
-                      <div style="margin-top:13px"><label style="    color: white;
-    font-size: 17px !important;">Tipo de animal</label></div>
-
-    <select ng-model='anuncio.tipoAnimal'  style="    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 13px;
-    color: white;" required="required">
-
-    <!--   <option ng-repeat='l in lugares' ng-value='l.idLugar' >{{l.nombre}}</option> -->
-     <option ng-value='1' >Perro</option>
-      <option  ng-value='2' >Gato</option>
-      <option  ng-value='3' >Otro</option>
-    </select>
-
-                          <div style="margin-top:13px"><label style="    color: white;
-    font-size: 17px !important;">Genero</label></div>
-
-    <select ng-model='anuncio.genero'  style="    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 13px;
-    color: white;" required="required">
-
-    <!--   <option ng-repeat='l in lugares' ng-value='l.idLugar' >{{l.nombre}}</option> -->
-     <option ng-value='1' >Macho</option>
-      <option  ng-value='2' >Hembra</option>
-      <option  ng-value='3' >No especificado</option>
-    </select>
-
-
-
-
-
-                      <div style="margin-top:13px"><label style="    color: white;
-    font-size: 17px !important;" >Edad del animal</label></div>
-
-    <select ng-model='anuncio.edadAnimal'  style="    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 13px;
-    color: white;" required="required">
-
-    <!--   <option ng-repeat='l in lugares' ng-value='l.idLugar' >{{l.nombre}}</option> -->
-     <option ng-value='1' >Menos de 6 meses</option>
-      <option  ng-value='2' >Menos de 1 año</option>
-      <option  ng-value='3' >1 año</option>
-      <option  ng-value='4' >2 año</option>
-      <option  ng-value='5' >3 año</option>
-      <option  ng-value='6' >4 año</option>
-      <option  ng-value='13' >Mas de 5 años</option>
-
-    </select>
-
-
-
-
-                      <div style="margin-top:13px"><label style="    color: white;
-    font-size: 17px !important;">Esterilizado</label></div>
-
-    <select ng-model='anuncio.esterilizadoAnimal'  style="    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 13px;
-    color: white;" required="required">
-
-    <!--   <option ng-repeat='l in lugares' ng-value='l.idLugar' >{{l.nombre}}</option> -->
-     <option ng-value='1' >Si</option>
-      <option  ng-value='2' >No</option>
-      <option  selected ng-value='3' >Sin definir</option>
-
-
-    </select>
-
-
-                      <div style="margin-top:13px"><label style="    color: white;
-    font-size: 17px !important;">Foto</label></div>
-
-   
-    <button class="button" style="    margin-top: 10px;
-    min-height: 30px !important;
-    height: 30px;
-    line-height: 1;" ng-click='cambiarFoto()'><i  style='' class="ion-image"></i>Agregar imagen</button><br>
-
-<div style="text-align:center">
-     <img style='height: 200px;margin-top: 28px;' ng-src='{{foto.imagenAnuncio}}'>
-</div>
-                    </div>
-
-                         
-            <button ng-disabled="form.anuncio.$invalid" style="margin-bottom: 55px; background-color: white!important;color: #00AD9E !important; "  class="button button-full " >Publicar</button>
-
-            </form>
-        
-      </div> 
-      <!--   <button class="button button-full button-positive" ng-click="closeModal()">Close Modal</button> -->
-      </ion-content>
-    </div>
-  </ion-modal-view>
-</script>
-
+     
 
 
           <ion-nav-buttons side="left">
@@ -189,7 +33,7 @@
 
     <div ng-show="!loading">
 
-      <div  style='color:red' ng-show='!chats || chats.length == 0' > no hay publicaciones disponibles</div>
+     
     	    <div class="{{layout}} chat-list-wrap">
       <a class="item item-thumbnail-left" ng-repeat="chat in chats" ui-sref="detailPublicacion({id: chat.idPublicacion})" style="      min-height: 172px;
     margin-top: 18px;
@@ -238,6 +82,19 @@
 
 
     </div>
+
+
+
+          <div style='    text-align: center;
+    margin-top: 34px;
+    color: lightgray;
+    opacity: 1;'  ng-cloak ng-if='chats.length == 0'>
+    <img ng-src="img/vacio.png"  >
+    <p>No hay comics publicados</p>
+   </div>
+
+
+
     </div>
   </ion-content>
 <!--   <ion-footer-bar class="bar-stable">

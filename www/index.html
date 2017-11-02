@@ -9,14 +9,26 @@
     <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <!-- cordova script (this will be a 404 during development) -->
+
+     <link href="css/slidingTabs.css" rel="stylesheet">
+
+    <!-- cordova script (this will be a 404 during development)   <script src="lib/ionic/js/ionic.bundle.js"></script> -->
     <script src="cordova.js"></script>
+
+
+
+<script src="lib/ionic/js/ionic.bundle.js"></script>
     <!-- load requirejs config -->
     <script src="main.js"></script>
     <!-- load requirejs -->
     <script src="lib/requirejs/require.min.js"></script>
     <!-- load boot-script - it loads configs, routes, runs and bootstraps the app -->
     <script src="app/boot.js"></script>
+
+    <script src="app/slidingTabsDirective.js"></script>
+
+
+
   </head>
   <body ng-controller="AppCtrl" ng-show="ready" class="ng-hide">
     <ion-side-menus  >
@@ -29,7 +41,7 @@
 
 
         <ion-content  >
-          <ion-list>
+          <ion-list ng-controller='menuBCtrl'>
 <div style='    height: 30px !important  ;'></div>
 
 
@@ -38,26 +50,26 @@
              
             </ion-item>
 
-            <ion-item  menu-close class="item-tests item-icon-left menuStyle" ng-controller='menuBCtrl' ng-click='perf()'>
+            <ion-item  menu-close class="item-tests item-icon-left menuStyle"  ng-click='perf()'>
              Perfil
               
             </ion-item>
-   <ion-item  menu-close class="item-tests item-icon-left menuStyle" ui-sref="agregar">
+   <ion-item  menu-close class="item-tests item-icon-left menuStyle" ng-click="publicarC()">
              Publicar COMIC 
               
             </ion-item>
 
-             <ion-item  menu-close class="item-tests item-icon-left menuStyle" ui-sref="mensajes">
+             <ion-item  menu-close class="item-tests item-icon-left menuStyle" ng-click="goMensajes()">
              Mensajes
               
             </ion-item>
 
-             <ion-item  ng-controller='menuBCtrl' menu-close class="item-tests item-icon-left menuStyle"  ui-sref="ayuda">
+             <ion-item   menu-close class="item-tests item-icon-left menuStyle"  ui-sref="ayuda">
               Ayuda
          
             </ion-item>
 
-            <ion-item  ng-controller='menuBCtrl'  menu-close class="item-tests item-icon-left menuStyle" ng-click='cerrarSesion()'  >
+            <ion-item   menu-close class="item-tests item-icon-left menuStyle" ng-click='cerrarSesion()'  >
               Cerrar sesion
              
             </ion-item>
@@ -104,4 +116,192 @@
 
     </ion-side-menus>
   </body>
+
+
+   <script id="nuevoAnuncio.html" type="text/ng-template">
+  <ion-modal-view class="ion-nifty-modal2">
+    <div  class="ion-modal-content-custom2">
+
+
+      <ion-content class="padding " style="background-color: #00AD9E; color:white" >
+  <i ng-click='closeModal()' style='    color: white;
+    font-size: 35px;' class=" ion-android-cancel"></i>
+
+    <div style="width:100%;    text-align: center;
+  
+    height: 40px;
+">
+      
+      <div style="     width: 48%;
+    display: inline-block;
+    height: 100%;
+    vertical-align: super;    opacity: 0.6;
+    color: white;"  ng-class="{actTab: inicio}" ng-click='InicioOn()'>Iniciar Sesion</div><span style="    display: inline-block;
+    height: 29px;
+    width: 1px;
+    color: white;
+    background-color: white;"></span>
+      <div style="    width: 48%;
+    display: inline-block;
+    height: 100%;
+    vertical-align: super;     opacity: 0.6;
+    color: white;" ng-class="{actTab: regis}" ng-click='registroOn()'>Registrarse</div>
+    </div>
+
+    <ion-slide-box on-slide-changed="slideChanged(index)" slide-tabs-scrollable='false' show-pager="false" ion-slide-tabs>
+
+        <ion-slide ion-slide-tab-label="Canjeables">
+
+<!-- 
+    <div style="position:absolute; top:0; right:0; bottom:0; left:0; overflow-y:scroll; overflow-x: hidden;    height: calc(100% - 49px);"> -->
+      
+      
+        <div class="" style="text-align:center;     height: 153px;">
+ <!--<img style="  height: 120px;
+    margin-top: 20px;
+    border-radius: 400px;" src="img/backmenu.png"> 
+                <img style="   height: 78px; margin-top: 45px;" src="img/logomascotas.png"> -->
+               
+            <div style='    color: #333;
+    font-family: badabb;
+    font-size: 34px;    padding-top: 34px;' >Ultra Doujinshi</div>
+
+<br>
+<p style="    opacity: 0.8;margin-top:20px">Inicia sesion o registrate ahora para continuar, te llevara solo unos segundos!</p>
+        </div>
+
+
+
+
+<div style="margin-top:20px; font-family:backIssuesItal !important">
+  <div style="margin-bottom:40px;text-align:center">
+<button ng-click="facebookSignIn()" class="loginBtn loginBtn--facebook">
+  Login con Facebook
+</button>
+  </div>
+
+
+
+      <form name="form.search" ng-submit="form.search.$valid && doLogin(search)">
+      <label style=' color:white;   background-color: transparent;
+    border-bottom: 1px solid white;
+    margin-left: 15px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    margin-right: 15px;' class="item item-input">
+        <i style='padding-right: 15px;color:white' class="icon ion-email placeholder-icon"></i>
+        <input style='color:white !important;font-family:backIssuesItal !important'  type="email" ng-model="search.email" required="required" placeholder="Email"> 
+      </label>
+
+   <label style='  margin-top:10px;color:white;  background-color: transparent;
+    border-bottom: 1px solid white;
+    margin-left: 15px;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    margin-right: 15px;' class="item item-input">
+        <i style='padding-right: 15px;color:white' class="icon ion-locked placeholder-icon"></i>
+           <input style='color:white !important;font-family:backIssuesItal !important' type="password" ng-model="search.pass" required="required" placeholder="Contraseña">
+      </label>
+
+
+   <br><br>
+   
+<div style=" text-align:center">
+    <button  style='margin-right: 10px;font-family:backIssuesItal !important'  class="button  " ng-disabled="form.search.$invalid" ><b>Entrar</b></button>  
+      <!-- <button  style='margin-right: 10px;font-family:backIssuesItal !important'  class="button  " ui-sref="listaMascotas" ><b>Entrar</b></button> 
+      <button class="button  "  style='font-family:backIssuesItal !important' ng-click='registroOn()'><b>Registrarse</b></button> -->
+
+<br><br>  
+
+
+
+<!-- <button class="loginBtn loginBtn--google">
+  Login with Google
+</button> -->
+
+
+      <a>He olvidado mi contraseña</a>
+</div>
+
+
+
+    </form>
+
+</div>
+
+  
+        </ion-slide>
+        <ion-slide ion-slide-tab-label="Historial">
+            
+
+
+            <div class='' style="    margin-left: 3%;margin-right: 3%;   margin-top: 3%;">
+
+       <form name="form.usuario" ng-submit="form.usuario.$valid && registrarUsuario(usuario)">
+
+                    <div  style='      color: white;
+   border-bottom: solid 1px #1cb382;    margin-top: 15px;font-size: 17px !important;    padding-bottom: 13px;' >Crear Usuario</div>
+                    <div  class="list " >
+
+                        <div  style="margin-top:13px"><label style="    color: white;
+    font-size: 17px !important;">Email *</label></div>
+                        <input   ng-model='usuario.email' style='    width: 100%;
+    background-color: transparent;
+    border-bottom: solid 2px white; color:white' placeholder='' type="email" class="inputRegistrar md-input" required="required">
+
+                      <div style="margin-top:13px"><label style="    color: white;
+    font-size: 17px !important;">Nombre *</label></div>
+                        <input ng-model='usuario.nombre' placeholder='' style="    width: 100%;
+    background-color: transparent;
+    border-bottom: solid 2px white; color:white" type="text" class="inputRegistrar md-input" required="required">
+
+                      <div style="margin-top:13px"><label style="    color: white;
+    font-size: 17px !important;">Telefono de contacto</label></div>
+                        <input ng-model='usuario.telefono' placeholder='' style="    width: 100%;
+    background-color: transparent;
+    border-bottom: solid 2px white; color:white" type="text" class="inputRegistrar md-input">
+
+
+
+
+
+                      <div style="margin-top:13px"><label style="    color: white;
+    font-size: 17px !important;">Contraseña *</label></div>
+                        <input ng-model='usuario.pass' placeholder='' style="    width: 100%;
+    background-color: transparent;
+    border-bottom: solid 2px white; color:white" type="password" class="inputRegistrar md-input" autocapitalize="off" required="required">
+
+            
+            <div style="margin-top:13px"><label style="    color: white;
+    font-size: 17px !important;">Repetir contraseña *</label></div>
+                        <input  ng-model='usuario.pass2'  style='margin-top: 4px !important;    width: 100%;
+    background-color: transparent;
+    border-bottom: solid 2px white; color:white' placeholder='' type="password" class="inputRegistrar md-input" autocapitalize="off" required="required">
+
+
+
+
+                    </div>
+
+                         
+            <button ng-disabled="form.usuario.$invalid" style="margin-bottom: 55px; background-color: white!important;color: #00AD9E !important; "  class="button button-full " >Registrar</button>
+
+            </form>
+        
+      </div> 
+        </ion-slide>
+
+
+      
+    </ion-slide-box>
+
+      </ion-content>
+    </div>
+  </ion-modal-view>
+</script>
+
+
+
 </html>

@@ -26,7 +26,7 @@ define([
           //$scope.events = events;
           //$scope.events = events.data.evento;
           console.log(events);
-          $scope.chats = events.data;
+          $scope.chats = events.data || [];
          // $scope.$broadcast('scroll.infiniteScrollComplete');
         }).finally(function () {
 
@@ -643,7 +643,7 @@ if(tipo==1){
 
 
 
-
+//openModalRegistro()
 $scope.goChat = function(ll){
 
 if(window.localStorage.getItem('userInfoUD') == ll){
@@ -1287,6 +1287,8 @@ $scope.registrarUsuario = function(usuario){
     return false;
   }
 
+    usuario.telefono =  usuario.telefono || '';
+
   $ionicLoading.show();
 
 console.log(usuario);
@@ -1383,21 +1385,102 @@ console.log('bac');
 
 
 }
+   $scope.inicio = true;
+    $scope.regis = false;
 
+$scope.slideChanged = function(index) {
+switch(index) {
+case 0:
+   $scope.inicio = true;
+    $scope.regis = false;
+break;
+case 1:
+   $scope.regis = true;
+   $scope.inicio = false;
+break;
+}
+};
+
+
+
+    $scope.openModalRegistro = function(){
+
+            $scope.openModal("nuevoAnuncio.html", "slide-in-up");
+    }
+
+  $scope.InicioOn = function(){
+
+           $scope.$broadcast('slideBox.setSlide', 0);
+    }
+
+      $scope.registroOn = function(){
+
+           $scope.$broadcast('slideBox.setSlide', 1);
+    }
+
+
+  //$scope.$broadcast('slideBox.setSlide', index);
 $scope.perf = function(){
 
-
-$state.go('perfil', { id: window.localStorage.getItem('userInfoUD') });
-
-
+console.log(window.localStorage.getItem('userInfoUD'));
+if(window.localStorage.getItem('userInfoUD')>0){
+  $state.go('perfil', { id: window.localStorage.getItem('userInfoUD') });
 }
+else{
+
+   //  $state.go('login');
+   $scope.openModalRegistro();
+}
+}
+
+$scope.goMensajes = function(){
+
+console.log(window.localStorage.getItem('userInfoUD'));
+if(window.localStorage.getItem('userInfoUD')>0){
+  $state.go('mensajes');
+}
+else{
+
+   //  $state.go('login');
+   $scope.openModalRegistro();
+}
+}
+
+$scope.goChatt = function(lls){
+
+console.log(window.localStorage.getItem('userInfoUD'));
+if(window.localStorage.getItem('userInfoUD')>0){
+  $state.go('chat', { id: lls });
+}
+else{
+
+   //  $state.go('login');
+   $scope.openModalRegistro();
+}
+}
+
+
+
+$scope.publicarC = function(){
+
+console.log(window.localStorage.getItem('userInfoUD'));
+if(window.localStorage.getItem('userInfoUD')>0){
+  $state.go('agregar');
+}
+else{
+
+   //  $state.go('login');
+   $scope.openModalRegistro();
+}
+}
+
 
 
 $scope.cerrarSesion = function(){
 $ionicLoading.show();
 
   window.localStorage.setItem( 'userInfoUD', undefined);  
-  $state.go('login');
+  $state.go('listaMascotas');
   $timeout(function () {
           $ionicHistory.clearCache();
           $ionicLoading.hide();
@@ -1405,6 +1488,397 @@ $ionicLoading.show();
 
 
 }
+
+
+//  LOGIN     *************************************************************
+
+         $scope.loading = true;
+
+  /*    eventService.getOne($stateParams.id).then(function (event) {
+        $scope.event = event;
+      }).finally(function () {
+        $scope.loading = false;
+      });
+
+*/
+
+
+
+  // This method is to get the user profile info from the facebook api
+  var getFacebookProfileInfo = function (authResponse) {
+    var info = $q.defer();
+
+    facebookConnectPlugin.api('/me?fields=email,name&access_token=' + authResponse.accessToken, null,
+      function (response) {
+        console.log(response);
+        info.resolve(response);
+      },
+      function (response) {
+        console.log(response);
+        info.reject(response);
+      }
+    );
+    return info.promise;
+  };
+
+
+  // This is the success callback from the login method
+  var fbLoginSuccess = function(response) {
+    if (!response.authResponse){
+      fbLoginError("Cannot find the authResponse");
+      return;
+    }
+
+    var authResponse = response.authResponse;
+
+    getFacebookProfileInfo(authResponse)
+    .then(function(profileInfo) {
+      // For the purpose of this example I will store user data on local storage
+      var usuario = {
+        authResponse: authResponse,
+        userID: profileInfo.id,
+        name: profileInfo.name,
+        email: profileInfo.email,
+        picture : "http://graph.facebook.com/" + authResponse.userID + "/picture?type=large"
+      };
+
+
+               api.addUserFb(usuario).then(function (events) {
+
+                    if(events.data.insertId > 0){
+                    window.localStorage.setItem( 'userInfoUD', events.data.insertId);            
+                    //$state.go('listaMascotas'); 
+                    $ionicLoading.hide();
+                              
+               $scope.closeModal();
+                    }
+
+                    else{
+
+                      mensajeAlerta(1, 'Ha ocurrido un error');
+                      $ionicLoading.hide();
+                    }
+
+              }).finally(function () {
+
+             
+               });
+
+
+
+
+
+     // $ionicLoading.hide();
+    //$state.go('app.listaMascotas');
+
+
+    }, function(fail){
+      // Fail get profile info
+      console.log('profile info fail', fail);
+    });
+  };
+
+  // This is the fail callback from the login method
+  var fbLoginError = function(error){
+    console.log('fbLoginError', error);
+    mensajeAlerta(1, 'Ha ocurrido un error');
+    $ionicLoading.hide();
+  };
+
+
+
+  //This method is executed when the user press the "Login with facebook" button
+  $scope.facebookSignIn = function() {
+
+
+    facebookConnectPlugin.getLoginStatus(function(success){
+
+
+      if(success.status === 'connected'){
+        $ionicLoading.show();
+        // The user is logged in and has authenticated your app, and response.authResponse supplies
+        // the user's ID, a valid access token, a signed request, and the time the access token
+        // and signed request each expire
+        console.log('getLoginStatus', success.status);
+        console.log('getLoginStatus', success);
+
+        // Check if we have our user saved
+
+        api.verificarFBLog(success.authResponse.userID).then(function (events) { 
+        if(events.data.idUsuario > 0){
+            window.localStorage.setItem( 'userInfoUD', events.data.idUsuario);            
+            //$state.go('listaMascotas');
+            $scope.closeModal();
+        }
+        else{
+
+          getFacebookProfileInfo(success.authResponse).then(function(profileInfo) {
+            // For the purpose of this example I will store user data on local storage
+            var usuario = {
+              authResponse: success.authResponse,
+              userID: profileInfo.id,
+              name: profileInfo.name,
+              email: profileInfo.email,
+              picture : "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large"
+            };
+
+               api.addUserFb(usuario).then(function (events) {
+
+                    if(events.data.insertId > 0){
+                    window.localStorage.setItem( 'userInfoUD', events.data.insertId);            
+                    //$state.go('listaMascotas');
+                    $scope.closeModal();
+                    }
+
+                    else{
+
+                      mensajeAlerta(1, 'Usuario ya registrado');
+                    }
+
+              }).finally(function () {
+
+              //$ionicLoading.hide();
+              //$state.go('app.listaMascotas');
+               });
+
+
+
+
+            
+          }, function(fail){
+            // Fail get profile info
+            console.log('profile info fail', fail);
+            mensajeAlerta(1, 'Ha ocurrido un error');
+          });
+         //   mensajeAlerta(1, 'Credenciales incorrectas');
+
+
+
+        }}).finally(function () {$ionicLoading.hide();});
+
+/*
+
+        if(!user.userID){
+
+
+          getFacebookProfileInfo(success.authResponse)
+          .then(function(profileInfo) {
+            // For the purpose of this example I will store user data on local storage
+            UserService.setUser({
+              authResponse: success.authResponse,
+              userID: profileInfo.id,
+              name: profileInfo.name,
+              email: profileInfo.email,
+              picture : "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large"
+            });
+
+            $state.go('app.home');
+          }, function(fail){
+            // Fail get profile info
+            console.log('profile info fail', fail);
+          });
+
+
+        }else{
+          $state.go('app.home');
+        }*/
+      } else {
+        // If (success.status === 'not_authorized') the user is logged in to Facebook,
+        // but has not authenticated your app
+        // Else the person is not logged into Facebook,
+        // so we're not sure if they are logged into this app or not.
+
+        console.log('getLoginStatus', success.status);
+
+        $ionicLoading.show({
+          template: 'Ingresando...'
+        });
+
+        // Ask the permissions you need. You can learn more about
+        // FB permissions here: https://developers.facebook.com/docs/facebook-login/permissions/v2.4
+        facebookConnectPlugin.login(['email', 'public_profile'], fbLoginSuccess, fbLoginError);
+      }
+    });
+  };
+
+
+  $scope.urlImg = serverConfig.imageStorageURL;
+        $scope.grid_view = function() {
+    if($scope.layout == 'grid'){
+      $scope.layout = "list";
+    } else {
+      $scope.layout = "grid";
+    }
+  };
+
+
+  function mensajeAlerta(tipo, mensaje){
+    console.log(tipo);
+    var ima ='exclam.png';
+if(tipo==1){
+
+     var customTemplate =
+        '<div style="text-align:center;"><img style="margin-top:10px" src="img/exclam.png"> <p style="    font-size: 18px;color:white; margin-top:25px">'+mensaje+'</p> </div>';
+
+
+}
+  if(tipo == 2){
+
+     var customTemplate =
+        '<div style="text-align:center;"><img style="margin-top:10px" src="img/confirma.png"> <p style="    font-size: 18px;color:white; margin-top:25px">'+mensaje+'</p> </div>';
+
+}
+
+      $ionicPopup.show({
+        template: customTemplate,
+        title: '',
+        subTitle: '',
+        buttons: [{
+          text: 'Cerrar',
+          type: 'button-blueCustom',
+          onTap: function(e) {
+
+    console.log('ok');
+          }
+           // if(borrar){ $scope.user.pin='';}
+           
+          
+        }]
+      });
+
+}
+
+
+
+    $scope.doLogin = function(user){
+
+           console.log(user);
+            $ionicLoading.show();
+//usuario.email = usuario.email.toLowerCase();
+          api.doLogin(user).then(function (events) {
+            if(events.data.idUsuario > 0){
+
+              window.localStorage.setItem( 'userInfoUD', events.data.idUsuario);            
+              //  $state.go('listaMascotas');
+                $scope.closeModal();
+                console.log('logueado');
+
+            /*  if(events.data.user.verificado == 1){
+
+                window.localStorage.setItem( 'userInfoSM', JSON.stringify(events.data.user));            
+                $state.go('listaMascotas');
+
+                console.log('logueado');
+
+              }
+              else{
+                mensajeAlerta(1, 'Debes verificar tu cuenta');
+                console.log('no verificado');
+              }
+            */
+
+
+            }
+            else{
+
+            mensajeAlerta(1, 'Credenciales incorrectas');
+
+            }
+            }).finally(function () {
+
+            $ionicLoading.hide();
+      });
+
+
+
+
+
+    }
+
+
+
+
+$scope.registrarUsuario = function(usuario){
+  if(usuario.pass !== usuario.pass2){
+    mensajeAlerta(1, 'La contraseña no coincide');
+    return false;
+  }
+
+    usuario.telefono =  usuario.telefono || '';
+
+  $ionicLoading.show();
+
+console.log(usuario);
+
+api.registrarUsuario(usuario).then(function (events) {
+console.log(events);
+          //$scope.events = events;
+          //$scope.events = events.data.evento;
+
+
+          if(events.data.insertId>1){
+
+            mensajeAlerta(2, 'Cuenta creada, ya puedes hacer login!');
+              //$scope.closeModal();  
+             // $scope.usuario={};
+              $scope.InicioOn();
+
+
+          }
+          else{
+             mensajeAlerta(1, 'Ha ocurrido un error, la cuenta no ha podido ser creada');
+
+          }
+
+
+
+         // $scope.chats = events.data.publicaciones;
+         // $scope.$broadcast('scroll.infiniteScrollComplete');
+        }).finally(function () {
+
+  $ionicLoading.hide();
+          
+           // $scope.loading = false;
+           
+          
+
+        });
+
+
+          
+    }
+
+//  END LOGIN *************************************************************
+
+      $scope.openModal = function(templateName,animation) {
+    $ionicModal.fromTemplateUrl(templateName, {
+      scope: $scope,
+      animation: animation
+    }).then(function(modal) {
+      $scope.modal = modal;
+      $scope.modal.show();
+    });
+  };
+
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+    $scope.inicio = true;
+    $scope.regis = false;
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
+
+
 
 
 
@@ -1456,7 +1930,7 @@ $scope.getPublis = function(){
               api.getPublicaciones().then(function (events) {
 
               console.log(events);
-              $scope.chats=events.data;
+              $scope.chats=events.data || [];
 
               }).finally(function () {
 

@@ -39,10 +39,10 @@ $ionicConfigProvider.backButton.previousTitleText(false).text('');
       //$ionicConfigProvider.backButton.previousTitleText(false);
       // url routes/states
       //$urlRouterProvider.otherwise('listaMascotas');
+$urlRouterProvider.otherwise('listaMascotas');
 
 
-
-
+/*
 
 
           if(localStorage.getItem('userInfoUD') == null || 
@@ -64,7 +64,7 @@ $ionicConfigProvider.backButton.previousTitleText(false).text('');
 
 
 
-
+*/
       $stateProvider
         // app states
         .state('dashboard', {

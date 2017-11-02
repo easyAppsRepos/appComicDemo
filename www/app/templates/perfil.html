@@ -24,7 +24,7 @@
 <br>
       <br>
 	  	<span>{{perfilUsuario.nombre}}</span><br>
-	  	<span style="    color: lightslategrey;">Usuario desde {{perfilUsuario.fechaCreacion.split(" ")[0]}}</span>
+	  	<span style="    color: lightslategrey;">Usuario desde {{perfilUsuario.fechaCreacion.split("T")[0]}}</span>
 	  </div>
 	  <div>	  	
 		<div class="detailProfile">
@@ -44,6 +44,7 @@
   	<div style="margin-top:20px">
   		<span>Publicados</span>	
 
+<img ng-src="img/vacio.png" ng-if='!perfilUsuario.publicaciones' ng-cloak class="ng-cloak ng-hide">
   		<div class="list">
 
 		<a class="item item-avatar" ng-repeat='c in perfilUsuario.publicaciones' style="    background: transparent !important; margin-top: 20px;border: dashed 1px lemonchiffon;background: transparent !important;    margin-top: 20px;">
@@ -51,8 +52,15 @@
 		<h2 style="  font-family: backIssuesReg !important;">{{c.titulo}}</h2>
 		<p>{{getEstadoC(c.estadoPublicacion)}} | ${{c.precio}}</p>
 		</a>
-	
+    <div style='    text-align: center;
+    margin-top: 24px;
+    color: lightgray;
+    opacity: 0.5;' ng-if='!perfilUsuario.publicaciones.length > 0'>
+    <img ng-src="img/vacio.png"  >
+    <p>No hay comics publicados</p>
+	 </div>
 </div>
+
 
 
   	</div>
@@ -67,10 +75,16 @@
     width: 100%;
     left: 0;">
 
-  <button style='    background-color: white;
+<!--   <button style='    background-color: white;
     color: #333;
     width: 100%;
-    font-family: backIssuesReg !important;' class="button " ng-show='usuarioIDUD != perfilUsuario.idUsuario' ng-click='goChat(perfilUsuario.idUsuario)'>Chat</button>
+    font-family: backIssuesReg !important;' class="button " ng-show='usuarioIDUD != perfilUsuario.idUsuario' ng-click='goChat(perfilUsuario.idUsuario)'>Chat</button> -->
+
+<button style='    background-color: white;
+    color: #333;
+    width: 100%;
+    font-family: backIssuesReg !important;' class="button " ng-show='usuarioIDUD != perfilUsuario.idUsuario' ng-controller='menuBCtrl' ng-click='goChatt(perfilUsuario.idUsuario)'>Chat</button>
+
 
 	<button style='    background-color: white;
     color: #333;
