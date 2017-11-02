@@ -1608,8 +1608,8 @@ $ionicLoading.show();
 
           console.log(events);
 
-          
-        if(events.data.idUsuario > 0){
+
+        if(events.data && events.data.idUsuario > 0){
             window.localStorage.setItem( 'userInfoUD', events.data.idUsuario);            
             //$state.go('listaMascotas');
             $scope.closeModal();
