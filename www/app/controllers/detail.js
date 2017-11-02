@@ -1605,6 +1605,10 @@ $ionicLoading.show();
         // Check if we have our user saved
 
         api.verificarFBLog(success.authResponse.userID).then(function (events) { 
+
+          console.log(events);
+
+          
         if(events.data.idUsuario > 0){
             window.localStorage.setItem( 'userInfoUD', events.data.idUsuario);            
             //$state.go('listaMascotas');
