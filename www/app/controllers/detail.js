@@ -1364,6 +1364,7 @@ console.log(events);
 
     app.controller('menuBCtrl', [
     '$scope',
+    '$q',
     '$stateParams',
     '$ionicHistory',
     '$window',
@@ -1375,7 +1376,7 @@ console.log(events);
     'eventService',
     'api',
     'serverConfig',
-    function ($scope, $stateParams, $ionicHistory, $window, $ionicPopup, $ionicModal, 
+    function ($scope, $q, $stateParams, $ionicHistory, $window, $ionicPopup, $ionicModal, 
       $ionicLoading,$state, $timeout, eventService, api, serverConfig) {
 
 
@@ -1423,7 +1424,7 @@ break;
 $scope.perf = function(){
 
 console.log(window.localStorage.getItem('userInfoUD'));
-if(window.localStorage.getItem('userInfoUD')>0){
+if(window.localStorage.getItem('userInfoUD') && window.localStorage.getItem('userInfoUD')>0){
   $state.go('perfil', { id: window.localStorage.getItem('userInfoUD') });
 }
 else{
@@ -1436,7 +1437,7 @@ else{
 $scope.goMensajes = function(){
 
 console.log(window.localStorage.getItem('userInfoUD'));
-if(window.localStorage.getItem('userInfoUD')>0){
+if(window.localStorage.getItem('userInfoUD') && window.localStorage.getItem('userInfoUD')>0){
   $state.go('mensajes');
 }
 else{
@@ -1449,7 +1450,7 @@ else{
 $scope.goChatt = function(lls){
 
 console.log(window.localStorage.getItem('userInfoUD'));
-if(window.localStorage.getItem('userInfoUD')>0){
+if(window.localStorage.getItem('userInfoUD') && window.localStorage.getItem('userInfoUD')>0){
   $state.go('chat', { id: lls });
 }
 else{
@@ -1464,7 +1465,7 @@ else{
 $scope.publicarC = function(){
 
 console.log(window.localStorage.getItem('userInfoUD'));
-if(window.localStorage.getItem('userInfoUD')>0){
+if(window.localStorage.getItem('userInfoUD') && window.localStorage.getItem('userInfoUD')>0){
   $state.go('agregar');
 }
 else{
