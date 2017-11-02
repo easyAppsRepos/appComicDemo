@@ -1624,7 +1624,7 @@ $ionicLoading.show();
             };
 
                api.addUserFb(usuario).then(function (events) {
-
+console.log(events);
                     if(events.data.insertId > 0){
                     window.localStorage.setItem( 'userInfoUD', events.data.insertId);            
                     //$state.go('listaMascotas');
