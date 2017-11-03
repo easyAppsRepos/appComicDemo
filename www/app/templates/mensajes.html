@@ -11,7 +11,12 @@
 
 
     <a  ng-repeat="chat in chats" class="item item-avatar"  ng-class="{'noleido': chat.sinLeer>0}" style="border: solid #444;margin-top: 10px;" ng-click='goChat(chat.idUsuario)'>
-      <img src="img/adam.jpg">
+
+        <img ng-show='!chat.imagenUrl' ng-src="https://s3.amazonaws.com/ultradoujinshi/user{{chat.idUsuario}}"   onerror="this.src='img/userbak.png'" >
+
+      <img ng-show='chat.imagenUrl'  ng-src="{{chat.imagenUrl}}"   onerror="this.src='img/userbak.png'" >
+
+
       <h2 style="color:#444; font-family: backIssuesReg !important;">{{chat.nombre}}</h2>
       <p>{{chat.sinLeer}} mensajes sin leer</p>
     </a>
