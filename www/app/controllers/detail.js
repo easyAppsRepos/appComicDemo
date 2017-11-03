@@ -308,19 +308,7 @@ $scope.calificar = function(id, nombre){
 
 
                       var mensaje = 'Correo Electronico'
-                   var customTemplate =
-          `<div style="text-align:center;font-family: backIssuesReg;"><img style="margin-top:10px" src="img/estree.png"> <p style="    font-size: 18px;color:white; margin-top:25px">Como valorarias tu experiencia con `+nombre+`</p>         <select ng-model='olvideEmail' style=" width: 100%;
-    background-color: transparent;
-    border-bottom: solid 2px #444; color:white;    margin-top: 15px;
-    margin-bottom: 15px;">
-
-                    
-                      <option  value='5'  >Excelente</option>
-                      <option  value='4' ng-selected='{{true}}' >Bueno</option>
-                      <option  value='3'  >Regular</option>
-                       <option  value='2'  >Malo</option>
- <option  value='1'  >No lo recomiendo</option>
-                    </select> <button ng-click="recuperar(olvideEmail)" class="btnRecuperar button" style="    width: 100%;background-color: #999;margin-top: 20px;height: 40px;font-family: backIssuesReg;color: white;border: none;border-radius: 2px;">Calificar</button></div>`;
+                   var customTemplate = '<div style="text-align:center;font-family: backIssuesReg;"><img style="margin-top:10px" src="img/estree.png"> <p style="    font-size: 18px;color:white; margin-top:25px">Como valorarias tu experiencia con'+nombre+'</p>         <select ng-model="olvideEmail" style=" width: 100%; background-color: transparent; border-bottom: solid 2px #444; color:white;    margin-top: 15px; margin-bottom: 15px;"><option  value="5"  >Excelente</option><option  value="4" ng-selected="{{true}}" >Bueno</option><option  value="3"  >Regular</option><option  value="2"  >Malo</option><option  value="1"  >No lo recomiendo</option></select> <button ng-click="recuperar(olvideEmail)" class="btnRecuperar button" style="    width: 100%;background-color: #999;margin-top: 20px;height: 40px;font-family: backIssuesReg;color: white;border: none;border-radius: 2px;">Calificar</button></div>';
 
         $scope.pop = $ionicPopup.show({
           template: customTemplate,
