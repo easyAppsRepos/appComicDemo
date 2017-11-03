@@ -120,6 +120,22 @@ getPublicaciones:function(){
             });
         },
 
+
+   cambiarEstadoPubli:function(idPublicacion, estado){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/cambiarEstadoPubli', {idPublicacion:idPublicacion, estado:estado},{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            console.log(response);
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+             console.log(response);
+
+            return response;
+            });
+        },
+
         registrarUsuario:function(usuario){  
         //  var dusuario = {body:JSON.stringify({usuario})};
             return  $http.post(serverConfig.url+'/addUsuario', usuario,{headers:{'Content-Type': 'application/json'}})

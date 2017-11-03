@@ -68,7 +68,7 @@
 <button style='    background-color: white;
     color: #333;
     width: 100%;
-    font-family: backIssuesReg !important;' class="button ">No lo he vendido por Ultra Doujinshi</button>
+    font-family: backIssuesReg !important;' class="button " ng-click='compraExterna()'>No lo he vendido por Ultra Doujinshi</button>
 
 
 
@@ -92,6 +92,7 @@
 
     <a  ng-repeat="chat in chats" class="item item-avatar"   style="border: solid #444;margin-top: 10px;">
 
+
       <img ng-src="https://s3.amazonaws.com/ultradoujinshi/publicaciones{{chat.idPublicacion}}">
       <h2 style="color:#444; font-family: backIssuesReg !important;">{{chat.titulo}}</h2>
       <p style="    margin-bottom: 11px;
@@ -103,10 +104,17 @@
 " ng-click='marcarVendido(chat.idPublicacion)'>vendido</button>  
 
 
-<button ng-click='marcarReservado(chat.idPublicacion)' style="border: solid 2px;
+<button ng-click='marcarReservado(chat.idPublicacion, chat.estadoPublicacion)' style="border: solid 2px;
     padding: 10px;
     font-family: backIssuesItal !important;
-">reservar</button>
+"><span ng-if='chat.estadoPublicacion == 1'>reservar</span><span ng-if='chat.estadoPublicacion == 3'>activar</span></button>
+
+<img style="position: absolute;
+    margin-left: 10px;
+    left: 0;" ng-if='chat.estadoPublicacion==1' src="img/play.png">
+<img style="position: absolute;
+    margin-left: 10px;
+    left: 0;" ng-if='chat.estadoPublicacion==3' src="img/pause.png">
     </a>
 
       <div style='    text-align: center;

@@ -131,6 +131,89 @@ $state.go('chat', { id: ll });
         });
 
 
+$scope.cargaPrincipal = function(){
+               $ionicLoading.show();
+            api.getMisPublicaciones($scope.userID).then(function (events) {
+
+          //$scope.events = events;
+          //$scope.events = events.data.evento;
+          console.log(events);
+          $scope.chats = events.data || [];
+         // $scope.$broadcast('scroll.infiniteScrollComplete');
+        }).finally(function () {
+
+           $ionicLoading.hide();
+            $scope.loading = false;
+           
+          
+
+        });
+
+}
+
+
+
+
+
+$scope.compraExterna = function(){
+               $ionicLoading.show();
+
+            api.cambiarEstadoPubli($scope.idPublicacionCalificar, 4).then(function (events) {
+
+          //$scope.events = events;
+          //$scope.events = events.data.evento;
+          if(events.data){
+          // mensajeAlerta(2,'Calificacion realizada');
+            $scope.closeModal();
+            $scope.cargaPrincipal();
+          }
+          else{
+            mensajeAlerta(1,'Ha ocurrido un error');
+          }
+         // $scope.$broadcast('scroll.infiniteScrollComplete');
+        }).finally(function () {
+
+           $ionicLoading.hide();
+            $scope.loading = false;
+           
+          
+
+        });
+
+}
+
+
+$scope.marcarReservado = function(idPublicacion, estadoActual){
+               $ionicLoading.show();
+               var estadoNuevo = 1;
+               if(estadoActual == 1){
+                estadoNuevo=3;
+               }
+            api.cambiarEstadoPubli(idPublicacion, estadoNuevo).then(function (events) {
+
+          //$scope.events = events;
+          //$scope.events = events.data.evento;
+          if(events.data){
+           $scope.cargaPrincipal();
+          }
+          else{
+            mensajeAlerta(1,'Ha ocurrido un error');
+          }
+         // $scope.$broadcast('scroll.infiniteScrollComplete');
+        }).finally(function () {
+
+           $ionicLoading.hide();
+            $scope.loading = false;
+           
+          
+
+        });
+
+}
+
+
+
+
 $scope.recuperar = function(valoracion, id, nombre){
   $scope.pop.close();
     $ionicLoading.show();
@@ -147,6 +230,8 @@ $scope.recuperar = function(valoracion, id, nombre){
           console.log(events);
           if(events.data){
             mensajeAlerta(2,'Calificacion realizada');
+            $scope.closeModal();
+            $scope.cargaPrincipal();
 
           }
 
@@ -1753,6 +1838,7 @@ $scope.goChatt = function(lls){
 
 //c/onsole.log(window.localStorage.getItem('userInfoUD'));
 if(window.localStorage.getItem('userInfoUD') && window.localStorage.getItem('userInfoUD')>0){
+  if(lls == window.localStorage.getItem('userInfoUD')){mensajeAlerta(1,'No puedes iniciar un chat contigo!');}
   $state.go('chat', { id: lls });
 }
 else{
