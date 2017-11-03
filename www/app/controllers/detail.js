@@ -89,6 +89,294 @@ $state.go('chat', { id: ll });
 
     }]);
 
+
+
+
+    app.controller('misPublicacionesCtrl', [
+    '$scope',
+    '$stateParams',
+    '$ionicHistory',
+    '$window',
+    '$ionicPopup',
+    '$ionicModal',
+    '$ionicLoading',
+    '$state',
+    '$timeout',
+    'eventService',
+    'api',
+    'serverConfig',
+    function ($scope,  $stateParams, $ionicHistory, $window, $ionicPopup, $ionicModal, 
+      $ionicLoading,$state, $timeout, eventService, api, serverConfig) {
+
+
+
+
+            $scope.userID=window.localStorage.getItem('userInfoUD');
+
+             $ionicLoading.show();
+            api.getMisPublicaciones($scope.userID).then(function (events) {
+
+          //$scope.events = events;
+          //$scope.events = events.data.evento;
+          console.log(events);
+          $scope.chats = events.data || [];
+         // $scope.$broadcast('scroll.infiniteScrollComplete');
+        }).finally(function () {
+
+           $ionicLoading.hide();
+            $scope.loading = false;
+           
+          
+
+        });
+
+
+$scope.recuperar = function(valoracion, id, nombre){
+  $scope.pop.close();
+    $ionicLoading.show();
+  console.log(valoracion);
+   console.log( $scope.idCalificar);
+    console.log($scope.idPublicacionCalificar);
+
+
+        var calificarObjeto = {idPublicacion:$scope.idPublicacionCalificar, idUsuario:$scope.idCalificar, calificacion:valoracion};
+              api.calificarPublicacion(calificarObjeto).then(function (events) {
+
+          //$scope.events = events;
+         // $scope.usuariosPost = events.data;
+          console.log(events);
+          if(events.data){
+            mensajeAlerta(2,'Calificacion realizada');
+
+          }
+
+          else{
+
+             mensajeAlerta(1,'Ha ocurrido un error');
+          }
+
+         //$scope.chats = events.data || [];
+         // $scope.$broadcast('scroll.infiniteScrollComplete');
+        }).finally(function () {
+          
+           $ionicLoading.hide();
+           //$scope.idPublicacionCalificar = idPublicacion;
+            //$scope.openModal("vendido.html", "slide-in-up");
+            //$scope.loading = false;
+           //$scope.$broadcast('scroll.refreshComplete');
+          
+
+        });
+
+
+
+
+
+
+}
+
+
+
+   function mensajeAlerta(tipo, mensaje){
+    console.log(tipo);
+    var ima ='exclam.png';
+if(tipo==1){
+
+     var customTemplate =
+        '<div style="text-align:center;"><img style="margin-top:10px" src="img/exclam.png"> <p style="    font-size: 18px;color:white; margin-top:25px">'+mensaje+'</p> </div>';
+
+
+}
+  if(tipo == 2){
+
+     var customTemplate =
+        '<div style="text-align:center;"><img style="margin-top:10px" src="img/confirma.png"> <p style="    font-size: 18px;color:white; margin-top:25px">'+mensaje+'</p> </div>';
+
+}
+
+      $ionicPopup.show({
+        template: customTemplate,
+        title: '',
+        subTitle: '',
+        buttons: [{
+          text: 'Cerrar',
+          type: 'button-blueCustom',
+          onTap: function(e) {
+
+    console.log('ok');
+          }
+           // if(borrar){ $scope.user.pin='';}
+           
+          
+        }]
+      });
+
+}
+
+
+
+
+$scope.calificar = function(id, nombre){
+
+    
+  $scope.idCalificar = id;
+
+
+                      var mensaje = 'Correo Electronico'
+                   var customTemplate =
+          `<div style="text-align:center;font-family: backIssuesReg;"><img style="margin-top:10px" src="img/estree.png"> <p style="    font-size: 18px;color:white; margin-top:25px">Como valorarias tu experiencia con `+nombre+`</p>         <select ng-model='olvideEmail' style=" width: 100%;
+    background-color: transparent;
+    border-bottom: solid 2px #444; color:white;    margin-top: 15px;
+    margin-bottom: 15px;">
+
+                    
+                      <option  value='5'  >Excelente</option>
+                      <option  value='4' ng-selected='{{true}}' >Bueno</option>
+                      <option  value='3'  >Regular</option>
+                       <option  value='2'  >Malo</option>
+ <option  value='1'  >No lo recomiendo</option>
+                    </select> <button ng-click="recuperar(olvideEmail)" class="btnRecuperar button" style="    width: 100%;background-color: #999;margin-top: 20px;height: 40px;font-family: backIssuesReg;color: white;border: none;border-radius: 2px;">Calificar</button></div>`;
+
+        $scope.pop = $ionicPopup.show({
+          template: customTemplate,
+          title: '',
+          subTitle: '',
+          scope: $scope,
+          buttons: [{
+            text: 'Cerrar',
+            type: 'button-blueCustoms',
+            onTap: function(e) {
+
+             // if(borrar){ $scope.user.pin='';}
+             
+            }
+          }]
+        });
+    
+
+
+}
+
+$scope.marcarVendido = function (idPublicacion) {
+
+
+
+                     api.getChats($scope.userID).then(function (events) {
+
+          //$scope.events = events;
+          $scope.usuariosPost = events.data;
+          console.log(events);
+         //$scope.chats = events.data || [];
+         // $scope.$broadcast('scroll.infiniteScrollComplete');
+        }).finally(function () {
+
+           $ionicLoading.hide();
+           $scope.idPublicacionCalificar = idPublicacion;
+            $scope.openModal("vendido.html", "slide-in-up");
+            //$scope.loading = false;
+           //$scope.$broadcast('scroll.refreshComplete');
+          
+
+        });
+
+
+  
+
+//$state.go('vendido');
+
+/*     $ionicLoading.show();
+
+                 api.marcarVendido($scope.userID).then(function (events) {
+
+          //$scope.events = events;
+          //$scope.events = events.data.evento;
+          console.log(events);
+         //$scope.chats = events.data || [];
+         // $scope.$broadcast('scroll.infiniteScrollComplete');
+        }).finally(function () {
+
+           $ionicLoading.hide();
+            //$scope.loading = false;
+           //$scope.$broadcast('scroll.refreshComplete');
+          
+
+        });
+*/
+
+
+
+}
+
+
+
+   $scope.reload = function () {
+
+                 $ionicLoading.show();
+            api.getMisPublicaciones($scope.userID).then(function (events) {
+
+          //$scope.events = events;
+          //$scope.events = events.data.evento;
+          console.log(events);
+         $scope.chats = events.data || [];
+         // $scope.$broadcast('scroll.infiniteScrollComplete');
+        }).finally(function () {
+
+           $ionicLoading.hide();
+            $scope.loading = false;
+           $scope.$broadcast('scroll.refreshComplete');
+          
+
+        });
+
+      };
+
+
+
+$scope.goChat = function(ll){
+
+if(window.localStorage.getItem('userInfoUD') == ll){
+  mensajeAlerta(1,'No puedes empezar un chat contigo');
+  return false;
+}
+
+$state.go('chat', { id: ll });
+
+
+}
+
+
+
+
+      $scope.openModal = function(templateName,animation) {
+    $ionicModal.fromTemplateUrl(templateName, {
+      scope: $scope,
+      animation: animation
+    }).then(function(modal) {
+      $scope.modal = modal;
+      $scope.modal.show();
+    });
+  };
+
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
+
+
+    }]);
+
+
     app.controller('agregarCtrl', [
     '$scope',
     '$stateParams',
@@ -1434,9 +1722,23 @@ else{
 }
 }
 
+
+$scope.misPublicaciones = function(){
+
+//console.log(window.localStorage.getItem('userInfoUD'));
+if(window.localStorage.getItem('userInfoUD') && window.localStorage.getItem('userInfoUD')>0){
+  $state.go('misPublicaciones');
+}
+else{
+
+   //  $state.go('login');
+   $scope.openModalRegistro();
+}
+}
+
 $scope.goMensajes = function(){
 
-console.log(window.localStorage.getItem('userInfoUD'));
+//console.log(window.localStorage.getItem('userInfoUD'));
 if(window.localStorage.getItem('userInfoUD') && window.localStorage.getItem('userInfoUD')>0){
   $state.go('mensajes');
 }
@@ -1449,7 +1751,7 @@ else{
 
 $scope.goChatt = function(lls){
 
-console.log(window.localStorage.getItem('userInfoUD'));
+//c/onsole.log(window.localStorage.getItem('userInfoUD'));
 if(window.localStorage.getItem('userInfoUD') && window.localStorage.getItem('userInfoUD')>0){
   $state.go('chat', { id: lls });
 }
@@ -1464,7 +1766,7 @@ else{
 
 $scope.publicarC = function(){
 
-console.log(window.localStorage.getItem('userInfoUD'));
+//console.log(window.localStorage.getItem('userInfoUD'));
 if(window.localStorage.getItem('userInfoUD') && window.localStorage.getItem('userInfoUD')>0){
   $state.go('agregar');
 }

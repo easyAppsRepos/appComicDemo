@@ -6,6 +6,19 @@
 background-color:lightgray;
 
 }
+
+
+.estrellitas{
+
+  font-size: 23px;
+}
+
+.estrellaOn{
+      color: darkkhaki;
+}
+
+
+
 .actTab{
      opacity: 1 !important;
     color: white;

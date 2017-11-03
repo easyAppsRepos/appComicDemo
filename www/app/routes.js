@@ -84,6 +84,8 @@ $urlRouterProvider.otherwise('listaMascotas');
           templateUrl: 'app/templates/perfil.html',
           controller: 'perfilCtrl'
         })
+
+
          
 .state('ayuda', {
           url: '/ayuda',
@@ -102,6 +104,11 @@ $urlRouterProvider.otherwise('listaMascotas');
           url: '/mensajes',
           templateUrl: 'app/templates/mensajes.html',
           controller: 'mensajesCtrl'
+        })
+.state('misPublicaciones', {
+          url: '/misPublicaciones',
+          templateUrl: 'app/templates/misPublicaciones.html',
+          controller: 'misPublicacionesCtrl'
         })
 
          .state('contactanos', {

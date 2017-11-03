@@ -102,7 +102,23 @@ getPublicaciones:function(){
         },
 
 
+  getMisPublicaciones:function(id){  
 
+          console.log(id);
+          var url = serverConfig.url+'/getMisPublicaciones/'+id;
+
+            return  $http.post(url)
+            .then(function(response) {
+            console.log(response);
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+             console.log(response);
+
+            return response;
+            });
+        },
 
         registrarUsuario:function(usuario){  
         //  var dusuario = {body:JSON.stringify({usuario})};
@@ -118,6 +134,23 @@ getPublicaciones:function(){
             return response;
             });
         },
+
+
+          calificarPublicacion:function(usuario){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/calificarPublicacion', usuario,{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            console.log(response);
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+             console.log(response);
+
+            return response;
+            });
+        },
+
 
 
 

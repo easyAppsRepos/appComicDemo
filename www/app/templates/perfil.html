@@ -7,7 +7,7 @@
     color: #444;
     margin-bottom: 14px;
     margin-top: 5px;
-    padding-bottom: 16px;background-size: cover;
+    padding-bottom: 16px;background-size: contain;
     background-color:white;border-radius: 7px;">
 
     <div  ng-show='usuarioIDUD==perfilUsuario.idUsuario && !perfilUsuario.imagenUrl' ng-click='confirmarFoto()' style="    position: absolute;
@@ -24,20 +24,28 @@
 <br>
       <br>
 	  	<span>{{perfilUsuario.nombre}}</span><br>
+      <div>
+      <i class="ion-android-star estrellitas" ng-class="{'estrellaOn': perfilUsuario.calificacion>0}"></i>
+      <i class="ion-android-star estrellitas" ng-class="{'estrellaOn': perfilUsuario.calificacion>1}"></i>
+     <i class="ion-android-star estrellitas" ng-class="{'estrellaOn': perfilUsuario.calificacion>2}"></i>
+     <i class="ion-android-star estrellitas" ng-class="{'estrellaOn': perfilUsuario.calificacion>3}"></i>
+      <i class="ion-android-star estrellitas" ng-class="{'estrellaOn': perfilUsuario.calificacion>4}"></i>
+      </div>
 	  	<span style="    color: lightslategrey;">Usuario desde {{perfilUsuario.fechaCreacion.split("T")[0]}}</span>
 	  </div>
 	  <div>	  	
 		<div class="detailProfile">
-			<span>{{perfilUsuario.vendidos}}</span><br>
+			<span>{{perfilUsuario.vendidos || 0}}</span><br>
 			<span>Vendidos</span>
 		</div>
 		<div class="detailProfile">
-			<span>{{perfilUsuario.publicados}}</span><br>
+			<span>{{perfilUsuario.publicados || 0}}</span><br>
 			<span>Publicados</span>
 		</div>
 		<div class="detailProfile">
-			<span>5<i class="ion-star"></i></span><br>
-			<span>valoracion</span>
+			<span>{{perfilUsuario.comprados || 0}}
+      </span><br>
+			<span>COMPRADOS</span>
 		</div>
 	  </div>
 
