@@ -2320,7 +2320,7 @@ $scope.fotoNombre = 0;
 
 $scope.getPublis = function(){
 
-
+ $ionicLoading.show();
               api.getPublicaciones().then(function (events) {
 
               console.log(events);
