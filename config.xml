@@ -56,12 +56,12 @@
   </feature>
 
 
-
+<!--  
 <plugin name="phonegap-plugin-push" version="1.5.3" source="npm">
     <param name="SENDER_ID" value="22934730845" />
 </plugin>
 
-<!--   <feature name="StatusBar">
+ <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature> 
 
