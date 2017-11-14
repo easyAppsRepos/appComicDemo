@@ -63,13 +63,14 @@ define([
 
 $scope.goChat = function(ll){
 
+
+
 if(window.localStorage.getItem('userInfoUD') == ll){
   mensajeAlerta(1,'No puedes empezar un chat contigo');
   return false;
 }
 
-$state.go('chat', { id: ll });
-
+else{$state.go('chat', { id: ll });}
 
 }
 
@@ -407,12 +408,13 @@ $scope.marcarVendido = function (idPublicacion) {
 
 $scope.goChat = function(ll){
 
+
 if(window.localStorage.getItem('userInfoUD') == ll){
   mensajeAlerta(1,'No puedes empezar un chat contigo');
   return false;
 }
 
-$state.go('chat', { id: ll });
+else{$state.go('chat', { id: ll });}
 
 
 }
@@ -1007,12 +1009,16 @@ if(tipo==1){
 //openModalRegistro()
 $scope.goChat = function(ll){
 
+console.log(window.localStorage.getItem('userInfoUD'));
+console.log(ll);
+
+
 if(window.localStorage.getItem('userInfoUD') == ll){
   mensajeAlerta(1,'No puedes empezar un chat contigo');
   return false;
 }
 
-$state.go('chat', { id: ll });
+else{$state.go('chat', { id: ll });}
 
 
 }
@@ -1212,12 +1218,15 @@ $state.go('perfil', { id: ll });
 }
 $scope.goChat = function(ll){
 
+  console.log(window.localStorage.getItem('userInfoUD'));
+console.log(ll);
+
 if(window.localStorage.getItem('userInfoUD') == ll){
   mensajeAlerta(1,'No puedes empezar un chat contigo');
   return false;
 }
 
-$state.go('chat', { id: ll });
+else{$state.go('chat', { id: ll });}
 
 
 }
@@ -1742,6 +1751,9 @@ console.log(events);
 
 
 
+$scope.sesion= window.localStorage.getItem('userInfoUD');
+console.log($scope.sesion);
+
 $scope.goTo = function(){
 console.log('bac');
 
@@ -1827,7 +1839,7 @@ $scope.goChatt = function(lls){
 //c/onsole.log(window.localStorage.getItem('userInfoUD'));
 if(window.localStorage.getItem('userInfoUD') && window.localStorage.getItem('userInfoUD')>0){
   if(lls == window.localStorage.getItem('userInfoUD')){mensajeAlerta(1,'No puedes iniciar un chat contigo!');}
-  $state.go('chat', { id: lls });
+  else{$state.go('chat', { id: lls });}
 }
 else{
 
@@ -1861,10 +1873,46 @@ $ionicLoading.show();
   $timeout(function () {
           $ionicHistory.clearCache();
           $ionicLoading.hide();
-      }, 200)  
+         $window.location.reload();
+      }, 200); 
 
 
 }
+
+
+$scope.pushK=function(userID){
+
+//pusjj
+        if(localStorage.getItem('pushKeyUD')){
+        var pushKeyii=  localStorage.getItem('pushKeyUD');
+        var device= ionic.Platform.platform();
+        var uuid=ionic.Platform.device().uuid;
+        var logIn = Date.now();
+
+
+        var pushState = { 
+        pushK:pushKeyii, 
+        device:device,
+        deviceId:uuid,
+        login: logIn,
+        user:userID
+        }
+
+        console.log(pushState);
+
+api.addPush(pushState).then(function (events) {
+
+console.log(events);
+}).finally(function () {});
+
+
+
+        }else{console.log("nopushK");}
+//endPush
+
+}
+
+
 
 
 //  LOGIN     *************************************************************
@@ -2143,6 +2191,49 @@ if(tipo==1){
               window.localStorage.setItem( 'userInfoUD', events.data.idUsuario);            
               //  $state.go('listaMascotas');
                 $scope.closeModal();
+
+
+                if(localStorage.getItem('pushKeyUD')){
+                var pushKeyii=  localStorage.getItem('pushKeyUD');
+                var device= ionic.Platform.platform();
+                var uuid=ionic.Platform.device().uuid;
+                var logIn = Date.now();
+
+
+                var pushState = { 
+                pushK:pushKeyii, 
+                device:device,
+                deviceId:uuid,
+                login: logIn,
+                user:events.data.idUsuario
+                }
+
+                console.log(pushState);
+
+                api.addPush(pushState).then(function (events) {
+
+                console.log(events);
+                }).finally(function () {
+
+                  $window.location.reload();
+                });
+
+
+
+                }else{
+                
+                  console.log("nopushK");
+  $window.location.reload();
+                }
+                    
+
+/*              $timeout(function () {
+              $ionicHistory.clearCache();
+              $ionicLoading.hide();
+              $window.location.reload();
+              }, 200); */
+
+
                 console.log('logueado');
 
             /*  if(events.data.user.verificado == 1){

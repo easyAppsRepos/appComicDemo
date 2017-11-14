@@ -55,7 +55,7 @@
 <img ng-src="img/vacio.png" ng-if='!perfilUsuario.publicaciones' ng-cloak class="ng-cloak ng-hide">
   		<div class="list">
 
-		<a class="item item-avatar" ng-repeat='c in perfilUsuario.publicaciones' style="    background: transparent !important; margin-top: 20px;border: dashed 1px lemonchiffon;background: transparent !important;    margin-top: 20px;">
+		<a class="item item-avatar" ng-repeat='c in perfilUsuario.publicaciones' style="    background: transparent !important; margin-top: 20px;border: dashed 1px lemonchiffon;background: transparent !important;    margin-top: 20px;" ui-sref="detailPublicacion({id: c.idPublicacion})">
 		<img src="img/portada1.jpg">
 		<h2 style="  font-family: backIssuesReg !important;">{{c.titulo}}</h2>
 		<p>{{getEstadoC(c.estadoPublicacion)}} | ${{c.precio}}</p>
