@@ -1796,8 +1796,21 @@ break;
   //$scope.$broadcast('slideBox.setSlide', index);
 $scope.perf = function(){
 
-console.log(window.localStorage.getItem('userInfoUD'));
-if(typeof window.localStorage.getItem('userInfoUD') !== 'undefined'){
+
+  let ids=window.localStorage.getItem('userInfoUD');
+  if (typeof ids === 'undefined' || ids === null) {
+  // Your variable is undefined
+     $scope.openModal("nuevoUsuario.html", "slide-in-up");
+    }
+
+    else{
+
+       $state.go('perfil', { id: ids });
+    }
+
+
+//console.log(window.localStorage.getItem('userInfoUD'));
+/*if(typeof window.localStorage.getItem('userInfoUD') !== 'undefined'){
   $state.go('perfil', { id: window.localStorage.getItem('userInfoUD') });
 }
 else{
@@ -1805,7 +1818,7 @@ else{
    //  $state.go('login');
   // $scope.openModalRegistro();
    $scope.openModal("nuevoUsuario.html", "slide-in-up");
-}
+}*/
 }
 
 
