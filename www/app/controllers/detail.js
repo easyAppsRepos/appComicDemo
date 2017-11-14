@@ -1797,13 +1797,14 @@ break;
 $scope.perf = function(){
 
 console.log(window.localStorage.getItem('userInfoUD'));
-if(window.localStorage.getItem('userInfoUD') && window.localStorage.getItem('userInfoUD')>0){
+if(typeof window.localStorage.getItem('userInfoUD') !== 'undefined'){
   $state.go('perfil', { id: window.localStorage.getItem('userInfoUD') });
 }
 else{
 
    //  $state.go('login');
-   $scope.openModalRegistro();
+  // $scope.openModalRegistro();
+   $scope.openModal("nuevoUsuario.html", "slide-in-up");
 }
 }
 
@@ -2221,7 +2222,7 @@ if(tipo==1){
 
 
                 }else{
-                
+
                   console.log("nopushK");
   $window.location.reload();
                 }
