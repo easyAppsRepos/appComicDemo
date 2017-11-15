@@ -1649,7 +1649,7 @@ if(tipo==1){
 
     $scope.openModalRegistro = function(){
 
-            $scope.openModal("nuevoUsuario.html", "slide-in-up");
+            $scope.openModal("nuevoAnuncio.html", "slide-in-up");
     }
 $scope.registrarUsuario = function(usuario){
   if(usuario.pass !== usuario.pass2){
@@ -1777,6 +1777,8 @@ break;
 
 
 
+
+
     $scope.openModalRegistro = function(){
 
             $scope.openModal("nuevoAnuncio.html", "slide-in-up");
@@ -1798,9 +1800,9 @@ $scope.perf = function(){
 
 
   let ids=window.localStorage.getItem('userInfoUD');
-  if (typeof ids === 'undefined' || ids === null) {
+  if ( ids == 'undefined' || ids == null || ids == undefined) {
   // Your variable is undefined
-     $scope.openModal("nuevoUsuario.html", "slide-in-up");
+     $scope.openModal("nuevoAnuncio.html", "slide-in-up");
     }
 
     else{
