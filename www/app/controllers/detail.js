@@ -1883,14 +1883,28 @@ else{
 
 $scope.cerrarSesion = function(){
 $ionicLoading.show();
+var deviceId = ionic.Platform.device().uuid;
+ var userID=window.localStorage.getItem('userInfoUD');
 
-  window.localStorage.setItem( 'userInfoUD', undefined);  
-  $state.go('listaMascotas');
-  $timeout(function () {
-          $ionicHistory.clearCache();
-          $ionicLoading.hide();
-         $window.location.reload();
-      }, 200); 
+          api.cerrarSesion(deviceId, userID).then(function (events) {
+
+            console.log(events);
+
+          }).finally(function () {
+
+            window.localStorage.setItem( 'userInfoUD', undefined);  
+            $state.go('listaMascotas');
+            $timeout(function () {
+            $ionicHistory.clearCache();
+            $ionicLoading.hide();
+            $window.location.reload();
+            }, 200); 
+
+          });
+
+
+
+
 
 
 }
