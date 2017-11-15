@@ -1799,7 +1799,7 @@ break;
 $scope.perf = function(){
 
 
-  let ids=window.localStorage.getItem('userInfoUD');
+  var  ids=window.localStorage.getItem('userInfoUD');
   if ( ids == 'undefined' || ids == null || ids == undefined) {
   // Your variable is undefined
      $scope.openModal("nuevoAnuncio.html", "slide-in-up");
