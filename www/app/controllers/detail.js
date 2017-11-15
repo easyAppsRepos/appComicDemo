@@ -1885,13 +1885,9 @@ $scope.cerrarSesion = function(){
 $ionicLoading.show();
 var deviceId = ionic.Platform.device().uuid;
  var userID=window.localStorage.getItem('userInfoUD');
-
           api.cerrarSesion(deviceId, userID).then(function (events) {
-
             console.log(events);
-
           }).finally(function () {
-
             window.localStorage.setItem( 'userInfoUD', undefined);  
             $state.go('listaMascotas');
             $timeout(function () {
@@ -1899,19 +1895,11 @@ var deviceId = ionic.Platform.device().uuid;
             $ionicLoading.hide();
             $window.location.reload();
             }, 200); 
-
           });
-
-
-
-
-
-
 }
 
 
 $scope.pushK=function(userID){
-
 //pusjj
         if(localStorage.getItem('pushKeyUD')){
         var pushKeyii=  localStorage.getItem('pushKeyUD');
