@@ -1731,6 +1731,49 @@ console.log(events);
 
 
 
+    app.controller('buscarCtrl', [
+    '$scope',
+    '$q',
+    '$stateParams',
+    '$ionicHistory',
+    '$window',
+    '$ionicPopup',
+    '$ionicModal',
+    '$ionicLoading',
+    '$state',
+    '$timeout',
+    'eventService',
+    'api',
+    'serverConfig',
+    function ($scope, $q, $stateParams, $ionicHistory, $window, $ionicPopup, $ionicModal, 
+      $ionicLoading,$state, $timeout, eventService, api, serverConfig) {
+
+
+      $scope.buscar = function(palabra){
+        console.log(palabra);
+
+      }
+
+
+
+$scope.buscar = function(palabra){
+
+ $ionicLoading.show();
+              api.buscar(palabra).then(function (events) {
+
+              console.log(events);
+              $scope.chats=events.data || [];
+
+              }).finally(function () {
+
+              $ionicLoading.hide();
+               });
+
+}
+
+
+
+}]);
 
     app.controller('menuBCtrl', [
     '$scope',

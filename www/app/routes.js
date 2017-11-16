@@ -85,6 +85,11 @@ $urlRouterProvider.otherwise('listaMascotas');
           controller: 'perfilCtrl'
         })
 
+.state('buscar', {
+          url: '/buscar',
+          templateUrl: 'app/templates/buscar.html',
+          controller: 'buscarCtrl'
+        })
 
          
 .state('ayuda', {

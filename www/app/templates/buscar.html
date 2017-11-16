@@ -1,0 +1,77 @@
+<ion-view>
+  <ion-nav-title style='color:#444'>Buscar</ion-nav-title>
+
+  <ion-content padding="" style=' ' >
+
+
+  <div class="list" >
+
+  <div class="item item-input-inset">
+    <label class="item-input-wrapper">
+      <input type="text" ng-model='palabra' placeholder="Palabra o frase">
+    </label>
+    <button class="button button-small" ng-click='buscar(palabra)'>
+      Buscar
+    </button>
+  </div>
+
+</div>
+
+<div  ng-if='chats' style="    text-align: center;
+    color: lightslategray;">
+  Resultados de la busqueda
+</div>
+
+
+
+    <div ng-show="!loading">  
+          <div class="{{layout}} chat-list-wrap">
+      <a class="item item-thumbnail-left" ng-repeat="chat in chats" ui-sref="detailPublicacion({id: chat.idPublicacion})" style="      min-height: 172px;
+    margin-top: 18px;
+    background-image: url(img/fondot2.png);
+    
+    border: 4px solid;
+    background-size: contain;"> 
+<img ng-src="https://s3.amazonaws.com/ultradoujinshi/publicaciones{{chat.idPublicacion}}" style="border-radius: 0%;    border: none;">
+
+
+        <h2 style="color:black; white-space: pre-line !important; font-family:backIssuesItal">{{chat.titulo}}</h2>
+
+
+<div  style="height: 100px;">
+         <p style="color:#444 !important; white-space: pre-line !important;height: 122px; ">{{chat.descripcion}}</p>
+       </div>
+
+       <div style="    position: absolute;
+    left: 0px;
+    top: 137px;
+    font-family: backIssuesItal;
+    font-size: 23px;
+    width: 100px;
+    margin-left: 10px;
+    text-align: center;">${{chat.precio}}</div>
+
+      </a>
+
+
+    </div>
+
+
+
+          <div style='    text-align: center;
+    margin-top: 34px;
+    color: lightgray;
+    opacity: 1;'  ng-cloak ng-if='chats.length == 0 || !chats'>
+    <img ng-src="img/vacio.png"  >
+    <p>No hay resultados</p>
+   </div>
+
+
+
+    </div>
+  	  
+  </ion-content>
+
+<!--  -->
+
+</ion-view>
