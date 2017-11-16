@@ -1838,6 +1838,47 @@ break;
     }
 
 
+        $scope.recuperarContra = function(email){
+
+          if(email){
+                    $ionicLoading.show();
+                      api.recuperar(email).then(function (events) {
+
+                console.log(events);
+                console.log(events.data.data.affectedRows);
+
+                if(events && events.data.data.affectedRows > 0){
+
+
+
+                $scope.closeModal();
+                 mensajeAlerta(2, 'Clave enviada a tu correo electronico');
+                }
+
+                else{
+
+           mensajeAlerta(1, 'Usuario incorrecto');
+
+                }
+
+                }).finally(function () {
+
+                $ionicLoading.hide();
+               
+                //$state.go('app.listaMascotas');
+                });
+          }
+
+          else{
+            console.log('iv');
+              mensajeAlerta(1, 'Email Invalido');
+          }
+ }
+
+
+
+
+
   //$scope.$broadcast('slideBox.setSlide', index);
 $scope.perf = function(){
 
@@ -2034,9 +2075,44 @@ console.log(events);
                     if(events.data.insertId > 0){
                     window.localStorage.setItem( 'userInfoUD', events.data.insertId);            
                     //$state.go('listaMascotas'); 
-                    $ionicLoading.hide();
+                    
+
+                                    if(localStorage.getItem('pushKeyUD')){
+                var pushKeyii=  localStorage.getItem('pushKeyUD');
+                var device= ionic.Platform.platform();
+                var uuid=ionic.Platform.device().uuid;
+                var logIn = Date.now();
+
+
+                var pushState = { 
+                pushK:pushKeyii, 
+                device:device,
+                deviceId:uuid,
+                login: logIn,
+                user:events.data.insertId
+                }
+
+                console.log(pushState);
+
+                api.addPush(pushState).then(function (events) {
+
+                console.log(events);
+                }).finally(function () {
+                  $ionicLoading.hide();
+                  $window.location.reload();
+                });
+
+
+
+                }else{
+
+                  console.log("nopushK");
+  $window.location.reload();
+                }
+
+
                               
-               $scope.closeModal();
+             //  $scope.closeModal();
                     }
 
                     else{
@@ -2098,7 +2174,39 @@ console.log(events);
         if(events.data && events.data.idUsuario > 0){
             window.localStorage.setItem( 'userInfoUD', events.data.idUsuario);            
             //$state.go('listaMascotas');
-            $scope.closeModal();
+                            if(localStorage.getItem('pushKeyUD')){
+                var pushKeyii=  localStorage.getItem('pushKeyUD');
+                var device= ionic.Platform.platform();
+                var uuid=ionic.Platform.device().uuid;
+                var logIn = Date.now();
+
+
+                var pushState = { 
+                pushK:pushKeyii, 
+                device:device,
+                deviceId:uuid,
+                login: logIn,
+                user:events.data.idUsuario
+                }
+
+                console.log(pushState);
+
+                api.addPush(pushState).then(function (events) {
+
+                console.log(events);
+                }).finally(function () {
+
+                  $window.location.reload();
+                });
+
+
+
+                }else{
+
+                  console.log("nopushK");
+  $window.location.reload();
+                }
+                    
         }
         else{
 
@@ -2118,7 +2226,43 @@ console.log(events);
                     if(events.data.insertId > 0){
                     window.localStorage.setItem( 'userInfoUD', events.data.insertId);            
                     //$state.go('listaMascotas');
-                    $scope.closeModal();
+                   // $scope.closeModal();
+
+
+
+                                    if(localStorage.getItem('pushKeyUD')){
+                var pushKeyii=  localStorage.getItem('pushKeyUD');
+                var device= ionic.Platform.platform();
+                var uuid=ionic.Platform.device().uuid;
+                var logIn = Date.now();
+
+
+                var pushState = { 
+                pushK:pushKeyii, 
+                device:device,
+                deviceId:uuid,
+                login: logIn,
+                user:events.data.insertId
+                }
+
+                console.log(pushState);
+
+                api.addPush(pushState).then(function (events) {
+
+                console.log(events);
+                }).finally(function () {
+
+                  $window.location.reload();
+                });
+
+
+
+                }else{
+
+                  console.log("nopushK");
+  $window.location.reload();
+                }
+                    
                     }
 
                     else{

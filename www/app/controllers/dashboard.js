@@ -268,6 +268,24 @@ getPublicaciones:function(){
             });
         },
 
+        recuperar:function(email){  
+        //  var dusuario = {body:JSON.stringify({usuario})};
+            return  $http.post(serverConfig.url+'/recuperar', {email:email},{headers:{'Content-Type': 'application/json'}})
+            .then(function(response) {
+            console.log(response);
+            return response;
+            }, function(response) {
+            // something went wrong
+            console.log('error');
+             console.log(response);
+
+            return response;
+            });
+        },
+
+
+
+
         addPush:function(ffd){  
         //  var dusuario = {body:JSON.stringify({usuario})};
             return  $http.post(serverConfig.url+'/addPush', ffd,{headers:{'Content-Type': 'application/json'}})
