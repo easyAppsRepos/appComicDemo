@@ -2104,7 +2104,9 @@ console.log(events);
                 console.log(events);
                 }).finally(function () {
                   $ionicLoading.hide();
-                  $window.location.reload(true);
+                    $timeout(function() {
+   location.reload();
+});
                 });
 
 
@@ -2112,7 +2114,9 @@ console.log(events);
                 }else{
 
                   console.log("nopushK");
-  $window.location.reload(true);
+  $timeout(function() {
+   location.reload();
+});
                 }
 
 
@@ -2201,7 +2205,9 @@ console.log(events);
                 console.log(events);
                 }).finally(function () {
 
-                  $window.location.reload(true);
+                    $timeout(function() {
+   location.reload();
+});
                 });
 
 
@@ -2209,7 +2215,9 @@ console.log(events);
                 }else{
 
                   console.log("nopushK");
-  $window.location.reload(true);
+  $timeout(function() {
+   location.reload();
+});
                 }
                     
         }
@@ -2257,7 +2265,9 @@ console.log(events);
                 console.log(events);
                 }).finally(function () {
 
-                  $window.location.reload(true);
+                  $timeout(function() {
+   location.reload();
+});
                 });
 
 
@@ -2265,7 +2275,9 @@ console.log(events);
                 }else{
 
                   console.log("nopushK");
-  $window.location.reload(true);
+  $timeout(function() {
+   location.reload();
+});
                 }
                     
                     }
