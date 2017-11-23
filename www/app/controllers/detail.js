@@ -1979,7 +1979,7 @@ var deviceId = ionic.Platform.device().uuid;
             $timeout(function () {
             $ionicHistory.clearCache();
             $ionicLoading.hide();
-            $window.location.reload();
+            $window.location.reload(true);
             }, 500);  
             $state.go('listaMascotas');
           });
@@ -2102,7 +2102,7 @@ console.log(events);
                 console.log(events);
                 }).finally(function () {
                   $ionicLoading.hide();
-                  $window.location.reload();
+                  $window.location.reload(true);
                 });
 
 
@@ -2110,7 +2110,7 @@ console.log(events);
                 }else{
 
                   console.log("nopushK");
-  $window.location.reload();
+  $window.location.reload(true);
                 }
 
 
@@ -2199,7 +2199,7 @@ console.log(events);
                 console.log(events);
                 }).finally(function () {
 
-                  $window.location.reload();
+                  $window.location.reload(true);
                 });
 
 
@@ -2207,7 +2207,7 @@ console.log(events);
                 }else{
 
                   console.log("nopushK");
-  $window.location.reload();
+  $window.location.reload(true);
                 }
                     
         }
@@ -2255,7 +2255,7 @@ console.log(events);
                 console.log(events);
                 }).finally(function () {
 
-                  $window.location.reload();
+                  $window.location.reload(true);
                 });
 
 
@@ -2263,7 +2263,7 @@ console.log(events);
                 }else{
 
                   console.log("nopushK");
-  $window.location.reload();
+  $window.location.reload(true);
                 }
                     
                     }
@@ -2423,7 +2423,7 @@ if(tipo==1){
                 console.log(events);
                 }).finally(function () {
 
-                  $window.location.reload();
+                   $window.location.reload(true);
                 });
 
 
@@ -2431,14 +2431,14 @@ if(tipo==1){
                 }else{
 
                   console.log("nopushK");
-  $window.location.reload();
+  $window.location.reload(true);
                 }
                     
 
 /*              $timeout(function () {
               $ionicHistory.clearCache();
               $ionicLoading.hide();
-              $window.location.reload();
+              $window.location.reload(true);
               }, 200); */
 
 
