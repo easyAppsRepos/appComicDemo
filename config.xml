@@ -118,6 +118,65 @@
 
 
 
+<icon src="icon.png" />
+<icon src="res/icon/android/36x36.png" platform="android" qualifier="ldpi" />
+<icon src="res/icon/android/48x48.png" platform="android" qualifier="mdpi" />
+<icon src="res/icon/android/72x72.png" platform="android" qualifier="hdpi" />
+<icon src="res/icon/android/96x96.png" platform="android" qualifier="xhdpi" />
+<icon src="res/icon/android/144x144.png" platform="android" qualifier="xxhdpi" />
+<icon src="res/icon/android/192x192.png" platform="android" qualifier="fr-xxhdpi"/>
+    <icon gap:platform="ios" height="40" src="res/icon/ios/40.png" width="40" />
+    <icon gap:platform="ios" height="80" src="res/icon/ios/80.png" width="80" />
+    <icon gap:platform="ios" height="48" src="res/icon/ios/48.png" width="48" />
+    <icon gap:platform="ios" height="76" src="res/icon/ios/76.png" width="76" />
+    <icon gap:platform="ios" height="152" src="res/icon/ios/152.png" width="152" />
+    <icon gap:platform="ios" height="29" src="res/icon/ios/29.png" width="29" />
+    <icon gap:platform="ios" height="58" src="res/icon/ios/58.png" width="58" />
+    <icon gap:platform="ios" height="50" src="res/icon/ios/50.png" width="50" />
+    <icon gap:platform="ios" height="57" src="res/icon/ios/57.png" width="57" />
+    <icon gap:platform="ios" height="72" src="res/icon/ios/72.png" width="72" />
+    <icon gap:platform="ios" height="114" src="res/icon/ios/114.png" width="114" />
+    <icon gap:platform="ios" height="144" src="res/icon/ios/144.png" width="144" />
+    <icon gap:platform="ios" height="100" src="res/icon/ios/100.png" width="100" />
+
+   <icon gap:platform="ios" height="120" src="res/icon/ios/120.png" width="120" />
+
+
+
+
+
+
+  <splash src="splash.png" />
+<!--
+ iPhone and iPod touch 
+<splash src="res/splash/ios/320x480.png" platform="ios" width="320" height="480" />
+<splash src="res/splash/ios/640x960.png" platform="ios" width="640" height="960" />
+
+iPhone 5 / iPod Touch (5th Generation) 
+<splash src="res/splash/ios/640x1136.png" platform="ios" width="640" height="1136" />
+iPhone 6 
+<splash src="res/splash/ios/750x1334.png" platform="ios" width="750" height="1334" />
+<splash src="res/splash/ios/1242x2208.png" platform="ios" width="1242" height="2208" />
+
+
+ iPad 
+<splash src="res/splash/ios/768x1024.png" platform="ios" width="768" height="1024" />
+
+
+ -->
+
+
+<!-- Retina iPad -->
+<splash src="res/splash/ios/1536x2048.png" platform="ios" width="1536" height="2048" />
+
+<gap:splash src="res/splash/android/200x320.png"       gap:platform="android" gap:qualifier="port-ldpi" />
+<gap:splash src="res/splash/android/320x480.png"       gap:platform="android" gap:qualifier="port-mdpi" />
+<gap:splash src="res/splash/android/480x800.png"       gap:platform="android" gap:qualifier="port-hdpi" />
+<gap:splash src="res/splash/android/720x1280.png"       gap:platform="android" gap:qualifier="port-xhdpi" />
+
+
+
+
 <!-- <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
  -->
        <access origin="*" />
