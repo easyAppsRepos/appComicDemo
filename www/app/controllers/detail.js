@@ -1975,13 +1975,15 @@ var deviceId = ionic.Platform.device().uuid;
             console.log(events);
           }).finally(function () {
             window.localStorage.setItem( 'userInfoUD', undefined);  
-           
-            $timeout(function () {
-            $ionicHistory.clearCache();
-            $ionicLoading.hide();
-            $window.location.reload(true);
-            }, 500);  
             $state.go('listaMascotas');
+            $timeout(function () {
+             $ionicLoading.hide();
+              location.reload();
+/*            $ionicHistory.clearCache();
+          location.reload();
+            $window.location.reload(true);*/
+            }, 500);  
+           
           });
 }
 
@@ -2424,7 +2426,8 @@ if(tipo==1){
                 }).finally(function () {
 
                      $timeout(function() {
-     $window.location.reload(true);
+     //$window.location.reload(true);
+     location.reload();
 });
                 });
 
@@ -2436,7 +2439,7 @@ if(tipo==1){
 
 
   $timeout(function() {
-     $window.location.reload(true);
+   location.reload();
 });
                 }
                     
