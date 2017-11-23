@@ -2423,7 +2423,9 @@ if(tipo==1){
                 console.log(events);
                 }).finally(function () {
 
-                   $window.location.reload(true);
+                     $timeout(function() {
+     $window.location.reload(true);
+});
                 });
 
 
@@ -2431,32 +2433,15 @@ if(tipo==1){
                 }else{
 
                   console.log("nopushK");
-  $window.location.reload(true);
+
+
+  $timeout(function() {
+     $window.location.reload(true);
+});
                 }
                     
 
-/*              $timeout(function () {
-              $ionicHistory.clearCache();
-              $ionicLoading.hide();
-              $window.location.reload(true);
-              }, 200); */
-
-
                 console.log('logueado');
-
-            /*  if(events.data.user.verificado == 1){
-
-                window.localStorage.setItem( 'userInfoSM', JSON.stringify(events.data.user));            
-                $state.go('listaMascotas');
-
-                console.log('logueado');
-
-              }
-              else{
-                mensajeAlerta(1, 'Debes verificar tu cuenta');
-                console.log('no verificado');
-              }
-            */
 
 
             }
