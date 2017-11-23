@@ -1975,12 +1975,13 @@ var deviceId = ionic.Platform.device().uuid;
             console.log(events);
           }).finally(function () {
             window.localStorage.setItem( 'userInfoUD', undefined);  
-            $state.go('listaMascotas');
+           
             $timeout(function () {
             $ionicHistory.clearCache();
             $ionicLoading.hide();
             $window.location.reload();
-            }, 200); 
+            }, 500);  
+            $state.go('listaMascotas');
           });
 }
 
