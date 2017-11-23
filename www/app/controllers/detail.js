@@ -217,6 +217,7 @@ $scope.marcarReservado = function(idPublicacion, estadoActual){
 
 $scope.recuperar = function(valoracion, id, nombre){
   $scope.pop.close();
+  console.log('asd' );
     $ionicLoading.show();
   console.log(valoracion);
    console.log( $scope.idCalificar);
@@ -229,9 +230,10 @@ $scope.recuperar = function(valoracion, id, nombre){
           //$scope.events = events;
          // $scope.usuariosPost = events.data;
           console.log(events);
-          if(events.data){
-            mensajeAlerta(2,'Calificacion realizada');
+          if(events.data){    
             $scope.closeModal();
+            mensajeAlerta(2,'Calificacion realizada');
+        
             $scope.cargaPrincipal();
 
           }
@@ -261,7 +263,34 @@ $scope.recuperar = function(valoracion, id, nombre){
 
 }
 
+$scope.calificar = function(id, nombre){
+console.log('dd55');
+    
+  $scope.idCalificar = id;
 
+
+                      var mensaje = 'Correo Electronico'
+                   var customTemplate = '<div style="text-align:center;font-family: backIssuesReg;"><img style="margin-top:10px" src="img/estree.png"> <p style="    font-size: 18px;color:white; margin-top:25px">Como valorarias tu experiencia con'+nombre+'</p>         <select ng-model="olvideEmail" style=" width: 100%; background-color: transparent; border-bottom: solid 2px #444; color:white;    margin-top: 15px; margin-bottom: 15px;"><option  value="5"  >Excelente</option><option  value="4" ng-selected="{{true}}" >Bueno</option><option  value="3"  >Regular</option><option  value="2"  >Malo</option><option  value="1"  >No lo recomiendo</option></select> <button ng-click="recuperar(olvideEmail)" class="btnRecuperar button" style="    width: 100%;background-color: #999;margin-top: 20px;height: 40px;font-family: backIssuesReg;color: white;border: none;border-radius: 2px;">Calificar</button></div>';
+
+        $scope.pop = $ionicPopup.show({
+          template: customTemplate,
+          title: '',
+          subTitle: '',
+          scope: $scope,
+          buttons: [{
+            text: 'Cerrar',
+            type: 'button-blueCustoms',
+            onTap: function(e) {
+
+             // if(borrar){ $scope.user.pin='';}
+             
+            }
+          }]
+        });
+    
+
+
+}
 
    function mensajeAlerta(tipo, mensaje){
     console.log(tipo);
@@ -302,34 +331,7 @@ if(tipo==1){
 
 
 
-$scope.calificar = function(id, nombre){
 
-    
-  $scope.idCalificar = id;
-
-
-                      var mensaje = 'Correo Electronico'
-                   var customTemplate = '<div style="text-align:center;font-family: backIssuesReg;"><img style="margin-top:10px" src="img/estree.png"> <p style="    font-size: 18px;color:white; margin-top:25px">Como valorarias tu experiencia con'+nombre+'</p>         <select ng-model="olvideEmail" style=" width: 100%; background-color: transparent; border-bottom: solid 2px #444; color:white;    margin-top: 15px; margin-bottom: 15px;"><option  value="5"  >Excelente</option><option  value="4" ng-selected="{{true}}" >Bueno</option><option  value="3"  >Regular</option><option  value="2"  >Malo</option><option  value="1"  >No lo recomiendo</option></select> <button ng-click="recuperar(olvideEmail)" class="btnRecuperar button" style="    width: 100%;background-color: #999;margin-top: 20px;height: 40px;font-family: backIssuesReg;color: white;border: none;border-radius: 2px;">Calificar</button></div>';
-
-        $scope.pop = $ionicPopup.show({
-          template: customTemplate,
-          title: '',
-          subTitle: '',
-          scope: $scope,
-          buttons: [{
-            text: 'Cerrar',
-            type: 'button-blueCustoms',
-            onTap: function(e) {
-
-             // if(borrar){ $scope.user.pin='';}
-             
-            }
-          }]
-        });
-    
-
-
-}
 
 $scope.marcarVendido = function (idPublicacion) {
 
