@@ -88,7 +88,7 @@
   <preference name="StatusBarStyle" value="lightcontent" />
 
   <preference name="android-build-tool" value="gradle" /> -->
-
+<gap:plugin name="cordova-plugin-splashscreen" source="npm"  />
   <gap:plugin name="cordova-plugin-camera"  source="npm"  spec="2.4.1" />
   <gap:plugin name="cordova-plugin-file-transfer"  source="npm" spec="1.6.3" />
 
