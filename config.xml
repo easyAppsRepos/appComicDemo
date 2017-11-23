@@ -47,9 +47,9 @@
   <preference name="SplashScreenDelay" value="3000"/>
    -->
 
-    <preference name="SplashScreenDelay" value="4000" />
+  
 
-  <preference name="FadeSplashScreenDuration" value="1000"/>
+  <preference name="FadeSplashScreenDuration" value="4000"/>
 
 
 
