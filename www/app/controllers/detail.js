@@ -2571,17 +2571,18 @@ console.log(events);
     '$scope',
     '$stateParams',
     '$window',
+    '$ionicSideMenuDelegate',
     '$ionicPopup',
     '$ionicLoading',
     '$ionicModal',
     'eventService',
     'api',
     'serverConfig',
-    function ($scope, $stateParams, $window, $ionicPopup, $ionicLoading, $ionicModal, eventService, api, serverConfig) {
+    function ($scope, $stateParams, $window, $ionicSideMenuDelegate, $ionicPopup, $ionicLoading, $ionicModal, eventService, api, serverConfig) {
 
       $scope.loading = true;
 
-
+   $ionicSideMenuDelegate.canDragContent(false);
 
 $scope.foto={};
 $scope.fotoNombre = 0;
@@ -2652,7 +2653,7 @@ $scope.boto2 = function(){
 
 
 TTS.speak({
-        text: 'hello, world!',
+        text: 'carro, casa',
         locale: 'es-AR',
         rate: 0.75
     }, function () {

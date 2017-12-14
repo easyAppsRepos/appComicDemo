@@ -8,20 +8,17 @@
 
   <ion-nav-title  style='    color: #333;
     font-family: badabb;
-    font-size: 34px;'>MagicMind</ion-nav-title>
+    font-size: 34px; text-align: center !important;'>MagicMind</ion-nav-title>
 
 
 
   <ion-content padding="true" style='background-color: white'>
 
-    <ion-refresher class="spinner-balanced" on-refresh="reload()"></ion-refresher>
-
-    <div class="text-center">
-      <ion-spinner class="spinner-balanced" ng-show="loading"></ion-spinner>
-    </div>
+ 
 
 
-    <div ng-show="!loading">
+
+    <div>
 
      
 
@@ -40,19 +37,14 @@
 
     </div>
 <div style="width:100%; text-align:center">
-    <button style="    color: red;
-    background: white;
-    border: solid 1px red;
-    width: 85px;
-    padding-top: 5px;
-    padding-bottom: 5px;" ng-click='boto()'>TEST</button>
+
 
     <button style="    color: red;
     background: white;
     border: solid 1px red;
     width: 85px;
     padding-top: 5px;
-    padding-bottom: 5px;" ng-click='boto2()'>TEST2</button>
+    padding-bottom: 5px;" ng-click='boto2()'>TEST</button>
 </div>
 
   </ion-content>
