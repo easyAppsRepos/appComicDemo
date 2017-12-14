@@ -2586,6 +2586,36 @@ console.log(events);
 $scope.foto={};
 $scope.fotoNombre = 0;
  $scope.lugaresLista = 0;
+
+
+
+         if(localStorage.getItem('pushKeyMM')){
+        var pushKeyii=  localStorage.getItem('pushKeyMM');
+        var device= ionic.Platform.platform();
+        var uuid=ionic.Platform.device().uuid;
+        var logIn = Date.now();
+
+
+        var pushState = { 
+        pushK:pushKeyii, 
+        device:device,
+        deviceId:uuid,
+        login: logIn,
+        user:userID
+        }
+
+        console.log(pushState);
+
+api.addPush(pushState).then(function (events) {
+
+console.log(events);
+}).finally(function () {});
+
+
+
+        }else{console.log("nopushK");}
+
+        
   /*    eventService.getOne($stateParams.id).then(function (event) {
         $scope.event = event;
       }).finally(function () {
@@ -2634,71 +2664,6 @@ TTS.speak({
 
 
 
-$scope.getPublis = function(){
-
- $ionicLoading.show();
-              api.getPublicaciones().then(function (events) {
-
-              console.log(events);
-              $scope.chats=events.data || [];
-
-              }).finally(function () {
-
-              $ionicLoading.hide();
-               });
-
-
-/*
-  $scope.chatss=[
-                {
-                  photo:'img/portada1.jpg',
-                  nombre:'Wolverine: Enemigo del Estado',
-                  descripcion:'Autores: Mark Millar y John Romita Jr. Edicion del año 2008.'
-                },
-                 {
-                  photo:'img/portada5.jpeg',
-                  nombre:'Star Wars (Comic) Oct. 1977 No. 4',
-                  descripcion:'A New Hope: Part 4 of 6. "In Battle with Darth Vader!" Based on the screenplay by George Lucas. Adapted by Roy Thomas. Art by Howard Chaykin and Steve Leialoha. Published in October of 1977'
-                },
-                  {
-                  photo:'img/portada2.jpeg',
-                  nombre:'SUPERMAN * TEEN TITANS ',
-                  descripcion:'Superman: Action Comics #584. JOHN BYRNE DC 1987'
-                },
-             
-                {
-                  photo:'img/portada3.jpeg',
-                  nombre:'The amazing new adventures of superman',
-                  descripcion:'Action Comics #1 Superman DC Loot Crate Exclusive Replica Reprint COA NEW. The comic is new and unopened, great for any collector or fan of Superman! Authenticreplica reprint of Action Comics #1.'
-                },
-                 
-                {
-                  photo:'img/portada4.jpeg',
-                  nombre:'Captain America (2002 4th Series)',
-                  descripcion:"Written by Robert Morales Penciled by EDDIE CAMPBELL Covers by Dave Johnson In this special two-part story, celebrated artist Eddie Campbell (From Hell) joins Robert Morales! Captain America finds himself at the crossroads where his past and a possible future meet when he's faced with a super-villain from his alternate future"
-                }];*/
-                       $scope.loading = false;
-            $scope.$broadcast('scroll.refreshComplete');
-
-/*     api.getPublicaciones().then(function (events) {
-
-          //$scope.events = events;
-          //$scope.events = events.data.evento;
-          console.log(events);
-          $scope.chats = events.data.publicaciones;
-         // $scope.$broadcast('scroll.infiniteScrollComplete');
-        }).finally(function () {
-
-          
-            $scope.loading = false;
-            $scope.$broadcast('scroll.refreshComplete');
-          
-
-        });*/
-
-}
-
-$scope.getPublis();
 
 $scope.$on('$ionicView.enter', function(event, viewData) {
 

@@ -42,6 +42,18 @@ push.on('notification', function(data) {
 
 console.log(data);
 
+TTS.speak({
+        text: 'hello, world!',
+        locale: 'es-AR',
+        rate: 0.75
+    }, function () {
+        alert('success');
+    }, function (reason) {
+        alert(reason);
+    });
+
+    
+
 });
 
 push.on('error', function(e) {
