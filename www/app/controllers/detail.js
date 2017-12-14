@@ -2626,8 +2626,7 @@ $ionicLoading.show();
 
 
     $ionicLoading.show({
-      template: 'Configurando...',
-      duration: 4000
+      template: 'Configurando...'
     });
 
           $timeout( function(){
@@ -2661,7 +2660,7 @@ $ionicLoading.show();
           }else{console.log("nopushK");}
 
 
-        }, 4000 );
+        }, 5000 );
 
 
 
