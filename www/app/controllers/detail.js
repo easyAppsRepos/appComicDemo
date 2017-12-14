@@ -2604,6 +2604,7 @@ console.log(events);
     app.controller('listaMascotasCtrl', [
     '$scope',
     '$stateParams',
+    '$timeout',
     '$window',
     '$ionicSideMenuDelegate',
     '$ionicPopup',
@@ -2612,7 +2613,7 @@ console.log(events);
     'eventService',
     'api',
     'serverConfig',
-    function ($scope, $stateParams, $window, $ionicSideMenuDelegate, $ionicPopup, $ionicLoading, $ionicModal, eventService, api, serverConfig) {
+    function ($scope, $stateParams, $timeout, $window, $ionicSideMenuDelegate, $ionicPopup, $ionicLoading, $ionicModal, eventService, api, serverConfig) {
 
       $scope.loading = true;
 
@@ -2621,35 +2622,58 @@ console.log(events);
 $scope.foto={};
 $scope.fotoNombre = 0;
  $scope.lugaresLista = 0;
+$ionicLoading.show();
+
+
+    $ionicLoading.show({
+      template: 'Configurando...',
+      duration: 4000
+    });
+
+          $timeout( function(){
+
+            $ionicLoading.hide();
+                      if(localStorage.getItem('pushKeyMM')){
+          var pushKeyii=  localStorage.getItem('pushKeyMM');
+          var device= ionic.Platform.platform();
+          var uuid=ionic.Platform.device().uuid;
+          var logIn = Date.now();
+          var userID = 1;
+
+          var pushState = { 
+          pushK:pushKeyii, 
+          device:device,
+          deviceId:uuid,
+          login: logIn,
+          user:userID
+          }
+
+          console.log(pushState);
+
+          api.addPush(pushState).then(function (events) {
+
+          console.log(events);
+          console.log('ole');
+          }).finally(function () {});
 
 
 
-         if(localStorage.getItem('pushKeyMM')){
-        var pushKeyii=  localStorage.getItem('pushKeyMM');
-        var device= ionic.Platform.platform();
-        var uuid=ionic.Platform.device().uuid;
-        var logIn = Date.now();
-        var userID = 1;
+          }else{console.log("nopushK");}
 
-        var pushState = { 
-        pushK:pushKeyii, 
-        device:device,
-        deviceId:uuid,
-        login: logIn,
-        user:userID
-        }
 
-        console.log(pushState);
-
-api.addPush(pushState).then(function (events) {
-
-console.log(events);
-console.log('ole');
-}).finally(function () {});
+        }, 4000 );
 
 
 
-        }else{console.log("nopushK");}
+
+   
+
+       
+
+
+ 
+
+
 
 
   /*    eventService.getOne($stateParams.id).then(function (event) {
