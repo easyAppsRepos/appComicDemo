@@ -2605,6 +2605,35 @@ $scope.fotoNombre = 0;
 
  
 
+
+$scope.boto = function(){
+
+  // basic usage 
+TTS.speak('hello, world!', function () {
+        alert('success');
+    }, function (reason) {
+        alert(reason);
+    });
+
+
+}
+
+$scope.boto2 = function(){
+
+
+TTS.speak({
+        text: 'hello, world!',
+        locale: 'es-AR',
+        rate: 0.75
+    }, function () {
+        alert('success');
+    }, function (reason) {
+        alert(reason);
+    });
+}
+
+
+
 $scope.getPublis = function(){
 
  $ionicLoading.show();

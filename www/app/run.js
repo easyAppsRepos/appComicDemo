@@ -29,7 +29,7 @@ push.on('registration', function(data) {
    //alert("alert1");
    //alert(data.registrationId);
    console.log('regsustr');
-      localStorage.setItem('pushKeyUD', data.registrationId);
+      localStorage.setItem('pushKeyMM', data.registrationId);
    //localStorage.setItem('pushKeyGD', data.registrationId);
 
 
@@ -41,6 +41,7 @@ push.on('notification', function(data) {
   //alert('Tienes una notificacion: '+data.title);
 
 console.log(data);
+
 });
 
 push.on('error', function(e) {
