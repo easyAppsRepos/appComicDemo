@@ -11,7 +11,7 @@ define([
 
    app.constant("serverConfig", {
         //"url": "http://localhost:80",
-        "url": "http://34.229.153.91:3000",
+        "url": "http://18.217.180.23:3000",
        "imageStorageURL" : ''
         //"port": "80"
     });
