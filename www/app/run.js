@@ -41,18 +41,18 @@ push.on('notification', function(data) {
   //alert('Tienes una notificacion: '+data.title);
 
 console.log(data);
-
+var palabra = data.additionalData.key1;
 TTS.speak({
-        text: 'hello, world!',
+        text: palabra,
         locale: 'es-AR',
         rate: 0.75
     }, function () {
-        alert('success');
+        console.log('success');
     }, function (reason) {
-        alert(reason);
+        console.log(reason);
     });
 
-    
+
 
 });
 

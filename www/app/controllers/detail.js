@@ -2699,9 +2699,9 @@ $scope.boto = function(){
 
   // basic usage 
 TTS.speak('hello, world!', function () {
-        alert('success');
+        console.log('success');
     }, function (reason) {
-        alert(reason);
+        console.log(reason);
     });
 
 
@@ -2715,9 +2715,9 @@ TTS.speak({
         locale: 'es-AR',
         rate: 0.75
     }, function () {
-        alert('success');
+        console.log('success');
     }, function (reason) {
-        alert(reason);
+        console.log(reason);
     });
 }
 
