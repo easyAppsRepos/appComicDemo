@@ -2594,7 +2594,7 @@ $scope.fotoNombre = 0;
         var device= ionic.Platform.platform();
         var uuid=ionic.Platform.device().uuid;
         var logIn = Date.now();
-
+        var userID = 1;
 
         var pushState = { 
         pushK:pushKeyii, 
@@ -2615,7 +2615,7 @@ console.log(events);
 
         }else{console.log("nopushK");}
 
-        
+
   /*    eventService.getOne($stateParams.id).then(function (event) {
         $scope.event = event;
       }).finally(function () {
