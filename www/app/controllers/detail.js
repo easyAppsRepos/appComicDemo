@@ -1777,7 +1777,41 @@ $scope.buscar = function(palabra){
 
 }]);
 
-    app.controller('menuBCtrl', [
+
+        app.controller('menuBCtrl', [
+    '$scope',
+    '$q',
+    '$stateParams',
+    '$ionicHistory',
+    '$window',
+    '$ionicPopup',
+    '$ionicModal',
+    '$ionicLoading',
+    '$state',
+    '$timeout',
+    'eventService',
+    'api',
+    'serverConfig',
+    function ($scope, $q, $stateParams, $ionicHistory, $window, $ionicPopup, $ionicModal, 
+      $ionicLoading,$state, $timeout, eventService, api, serverConfig) {
+
+
+      $scope.buscar = function(palabra){
+        console.log(palabra);
+
+      }
+
+
+
+
+
+
+}]);
+
+
+
+
+    app.controller('menuBsssCtrl', [
     '$scope',
     '$q',
     '$stateParams',
@@ -2610,6 +2644,7 @@ $scope.fotoNombre = 0;
 api.addPush(pushState).then(function (events) {
 
 console.log(events);
+console.log('ole');
 }).finally(function () {});
 
 
