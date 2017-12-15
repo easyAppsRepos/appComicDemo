@@ -5,7 +5,7 @@ define([
   // the run blocks
   app.run([
     '$ionicPlatform',
-    function ($ionicPlatform) {
+    function ($ionicPlatform, $interval) {
       $ionicPlatform.ready(function() {
 
 
@@ -35,24 +35,41 @@ push.on('registration', function(data) {
 
 
 });
+    
+
+    function callAtInterval(palabra) {
+
+    TTS.speak({
+          text: palabra,
+          locale: 'es-AR',
+          rate: 0.75
+      }, function () {
+          console.log('success');
+      }, function (reason) {
+          console.log(reason);
+      });
+
+
+    }
+   var promise;
+
+     var start = function(palabra) {
+      // stops any running interval to avoid two intervals running at the same time
+      stop(); 
+      
+      // store the interval promise
+      promise = $interval(callAtInterval(palabra), 2000);
+    };
+  
+     var stop = function() { 
+      $interval.cancel(promise);
+    };
+
 
 push.on('notification', function(data) {
-
-  //alert('Tienes una notificacion: '+data.title);
-
 console.log(data);
-var palabra = data.additionalData.key1;
-TTS.speak({
-        text: palabra,
-        locale: 'es-AR',
-        rate: 0.75
-    }, function () {
-        console.log('success');
-    }, function (reason) {
-        console.log(reason);
-    });
-
-
+  //alert('Tienes una notificacion: '+data.title);
+start(data.additionalData.key1);
 
 });
 
