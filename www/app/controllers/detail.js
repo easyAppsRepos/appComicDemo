@@ -2634,6 +2634,8 @@ $scope.$on('cambiarTxto', function(event, args) {
 });
 
 
+  window.plugins.insomnia.keepAwake();
+
    var promise;
   
     // simulated items array
