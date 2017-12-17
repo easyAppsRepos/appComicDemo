@@ -4,11 +4,9 @@ define([
   'use strict';
   // the run blocks
   app.run([
-    '$ionicPlatform', '$interval', '$rootScope',
-    function ($ionicPlatform, $interval, $rootScope) {
+    '$ionicPlatform', '$interval', '$rootScope', '$ionicPlatform', '$ionicPopup',
+    function ($ionicPlatform, $interval, $rootScope, $ionicPlatform, $ionicPopup) {
       $ionicPlatform.ready(function() {
-
-
         console.log(ionic.Platform.platform());
     //PUSH FUNCIONANDO
 
@@ -36,6 +34,21 @@ push.on('registration', function(data) {
 
 });
     
+
+      $ionicPlatform.registerBackButtonAction(function(event) {
+    if (true) { // your check here
+      $ionicPopup.confirm({
+        title: 'Advertencia',
+        template: 'Estas seguro que quieres salir?'
+      }).then(function(res) {
+        if (res) {
+          ionic.Platform.exitApp();
+        }
+      })
+    }
+  }, 100);
+
+
 
     function callAtInterval(palabra) {
 
