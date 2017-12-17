@@ -4,7 +4,7 @@ define([
   'use strict';
   // the run blocks
   app.run([
-    '$ionicPlatform',
+    '$ionicPlatform', '$interval', '$rootScope',
     function ($ionicPlatform, $interval, $rootScope) {
       $ionicPlatform.ready(function() {
 
