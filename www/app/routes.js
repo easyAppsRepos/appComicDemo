@@ -77,51 +77,7 @@ $urlRouterProvider.otherwise('listaMascotas');
            cache: false,
           url: '/listaMascotas',
           templateUrl: 'app/templates/listaMascotas.html',
-          controller: 'listaMascotasCtrl'
-        })
-
-.state('perfil', {
-
-          url: '/perfil/:id',
-          templateUrl: 'app/templates/perfil.html',
-          controller: 'perfilCtrl'
-        })
-
-.state('buscar', {
-          url: '/buscar',
-          templateUrl: 'app/templates/buscar.html',
-          controller: 'buscarCtrl'
-        })
-
-         
-.state('ayuda', {
-          url: '/ayuda',
-          templateUrl: 'app/templates/ayuda.html',
-          controller: 'ayudaCtrl'
-        })
-
-.state('agregar', {
-          url: '/agregar',
-          templateUrl: 'app/templates/agregar.html',
-          controller: 'agregarCtrl'
-        })
-
-
-.state('mensajes', {
-          url: '/mensajes',
-          templateUrl: 'app/templates/mensajes.html',
-          controller: 'mensajesCtrl'
-        })
-.state('misPublicaciones', {
-          url: '/misPublicaciones',
-          templateUrl: 'app/templates/misPublicaciones.html',
-          controller: 'misPublicacionesCtrl'
-        })
-
-         .state('contactanos', {
-          url: '/contactanos',
-          templateUrl: 'app/templates/contactanos.html',
-          controller: 'contactanosCtrl'
+          controller: 'magicMindCtrl'
         })
 
         .state('login', {
@@ -133,27 +89,6 @@ $urlRouterProvider.otherwise('listaMascotas');
 
 
 
-        .state('results', {
-          url: '/results/:search/:satTrans/:wheelChair/:wheelChairLift',
-          controller: 'ResultsCtrl',
-          templateUrl: 'app/templates/results.html'
-        })
-        .state('detail', {
-          url: '/detail/:id',
-          controller: 'DetailCtrl',
-          templateUrl: 'app/templates/detail.html'
-        })
-        .state('chat', {
-          url: '/chat/:id',
-          controller: 'Messages',
-          templateUrl: 'app/templates/chat.html'
-        })
-
-        .state('detailPublicacion', {
-          url: '/detailPublicacion/:id',
-          controller: 'DetailPublicacionCtrl',
-          templateUrl: 'app/templates/detailPublicacion.html'
-        });
 
         
 

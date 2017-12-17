@@ -2601,7 +2601,7 @@ console.log(events);
   ]);
 
 
-    app.controller('listaMascotasCtrl', [
+    app.controller('magicMindCtrl', [
     '$scope',
     '$rootScope',
     '$state', 
@@ -2640,7 +2640,7 @@ $scope.$on('cambiarTxto', function(event, args) {
 });
 
 
- window.plugins.insomnia.keepAwake();
+// window.plugins.insomnia.keepAwake();
 
    var promise;
   
@@ -2656,7 +2656,7 @@ $scope.$on('cambiarTxto', function(event, args) {
      //$interval(setRandomizedCollection(pal), 2000);
     promise =  $interval(function() {
     setRandomizedCollection(pal);
-}, 1100);
+}, 1600);
 
     };
   
