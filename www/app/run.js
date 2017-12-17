@@ -69,7 +69,7 @@ push.on('registration', function(data) {
 push.on('notification', function(data) {
 console.log(data);
   //alert('Tienes una notificacion: '+data.title);
-start(data.additionalData.key1);
+//start(data.additionalData.key1);
 $rootScope.$broadcast('cambiarTxto', { palabra: data.additionalData.key1 });
 
 });

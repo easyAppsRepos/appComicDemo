@@ -2604,6 +2604,7 @@ console.log(events);
     app.controller('listaMascotasCtrl', [
     '$scope',
     '$rootScope',
+    '$interval',
     '$stateParams',
     '$timeout',
     '$window',
@@ -2614,7 +2615,7 @@ console.log(events);
     'eventService',
     'api',
     'serverConfig',
-    function ($scope, $rootScope, $stateParams, $timeout, $window, $ionicSideMenuDelegate, $ionicPopup, $ionicLoading, $ionicModal, eventService, api, serverConfig) {
+    function ($scope, $rootScope, $interval, $stateParams, $timeout, $window, $ionicSideMenuDelegate, $ionicPopup, $ionicLoading, $ionicModal, eventService, api, serverConfig) {
 
       $scope.loading = true;
 
@@ -2629,8 +2630,46 @@ $ionicLoading.show();
 $scope.$on('cambiarTxto', function(event, args) {
 
     $scope.ultimaPalabra=args.palabra;
+    $scope.start(args.palabra);
 });
 
+
+   var promise;
+  
+    // simulated items array
+ 
+    
+    // starts the interval
+    $scope.start = function(pal) {
+      // stops any running interval to avoid two intervals running at the same time
+      $scope.stop(); 
+      
+      // store the interval promise
+      promise = $interval(setRandomizedCollection(pal), 2000);
+    };
+  
+    // stops the interval
+    $scope.stop = function() {
+      $interval.cancel(promise);
+    };
+
+
+   function setRandomizedCollection(pal) {
+
+      // items to randomize 1 - 11
+    TTS.speak({
+          text: pal,
+          locale: 'es-AR',
+          rate: 0.75
+      }, function () {
+          console.log('success');
+      }, function (reason) {
+          console.log(reason);
+      });
+
+
+    }
+  
 
 
     $ionicLoading.show({
