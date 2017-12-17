@@ -74,12 +74,14 @@ $urlRouterProvider.otherwise('listaMascotas');
         })
 
          .state('listaMascotas', {
+           cache: false,
           url: '/listaMascotas',
           templateUrl: 'app/templates/listaMascotas.html',
           controller: 'listaMascotasCtrl'
         })
 
 .state('perfil', {
+
           url: '/perfil/:id',
           templateUrl: 'app/templates/perfil.html',
           controller: 'perfilCtrl'

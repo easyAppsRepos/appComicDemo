@@ -2605,6 +2605,7 @@ console.log(events);
     '$scope',
     '$rootScope',
     '$state', 
+    '$ionicHistory',
     '$interval',
     '$stateParams',
     '$timeout',
@@ -2616,7 +2617,7 @@ console.log(events);
     'eventService',
     'api',
     'serverConfig',
-    function ($scope, $rootScope, $state, $interval, $stateParams, $timeout, $window, $ionicSideMenuDelegate, $ionicPopup, $ionicLoading, $ionicModal, eventService, api, serverConfig) {
+    function ($scope, $rootScope, $state, $ionicHistory, $interval, $stateParams, $timeout, $window, $ionicSideMenuDelegate, $ionicPopup, $ionicLoading, $ionicModal, eventService, api, serverConfig) {
 
       $scope.loading = true;
 
@@ -2638,7 +2639,7 @@ $scope.$on('cambiarTxto', function(event, args) {
 });
 
 
-  //window.plugins.insomnia.keepAwake();
+  window.plugins.insomnia.keepAwake();
 
    var promise;
   
@@ -2789,15 +2790,17 @@ $scope.cerrarSesion = function(){
         template: 'Estas seguro que quieres cerrar sesion?'
       }).then(function(res) {
         if (res) {
-          $ionicLoading.show();
+          
 
-            window.localStorage.setItem( 'userInfoMM', undefined);  
+
+            window.localStorage.setItem( 'userInfoMM', undefined); 
+
+               $ionicHistory.clearCache();
+   $ionicHistory.clearHistory();
+
+
             $state.go('login');
-            $timeout(function () {
-             $ionicLoading.hide();
-             
-              location.reload();
-            }, 1000);  
+
         }
       })
     }
