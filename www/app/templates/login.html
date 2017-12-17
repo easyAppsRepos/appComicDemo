@@ -4,7 +4,7 @@
     <div  class="ion-modal-content-custom2">
 
 
-      <ion-content class="padding " style="background-color: #00AD9E; color:white;font-family:backIssuesItal !important" >
+      <ion-content class="padding " style="background-color: gray; color:white;font-family:backIssuesItal !important" >
   <i ng-click='closeModal()' style='    color: white;
     font-size: 35px;' class=" ion-android-cancel"></i>
       <div class='' style="    margin-left: 3%;margin-right: 3%;   margin-top: 3%;">
@@ -12,7 +12,7 @@
        <form name="form.usuario" ng-submit="form.usuario.$valid && registrarUsuario(usuario)">
 
                     <div  style='      color: white;
-   border-bottom: solid 1px #1cb382;    margin-top: 15px;font-size: 17px !important;    padding-bottom: 13px;' >Crear Usuario</div>
+   border-bottom: none;    margin-top: 15px;font-size: 17px !important;    padding-bottom: 13px;' >Crear Usuario</div>
                     <div  class="list " >
 
                         <div  style="margin-top:13px"><label style="    color: white;
@@ -21,17 +21,7 @@
     background-color: transparent;
     border-bottom: solid 2px white; color:white' placeholder='' type="email" class="inputRegistrar md-input" required="required">
 
-                      <div style="margin-top:13px"><label style="    color: white;
-    font-size: 17px !important;">Nombre *</label></div>
-                        <input ng-model='usuario.nombre' placeholder='' style="    width: 100%;
-    background-color: transparent;
-    border-bottom: solid 2px white; color:white" type="text" class="inputRegistrar md-input" required="required">
 
-                      <div style="margin-top:13px"><label style="    color: white;
-    font-size: 17px !important;">Telefono de contacto</label></div>
-                        <input ng-model='usuario.telefono' placeholder='' style="    width: 100%;
-    background-color: transparent;
-    border-bottom: solid 2px white; color:white" type="text" class="inputRegistrar md-input">
 
 
 
@@ -51,12 +41,19 @@
     border-bottom: solid 2px white; color:white' placeholder='' type="password" class="inputRegistrar md-input" autocapitalize="off" required="required">
 
 
+                      <div style="margin-top:13px"><label style="    color: white;
+    font-size: 17px !important;">Nombre *</label></div>
+                        <input ng-model='usuario.nombre' placeholder='' style="    width: 100%;
+    background-color: transparent;
+    border-bottom: solid 2px white; color:white" type="text" class="inputRegistrar md-input" required="required">
+
+
 
 
                     </div>
 
                          
-            <button ng-disabled="form.usuario.$invalid" style="margin-bottom: 55px; background-color: white!important;color: #00AD9E !important; "  class="button button-full " >Registrar</button>
+            <button ng-disabled="form.usuario.$invalid" style="margin-bottom: 55px; background-color: white!important;color: gray !important; "  class="button button-full " >Registrar</button>
 
             </form>
         
@@ -86,7 +83,7 @@
 
 </style>
 
-<ion-content class='ttss' style="background-color: #00AD9E;font-family:backIssuesItal " >
+<ion-content class='ttss' style="background-color: gray;font-family:backIssuesItal " >
 
 
 
@@ -99,7 +96,7 @@
                
             <div style='    color: #333;
     font-family: badabb;
-    font-size: 34px;    padding-top: 15px;' >Ultra Doujinshi</div>
+    font-size: 34px;    padding-top: 15px;' >MagicMind</div>
 
         </div>
 
@@ -138,18 +135,18 @@
       <button class="button  "  style='font-family:backIssuesItal !important' ng-click='openModalRegistro()'><b>Registrarse</b></button> 
 
 <br><br>  
-
+<!--
 <button ng-click="facebookSignIn()" class="loginBtn loginBtn--facebook">
   Login con Facebook
 </button>
 
-<!-- <button class="loginBtn loginBtn--google">
+ <button class="loginBtn loginBtn--google">
   Login with Google
 </button> -->
 
 <br>
 <br>
-      <a>He olvidado mi contraseña</a>
+     <!--  <a>He olvidado mi contraseña</a> -->
 </div>
 
 

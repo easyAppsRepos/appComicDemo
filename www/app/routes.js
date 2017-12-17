@@ -42,13 +42,13 @@ $ionicConfigProvider.backButton.previousTitleText(false).text('');
 $urlRouterProvider.otherwise('listaMascotas');
 
 
-/*
 
 
-          if(localStorage.getItem('userInfoUD') == null || 
-            localStorage.getItem('userInfoUD') == 'null' || 
-            localStorage.getItem('userInfoUD') == 'undefined' || 
-            localStorage.getItem('userInfoUD') == undefined){
+
+          if(localStorage.getItem('userInfoMM') == null || 
+            localStorage.getItem('userInfoMM') == 'null' || 
+            localStorage.getItem('userInfoMM') == 'undefined' || 
+            localStorage.getItem('userInfoMM') == undefined){
 
         //console.log(localStorage.getItem('userInfoTS'));
       //$urlRouterProvider.otherwise('login');
@@ -64,7 +64,7 @@ $urlRouterProvider.otherwise('listaMascotas');
 
 
 
-*/
+
       $stateProvider
         // app states
         .state('dashboard', {

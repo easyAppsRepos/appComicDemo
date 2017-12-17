@@ -1608,8 +1608,8 @@ if(tipo==1){
 //usuario.email = usuario.email.toLowerCase();
           api.doLogin(user).then(function (events) {
             if(events.data.idUsuario > 0){
-
-              window.localStorage.setItem( 'userInfoUD', events.data.idUsuario);            
+              console.log(events.data)
+              window.localStorage.setItem( 'userInfoMM', events.data.idUsuario);            
                 $state.go('listaMascotas');
 
                 console.log('logueado');
@@ -1651,7 +1651,7 @@ if(tipo==1){
 
     $scope.openModalRegistro = function(){
 
-            $scope.openModal("nuevoAnuncio.html", "slide-in-up");
+            $scope.openModal("nuevoUsuario.html", "slide-in-up");
     }
 $scope.registrarUsuario = function(usuario){
   if(usuario.pass !== usuario.pass2){
@@ -1671,7 +1671,7 @@ console.log(events);
           //$scope.events = events.data.evento;
 
 
-          if(events.data.insertId>1){
+          if(events.data && events.data.insertId>1){
 
             mensajeAlerta(2, 'Cuenta creada, ya puedes hacer login!');
               $scope.closeModal();  
@@ -2604,6 +2604,7 @@ console.log(events);
     app.controller('listaMascotasCtrl', [
     '$scope',
     '$rootScope',
+    '$state', 
     '$interval',
     '$stateParams',
     '$timeout',
@@ -2615,12 +2616,15 @@ console.log(events);
     'eventService',
     'api',
     'serverConfig',
-    function ($scope, $rootScope, $interval, $stateParams, $timeout, $window, $ionicSideMenuDelegate, $ionicPopup, $ionicLoading, $ionicModal, eventService, api, serverConfig) {
+    function ($scope, $rootScope, $state, $interval, $stateParams, $timeout, $window, $ionicSideMenuDelegate, $ionicPopup, $ionicLoading, $ionicModal, eventService, api, serverConfig) {
 
       $scope.loading = true;
 
    $ionicSideMenuDelegate.canDragContent(false);
 $scope.ultimaPalabra=' - ';
+
+$scope.idUsuario = localStorage.getItem('userInfoMM');
+
 $scope.foto={};
 $scope.fotoNombre = 0;
  $scope.lugaresLista = 0;
@@ -2690,7 +2694,7 @@ $scope.$on('cambiarTxto', function(event, args) {
           var device= ionic.Platform.platform();
           var uuid=ionic.Platform.device().uuid;
           var logIn = Date.now();
-          var userID = 1;
+          var userID = localStorage.getItem('userInfoMM');
 
           var pushState = { 
           pushK:pushKeyii, 
@@ -2764,6 +2768,34 @@ $scope.boto2 = function(){
 $rootScope.$broadcast('cambiarTxto', { palabra: 'carro' });
 
 
+}
+
+
+
+$scope.cerrarSesion = function(){
+
+
+
+
+           
+          if (true) { // your check here
+      $ionicPopup.confirm({
+        title: 'Logout',
+        template: 'Estas seguro que quieres cerrar sesion?'
+      }).then(function(res) {
+        if (res) {
+          $ionicLoading.show();
+
+            window.localStorage.setItem( 'userInfoMM', undefined);  
+            
+            $timeout(function () {
+             $ionicLoading.hide();
+             $state.go('login');
+              location.reload();
+            }, 1000);  
+        }
+      })
+    }
 }
 
 
