@@ -4,8 +4,8 @@ define([
   'use strict';
   // the run blocks
   app.run([
-    '$ionicPlatform', '$interval', '$rootScope', '$ionicPlatform', '$ionicPopup',
-    function ($ionicPlatform, $interval, $rootScope, $ionicPlatform, $ionicPopup) {
+    '$ionicPlatform', '$interval', '$rootScope',  '$ionicPopup',
+    function ($ionicPlatform, $interval, $rootScope, $ionicPopup) {
       $ionicPlatform.ready(function() {
         console.log(ionic.Platform.platform());
     //PUSH FUNCIONANDO
