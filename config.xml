@@ -113,7 +113,7 @@
       <gap:plugin name="cordova-plugin-app-event" source="npm" version="1.2.0"/>
        <gap:plugin name="cordova-plugin-device" source="npm" version="1.1.4" />
 
-<!-- 
+
 
 <icon src="icon.png" />
 <icon src="res/icon/android/36x36.png" platform="android" qualifier="ldpi" />
@@ -138,7 +138,7 @@
 
    <icon gap:platform="ios" height="120" src="res/icon/ios/120.png" width="120" />
 
-
+<!-- 
 
 
 
