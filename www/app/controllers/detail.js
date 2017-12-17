@@ -2656,7 +2656,7 @@ $scope.$on('cambiarTxto', function(event, args) {
      //$interval(setRandomizedCollection(pal), 2000);
     promise =  $interval(function() {
     setRandomizedCollection(pal);
-}, 1500);
+}, 1100);
 
     };
   
