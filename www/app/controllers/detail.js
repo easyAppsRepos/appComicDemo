@@ -2640,7 +2640,7 @@ $scope.$on('cambiarTxto', function(event, args) {
 });
 
 
-// window.plugins.insomnia.keepAwake();
+ window.plugins.insomnia.keepAwake();
 
    var promise;
   
