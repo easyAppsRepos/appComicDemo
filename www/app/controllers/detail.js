@@ -2638,7 +2638,7 @@ $scope.$on('cambiarTxto', function(event, args) {
 });
 
 
-  window.plugins.insomnia.keepAwake();
+  //window.plugins.insomnia.keepAwake();
 
    var promise;
   
@@ -2770,6 +2770,11 @@ $rootScope.$broadcast('cambiarTxto', { palabra: 'carro' });
 
 }
 
+$scope.parar = function(){
+$scope.stop();
+
+
+}
 
 
 $scope.cerrarSesion = function(){
@@ -2787,10 +2792,10 @@ $scope.cerrarSesion = function(){
           $ionicLoading.show();
 
             window.localStorage.setItem( 'userInfoMM', undefined);  
-            
+            $state.go('login');
             $timeout(function () {
              $ionicLoading.hide();
-             $state.go('login');
+             
               location.reload();
             }, 1000);  
         }
