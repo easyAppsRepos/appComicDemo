@@ -2645,7 +2645,11 @@ $scope.$on('cambiarTxto', function(event, args) {
       $scope.stop(); 
       
       // store the interval promise
-      promise = $interval(setRandomizedCollection(pal), 2000);
+     //$interval(setRandomizedCollection(pal), 2000);
+    promise =  $interval(function() {
+    setRandomizedCollection(pal);
+}, 2000);
+
     };
   
     // stops the interval
@@ -2757,15 +2761,7 @@ TTS.speak('hello, world!', function () {
 $scope.boto2 = function(){
 $rootScope.$broadcast('cambiarTxto', { palabra: 'carro' });
 
-TTS.speak({
-        text: 'carro',
-        locale: 'es-AR',
-        rate: 0.75
-    }, function () {
-        console.log('success');
-    }, function (reason) {
-        console.log(reason);
-    });
+
 }
 
 
