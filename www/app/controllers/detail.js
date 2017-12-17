@@ -2628,6 +2628,7 @@ $scope.idUsuario = localStorage.getItem('userInfoMM');
 
 $scope.foto={};
 $scope.fotoNombre = 0;
+$scope.velocidad = 75;
  $scope.lugaresLista = 0;
 $ionicLoading.show();
 
@@ -2639,7 +2640,7 @@ $scope.$on('cambiarTxto', function(event, args) {
 });
 
 
-  window.plugins.insomnia.keepAwake();
+ window.plugins.insomnia.keepAwake();
 
    var promise;
   
@@ -2666,12 +2667,12 @@ $scope.$on('cambiarTxto', function(event, args) {
 
 
    function setRandomizedCollection(pal) {
-
+console.log(($scope.velocidad / 100));
       // items to randomize 1 - 11
     TTS.speak({
           text: pal,
           locale: 'es-AR',
-          rate: 0.75
+          rate: $scope.velocidad/100
       }, function () {
           console.log('success');
       }, function (reason) {
@@ -2794,7 +2795,7 @@ $scope.cerrarSesion = function(){
 
 
             window.localStorage.setItem( 'userInfoMM', undefined); 
-
+            $scope.stop();
                $ionicHistory.clearCache();
    $ionicHistory.clearHistory();
 
