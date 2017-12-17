@@ -2603,6 +2603,7 @@ console.log(events);
 
     app.controller('listaMascotasCtrl', [
     '$scope',
+    '$rootScope',
     '$stateParams',
     '$timeout',
     '$window',
@@ -2613,16 +2614,23 @@ console.log(events);
     'eventService',
     'api',
     'serverConfig',
-    function ($scope, $stateParams, $timeout, $window, $ionicSideMenuDelegate, $ionicPopup, $ionicLoading, $ionicModal, eventService, api, serverConfig) {
+    function ($scope, $rootScope, $stateParams, $timeout, $window, $ionicSideMenuDelegate, $ionicPopup, $ionicLoading, $ionicModal, eventService, api, serverConfig) {
 
       $scope.loading = true;
 
    $ionicSideMenuDelegate.canDragContent(false);
-
+$scope.ultimaPalabra=' - ';
 $scope.foto={};
 $scope.fotoNombre = 0;
  $scope.lugaresLista = 0;
 $ionicLoading.show();
+
+
+$scope.$on('cambiarTxto', function(event, args) {
+
+    $scope.ultimaPalabra=args.palabra;
+});
+
 
 
     $ionicLoading.show({
@@ -2708,10 +2716,10 @@ TTS.speak('hello, world!', function () {
 }
 
 $scope.boto2 = function(){
-
+$rootScope.$broadcast('cambiarTxto', { palabra: 'carro' });
 
 TTS.speak({
-        text: 'carro, casa',
+        text: 'carro',
         locale: 'es-AR',
         rate: 0.75
     }, function () {

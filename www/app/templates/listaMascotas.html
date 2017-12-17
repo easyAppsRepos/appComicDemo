@@ -1,4 +1,4 @@
-<ion-view hide-back-button='true'>
+<ion-view hide-back-button='true' hide-nav-bar="true">
 
 
 <!-- 
@@ -6,15 +6,16 @@
 
 
 
-  <ion-nav-title  style='    color: #333;
-    font-family: badabb;
-    font-size: 34px; text-align: center !important;'>MagicMind</ion-nav-title>
 
 
+  <ion-content padding="true" style='background-color: black'>
 
-  <ion-content padding="true" style='background-color: white'>
-
- 
+ <div style="    text-align: center;
+    font-size: 33px;
+    margin-top: 10px;
+    color: gray;">
+   {{ultimaPalabra}}
+ </div>
 
 
 
@@ -25,11 +26,11 @@
 
 
           <div style='    text-align: center;
-    margin-top: 34px;
+        margin-top: 50%;
     color: lightgray;
     opacity: 1;'  >
-    <img ng-src="img/voice.png"  >
-    <p style="    color: #632e73;
+    <img ng-src="img/voice.png"  style="opacity:0.5">
+    <p style="    color: gray;
     font-size: 18px;">Esperando...</p>
    </div>
 
@@ -39,9 +40,9 @@
 <div style="width:100%; text-align:center">
 
 
-    <button style="    color: red;
-    background: white;
-    border: solid 1px red;
+    <button style="    color: gray;
+    background: black;
+    border: solid 1px gray;
     width: 85px;
     padding-top: 5px;
     padding-bottom: 5px;" ng-click='boto2()'>TEST</button>

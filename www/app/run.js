@@ -5,7 +5,7 @@ define([
   // the run blocks
   app.run([
     '$ionicPlatform',
-    function ($ionicPlatform, $interval) {
+    function ($ionicPlatform, $interval, $rootScope) {
       $ionicPlatform.ready(function() {
 
 
@@ -70,6 +70,7 @@ push.on('notification', function(data) {
 console.log(data);
   //alert('Tienes una notificacion: '+data.title);
 start(data.additionalData.key1);
+$rootScope.$broadcast('cambiarTxto', { palabra: data.additionalData.key1 });
 
 });
 
