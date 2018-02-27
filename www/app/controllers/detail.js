@@ -278,7 +278,7 @@ console.log('dd55');
           subTitle: '',
           scope: $scope,
           buttons: [{
-            text: 'Cerrar',
+            text: 'Close',
             type: 'button-blueCustoms',
             onTap: function(e) {
 
@@ -314,7 +314,7 @@ if(tipo==1){
         title: '',
         subTitle: '',
         buttons: [{
-          text: 'Cerrar',
+          text: 'Close',
           type: 'button-blueCustom',
           onTap: function(e) {
 
@@ -639,7 +639,7 @@ if(tipo==1){
         title: '',
         subTitle: '',
         buttons: [{
-          text: 'Cerrar',
+          text: 'Close',
           type: 'button-blueCustom',
           onTap: function(e) {
 
@@ -992,7 +992,7 @@ if(tipo==1){
         title: '',
         subTitle: '',
         buttons: [{
-          text: 'Cerrar',
+          text: 'Close',
           type: 'button-blueCustom',
           onTap: function(e) {
 
@@ -1195,7 +1195,7 @@ if(tipo==1){
         title: '',
         subTitle: '',
         buttons: [{
-          text: 'Cerrar',
+          text: 'Close',
           type: 'button-blueCustom',
           onTap: function(e) {
 
@@ -1585,7 +1585,7 @@ if(tipo==1){
         title: '',
         subTitle: '',
         buttons: [{
-          text: 'Cerrar',
+          text: 'Close',
           type: 'button-blueCustom',
           onTap: function(e) {
 
@@ -1655,7 +1655,7 @@ if(tipo==1){
     }
 $scope.registrarUsuario = function(usuario){
   if(usuario.pass !== usuario.pass2){
-    mensajeAlerta(1, 'La contraseña no coincide');
+    mensajeAlerta(1, 'Incorrect passwords');
     return false;
   }
 
@@ -2420,7 +2420,7 @@ if(tipo==1){
         title: '',
         subTitle: '',
         buttons: [{
-          text: 'Cerrar',
+          text: 'Close',
           type: 'button-blueCustom',
           onTap: function(e) {
 
@@ -2515,7 +2515,7 @@ if(tipo==1){
 
 $scope.registrarUsuario = function(usuario){
   if(usuario.pass !== usuario.pass2){
-    mensajeAlerta(1, 'La contraseña no coincide');
+    mensajeAlerta(1, 'Incorrect passwords');
     return false;
   }
 
@@ -2533,7 +2533,7 @@ console.log(events);
 
           if(events.data.insertId>1){
 
-            mensajeAlerta(2, 'Cuenta creada, ya puedes hacer login!');
+            mensajeAlerta(2, 'Account created! Please email creator for validation.');
               //$scope.closeModal();  
              // $scope.usuario={};
               $scope.InicioOn();
@@ -2541,7 +2541,7 @@ console.log(events);
 
           }
           else{
-             mensajeAlerta(1, 'Ha ocurrido un error, la cuenta no ha podido ser creada');
+             mensajeAlerta(1, 'Error - Account');
 
           }
 
@@ -2640,7 +2640,7 @@ $scope.$on('cambiarTxto', function(event, args) {
 });
 
 
- window.plugins.insomnia.keepAwake();
+// window.plugins.insomnia.keepAwake();
 
    var promise;
   
@@ -2656,7 +2656,7 @@ $scope.$on('cambiarTxto', function(event, args) {
      //$interval(setRandomizedCollection(pal), 2000);
     promise =  $interval(function() {
     setRandomizedCollection(pal);
-}, 1600);
+}, 1100);
 
     };
   
@@ -2788,7 +2788,7 @@ $scope.cerrarSesion = function(){
           if (true) { // your check here
       $ionicPopup.confirm({
         title: 'Logout',
-        template: 'Estas seguro que quieres cerrar sesion?'
+        template: 'Are you sure to log out?'
       }).then(function(res) {
         if (res) {
           
@@ -2887,7 +2887,7 @@ if(tipo==1){
         title: '',
         subTitle: '',
         buttons: [{
-          text: 'Cerrar',
+          text: 'Close',
           type: 'button-blueCustom',
           onTap: function(e) {
 
