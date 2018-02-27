@@ -1483,7 +1483,7 @@ else{$state.go('chat', { id: ll });}
 
                     else{
 
-                      mensajeAlerta(1, 'Usuario ya registrado');
+                      mensajeAlerta(1, 'User alreado register');
                     }
 
               }).finally(function () {
@@ -1542,7 +1542,7 @@ else{$state.go('chat', { id: ll });}
         console.log('getLoginStatus', success.status);
 
         $ionicLoading.show({
-          template: 'Ingresando...'
+          template: 'Starting...'
         });
 
         // Ask the permissions you need. You can learn more about
@@ -1673,7 +1673,7 @@ console.log(events);
 
           if(events.data && events.data.insertId>1){
 
-            mensajeAlerta(2, 'Cuenta creada, ya puedes hacer login!');
+            mensajeAlerta(2, 'Account OK');
               $scope.closeModal();  
 
 
@@ -2685,7 +2685,7 @@ console.log(($scope.velocidad / 100));
 
 
     $ionicLoading.show({
-      template: 'Configurando...'
+      template: 'Configuring...'
     });
 
           $timeout( function(){

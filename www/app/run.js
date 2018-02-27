@@ -38,8 +38,8 @@ push.on('registration', function(data) {
       $ionicPlatform.registerBackButtonAction(function(event) {
     if (true) { // your check here
       $ionicPopup.confirm({
-        title: 'Advertencia',
-        template: 'Estas seguro que quieres salir?'
+        title: 'Warning',
+        template: 'Are you sure to close?'
       }).then(function(res) {
         if (res) {
           ionic.Platform.exitApp();
